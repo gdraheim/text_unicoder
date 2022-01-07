@@ -609,14 +609,14 @@ def bold(text: str) -> str:
     bold_base_z = 0x1D433
     bold_base_0 = 0x1D7CE
     bold_base_9 = 0x1D7D7
-    sla_base_A = 0x1D434
-    sla_base_Z = 0x1D44D
-    sla_base_a = 0x1D44E
-    sla_base_z = 0x1D467
-    bold_sla_base_A = 0x1D468
-    bold_sla_base_Z = 0x1D481
-    bold_sla_base_a = 0x1D482
-    bold_sla_base_z = 0x1D49B
+    ital_base_A = 0x1D434
+    ital_base_Z = 0x1D44D
+    ital_base_a = 0x1D44E
+    ital_base_z = 0x1D467
+    bold_ital_base_A = 0x1D468
+    bold_ital_base_Z = 0x1D481
+    bold_ital_base_a = 0x1D482
+    bold_ital_base_z = 0x1D49B
     sans_A = 0x1D5A0
     sans_Z = 0x1D5B9
     sans_a = 0x1D5BA
@@ -629,14 +629,14 @@ def bold(text: str) -> str:
     bold_sans_z = 0x1D607
     bold_sans_0 = 0x1D7EC
     bold_sans_9 = 0x1D8F5
-    sla_sans_A = 0x1D608
-    sla_sans_Z = 0x1D621
-    sla_sans_a = 0x1D622
-    sla_sans_z = 0x1D63B
-    bold_sla_sans_A = 0x1D63E
-    bold_sla_sans_Z = 0x1D655
-    bold_sla_sans_a = 0x1D656
-    bold_sla_sans_z = 0x1D66F
+    ital_sans_A = 0x1D608
+    ital_sans_Z = 0x1D621
+    ital_sans_a = 0x1D622
+    ital_sans_z = 0x1D63B
+    bold_ital_sans_A = 0x1D63E
+    bold_ital_sans_Z = 0x1D655
+    bold_ital_sans_a = 0x1D656
+    bold_ital_sans_z = 0x1D66F
     #
     fraktur_A = 0x1D504
     fraktur_Z = 0x1D51D
@@ -666,18 +666,18 @@ def bold(text: str) -> str:
     bold_greek_a = 0x1D6C2
     bold_greek_o = 0x1D6DA
     bold_greek_diffs = 0x1D6DB
-    sla_greek_A = 0x1D6E2
-    sla_greek_O = 0x1D6FA
-    sla_greek_nabla = 0x1D6FB
-    sla_greek_a = 0x1D6FC
-    sla_greek_o = 0x1D714
-    sla_greek_diffs = 0x1D715
-    bold_sla_greek_A = 0x1D71C
-    bold_sla_greek_O = 0x1D734
-    bold_sla_greek_nabla = 0x1D735
-    bold_sla_greek_a = 0x1D736
-    bold_sla_greek_o = 0x1D74E
-    bold_sla_greek_diffs = 0x1D74F
+    ital_greek_A = 0x1D6E2
+    ital_greek_O = 0x1D6FA
+    ital_greek_nabla = 0x1D6FB
+    ital_greek_a = 0x1D6FC
+    ital_greek_o = 0x1D714
+    ital_greek_diffs = 0x1D715
+    bold_ital_greek_A = 0x1D71C
+    bold_ital_greek_O = 0x1D734
+    bold_ital_greek_nabla = 0x1D735
+    bold_ital_greek_a = 0x1D736
+    bold_ital_greek_o = 0x1D74E
+    bold_ital_greek_diffs = 0x1D74F
     de_fraktur = de_fraktur_map_special()
     out = StringIO()
     for c in text:
@@ -690,20 +690,20 @@ def bold(text: str) -> str:
             out.write(chr(bold_base_0+(ch-base_0)))
         elif base_sz == ch:
             out.write(chr(bold_greek_a+1))
-        elif sla_base_A <= ch and ch <= sla_base_Z:
-            out.write(chr(bold_sla_base_A+(ch-sla_base_A)))
-        elif sla_base_a <= ch and ch <= sla_base_z:
-            out.write(chr(bold_sla_base_a+(ch-sla_base_a)))
+        elif ital_base_A <= ch and ch <= ital_base_Z:
+            out.write(chr(bold_ital_base_A+(ch-ital_base_A)))
+        elif ital_base_a <= ch and ch <= ital_base_z:
+            out.write(chr(bold_ital_base_a+(ch-ital_base_a)))
         elif sans_A <= ch and ch <= sans_Z:
             out.write(chr(bold_sans_A+(ch-sans_A)))
         elif sans_a <= ch and ch <= sans_z:
             out.write(chr(bold_sans_a+(ch-sans_a)))
         elif sans_0 <= ch and ch <= sans_9:
             out.write(chr(bold_sans_0+(ch-sans_0)))
-        elif sla_sans_A <= ch and ch <= sla_sans_Z:
-            out.write(chr(bold_sla_sans_A+(ch-sla_sans_A)))
-        elif sla_sans_a <= ch and ch <= sla_sans_z:
-            out.write(chr(bold_sla_sans_a+(ch-sla_sans_a)))
+        elif ital_sans_A <= ch and ch <= ital_sans_Z:
+            out.write(chr(bold_ital_sans_A+(ch-ital_sans_A)))
+        elif ital_sans_a <= ch and ch <= ital_sans_z:
+            out.write(chr(bold_ital_sans_a+(ch-ital_sans_a)))
         elif ch in de_fraktur:
             out.write(chr(bold_fraktur_A+(de_fraktur[ch] - base_A)))
         elif fraktur_A <= ch and ch <= fraktur_Z:
@@ -722,10 +722,10 @@ def bold(text: str) -> str:
             out.write(chr(bold_greek_nabla))
         elif greek_diffs == ch:
             out.write(chr(bold_greek_diffs))
-        elif sla_greek_A <= ch and ch <= sla_greek_O+1:
-            out.write(chr(bold_sla_greek_A+(ch-sla_greek_A)))
-        elif sla_greek_a <= ch and ch <= sla_greek_o+1:
-            out.write(chr(bold_sla_greek_a+(ch-sla_greek_a)))
+        elif ital_greek_A <= ch and ch <= ital_greek_O+1:
+            out.write(chr(bold_ital_greek_A+(ch-ital_greek_A)))
+        elif ital_greek_a <= ch and ch <= ital_greek_o+1:
+            out.write(chr(bold_ital_greek_a+(ch-ital_greek_a)))
         else:
             out.write(c)
     return out.getvalue()
@@ -739,112 +739,112 @@ def ital(text: str) -> str:
     base_0 = ord('0')
     base_9 = ord('9')
     base_sz = 0xDF
-    sla_base_A = 0x1D434
-    sla_base_Z = 0x1D44D
-    sla_base_a = 0x1D44E
-    sla_base_z = 0x1D467
+    ital_base_A = 0x1D434
+    ital_base_Z = 0x1D44D
+    ital_base_a = 0x1D44E
+    ital_base_z = 0x1D467
     sans_A = 0x1D5A0
     sans_Z = 0x1D5B9
     sans_a = 0x1D5BA
     sans_z = 0x1D5D3
-    sla_sans_A = 0x1D608
-    sla_sans_Z = 0x1D621
-    sla_sans_a = 0x1D622
-    sla_sans_z = 0x1D63B
+    ital_sans_A = 0x1D608
+    ital_sans_Z = 0x1D621
+    ital_sans_a = 0x1D622
+    ital_sans_z = 0x1D63B
     bold_base_A = 0x1D400
     bold_base_Z = 0x1D419
     bold_base_a = 0x1D41A
     bold_base_z = 0x1D433
-    bold_sla_base_A = 0x1D468
-    bold_sla_base_Z = 0x1D481
-    bold_sla_base_a = 0x1D482
-    bold_sla_base_z = 0x1D49B
+    bold_ital_base_A = 0x1D468
+    bold_ital_base_Z = 0x1D481
+    bold_ital_base_a = 0x1D482
+    bold_ital_base_z = 0x1D49B
     bold_sans_A = 0x1D5D4
     bold_sans_Z = 0x1D5ED
     bold_sans_a = 0x1D5EE
     bold_sans_z = 0x1D607
-    bold_sla_sans_A = 0x1D63E
-    bold_sla_sans_Z = 0x1D655
-    bold_sla_sans_a = 0x1D656
-    bold_sla_sans_z = 0x1D66F
+    bold_ital_sans_A = 0x1D63E
+    bold_ital_sans_Z = 0x1D655
+    bold_ital_sans_a = 0x1D656
+    bold_ital_sans_z = 0x1D66F
     #
     fraktur_A = 0x1D504
     fraktur_Z = 0x1D51D
     fraktur_a = 0x1D51E
     fraktur_z = 0x1D537
-    sla_fraktur_A = 0x1D56C
-    sla_fraktur_Z = 0x1D585
-    sla_fraktur_a = 0x1D586
-    sla_fraktur_z = 0x1D59F
+    ital_fraktur_A = 0x1D56C
+    ital_fraktur_Z = 0x1D585
+    ital_fraktur_a = 0x1D586
+    ital_fraktur_z = 0x1D59F
     bold_fraktur_A = 0x1D56C
     bold_fraktur_Z = 0x1D585
     bold_fraktur_a = 0x1D586
     bold_fraktur_z = 0x1D59F
-    # bold_sla_fraktur_A = n/a
-    # bold_sla_fraktur_Z = n/a
-    # bold_sla_fraktur_a = n/a
-    # bold_sla_fraktur_z = n/a
+    # bold_ital_fraktur_A = n/a
+    # bold_ital_fraktur_Z = n/a
+    # bold_ital_fraktur_a = n/a
+    # bold_ital_fraktur_z = n/a
     greek_A = 0x391
     greek_O = 0x3A9
     greek_a = 0x3B1
     greek_o = 0x3C9
     greek_nabla = 0x8711
     greek_diffs = 0x2202
-    sla_greek_A = 0x1D6E2
-    sla_greek_O = 0x1D6FA
-    sla_greek_nabla = 0x1D6FB
-    sla_greek_a = 0x1D6FC
-    sla_greek_o = 0x1D714
-    sla_greek_diffs = 0x1D715
+    ital_greek_A = 0x1D6E2
+    ital_greek_O = 0x1D6FA
+    ital_greek_nabla = 0x1D6FB
+    ital_greek_a = 0x1D6FC
+    ital_greek_o = 0x1D714
+    ital_greek_diffs = 0x1D715
     bold_greek_A = 0x1D6A8
     bold_greek_O = 0x1D6C0
     bold_greek_nabla = 0x1D6C1
     bold_greek_a = 0x1D6C2
     bold_greek_o = 0x1D6DA
     bold_greek_diffs = 0x1D6DB
-    bold_sla_greek_A = 0x1D71C
-    bold_sla_greek_O = 0x1D734
-    bold_sla_greek_nabla = 0x1D735
-    bold_sla_greek_a = 0x1D736
-    bold_sla_greek_o = 0x1D74E
-    bold_sla_greek_diffs = 0x1D74F
+    bold_ital_greek_A = 0x1D71C
+    bold_ital_greek_O = 0x1D734
+    bold_ital_greek_nabla = 0x1D735
+    bold_ital_greek_a = 0x1D736
+    bold_ital_greek_o = 0x1D74E
+    bold_ital_greek_diffs = 0x1D74F
     out = StringIO()
     for c in text:
         ch = ord(c)
         if base_A <= ch and ch <= base_Z:
-            out.write(chr(sla_base_A+(ch-base_A)))
+            out.write(chr(ital_base_A+(ch-base_A)))
         elif base_a <= ch and ch <= base_z:
-            out.write(chr(sla_base_a+(ch-base_a)))
+            out.write(chr(ital_base_a+(ch-base_a)))
         elif base_sz == ch:
-            out.write(chr(sla_greek_a+1))
+            out.write(chr(ital_greek_a+1))
         elif bold_base_A <= ch and ch <= bold_base_Z:
-            out.write(chr(bold_sla_base_A+(ch-bold_base_A)))
+            out.write(chr(bold_ital_base_A+(ch-bold_base_A)))
         elif bold_base_a <= ch and ch <= bold_base_z:
-            out.write(chr(bold_sla_base_a+(ch-bold_base_a)))
+            out.write(chr(bold_ital_base_a+(ch-bold_base_a)))
         elif sans_A <= ch and ch <= sans_Z:
-            out.write(chr(sla_sans_A+(ch-sans_A)))
+            out.write(chr(ital_sans_A+(ch-sans_A)))
         elif sans_a <= ch and ch <= sans_z:
-            out.write(chr(sla_sans_a+(ch-sans_a)))
+            out.write(chr(ital_sans_a+(ch-sans_a)))
         elif bold_sans_A <= ch and ch <= bold_sans_Z:
-            out.write(chr(bold_sla_sans_A+(ch-bold_sans_A)))
+            out.write(chr(bold_ital_sans_A+(ch-bold_sans_A)))
         elif bold_sans_a <= ch and ch <= bold_sans_z:
-            out.write(chr(bold_sla_sans_a+(ch-bold_sans_a)))
+            out.write(chr(bold_ital_sans_a+(ch-bold_sans_a)))
         elif fraktur_A <= ch and ch <= fraktur_Z:
-            out.write(chr(sla_fraktur_A+(ch-fraktur_A)))
+            out.write(chr(ital_fraktur_A+(ch-fraktur_A)))
         elif fraktur_a <= ch and ch <= fraktur_z:
-            out.write(chr(sla_fraktur_a+(ch-fraktur_a)))
+            out.write(chr(ital_fraktur_a+(ch-fraktur_a)))
         elif greek_A <= ch and ch <= greek_O:
-            out.write(chr(sla_greek_A+(ch-greek_A)))
+            out.write(chr(ital_greek_A+(ch-greek_A)))
         elif greek_a <= ch and ch <= greek_o:
-            out.write(chr(sla_greek_a+(ch-greek_a)))
+            out.write(chr(ital_greek_a+(ch-greek_a)))
         elif greek_nabla == ch:
-            out.write(chr(sla_greek_nabla))
+            out.write(chr(ital_greek_nabla))
         elif greek_diffs == ch:
-            out.write(chr(sla_greek_diffs))
+            out.write(chr(ital_greek_diffs))
         elif bold_greek_A <= ch and ch <= bold_greek_O+1:
-            out.write(chr(bold_sla_greek_A+(ch-bold_greek_A)))
+            out.write(chr(bold_ital_greek_A+(ch-bold_greek_A)))
         elif bold_greek_a <= ch and ch <= bold_greek_o+1:
-            out.write(chr(bold_sla_greek_a+(ch-bold_greek_a)))
+            out.write(chr(bold_ital_greek_a+(ch-bold_greek_a)))
         else:
             out.write(c)
     return out.getvalue()
