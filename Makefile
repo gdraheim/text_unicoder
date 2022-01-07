@@ -30,6 +30,9 @@ help:
 check:
 	$(PYTHON3) unicoder.py.tests.py -vvv
 
+test_%:
+	$(PYTHON3) unicoder.py.tests.py -vvv $@
+
 clean:
 	- rm *.pyc 
 	- rm -rf *.tmp
