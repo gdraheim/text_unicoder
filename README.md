@@ -27,7 +27,7 @@ The nobr thin fract parts are particularly useful for Wikipedia.
 ### RESULT
 
 Just for amusement, this is the result when running the commands shown above. 
-Note that the bold and italic text snippets do not rely on <i> <b> <font> text 
+Note that the bold and italic text snippets do not rely on \<i\> \<b\> \<font\> text 
 or some similar style markup, instead they use unicode codepoints from the 
 math extensions. Likewise fraktur and greek and double stroke characters used 
 often in the field of mathematics. The sans and mono are rarely used however.
