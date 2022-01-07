@@ -6,6 +6,8 @@ FOR=today
 FILES = *.py *.cfg
 PYTHON3 = python3
 
+PARALLEL = -j2
+
 default: help
 
 version1:
@@ -60,15 +62,19 @@ mypy:
 MYPY = mypy
 MYPY_STRICT = --strict --show-error-codes --show-error-context --no-warn-unused-ignores
 
-type: type.r
-    :
+
+type: 
+	$(MAKE) $(PARALLEL) type.r type.t
 type.r:
 	$(MYPY) $(MYPY_STRICT) unicoder.py
+	- rm -rf .mypy_cache
+type.t:
+	$(MYPY) $(MYPY_STRICT) unicoder.py.tests.py
 	- rm -rf .mypy_cache
 
 AUTOPEP8=autopep8
 pep style: 
-	$(MAKE) pep.r
+	$(MAKE) $(PARALLEL) pep.r
 pep.r style.r:
 	$(AUTOPEP8) unicoder.py --in-place
 	git --no-pager diff unicoder.py

@@ -25,4 +25,5 @@ jobs:
     - name: 'make pep (autopep8 style check)'
       id: check
       run: |
-        make pep -C software
+        make pep -C software PARALLEL=
+
