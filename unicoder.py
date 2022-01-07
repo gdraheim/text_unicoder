@@ -4,7 +4,7 @@ from __future__ import print_function
 __copyright__ = "(C) 2021-2022 Guido U. Draheim, licensed under the APLv2"
 __version__ = "1.0.1015"
 
-from typing import List, Generator
+from typing import List, Dict, Generator
 from io import StringIO
 import sys
 import logging
@@ -262,7 +262,7 @@ greek_lower = {
    "v": (0x2202,), # Differential
 }
 
-def greek(text: str) -> str: # gothic, blackletter
+def greek(text: str) -> str:
     base_A = ord('A')
     base_Z = ord('Z')
     base_a = ord('a')
@@ -435,6 +435,22 @@ def rune(text: str) -> str: # gothic, blackletter
             out.write(c)
     return out.getvalue()
 
+def fraktur_map_special() -> Dict[str, int]:
+    fraktur_C = 0x212D # Complex Numbers
+    fraktur_H = 0x210C # Hamilton Numbers
+    fraktur_I = 0x2111 
+    fraktur_R = 0x211C # Real Numbers
+    fraktur_Z = 0x2128 # Integer Numbers
+    return { 
+        'C': fraktur_C, 'H': fraktur_H, 'I': fraktur_I,
+        'R': fraktur_R, 'Z': fraktur_Z }
+def de_fraktur_map_special() -> Dict[int, int]:
+    fraktur_map = fraktur_map_special()
+    map : Dict[int, int] = {}
+    for key, val in fraktur_map.items():
+        map[val] = ord(key)
+    return map
+
 def fraktur(text: str) -> str: # gothic, blackletter
     base_A = ord('A')
     base_Z = ord('Z')
@@ -446,10 +462,13 @@ def fraktur(text: str) -> str: # gothic, blackletter
     fraktur_a = 0x1D51E
     fat_base_0 = 0x1D7CE
     fat_base_9 = 0x1D7D7
+    fraktur_map = fraktur_map_special()
     out = StringIO()
     for c in text:
         ch = ord(c)
-        if base_A <= ch and ch <= base_Z:
+        if c in fraktur_map:
+            out.write(chr(fraktur_map[c]))
+        elif base_A <= ch and ch <= base_Z:
             out.write(chr(fraktur_A+(ch-base_A)))
         elif base_a <= ch and ch <= base_z:
             out.write(chr(fraktur_a+(ch-base_a)))
@@ -459,25 +478,52 @@ def fraktur(text: str) -> str: # gothic, blackletter
             out.write(c)
     return out.getvalue()
 
-def rounded(text: str) -> str: # real cursive
+def script(text: str) -> str: # real cursive
     base_A = ord('A')
     base_Z = ord('Z')
     base_a = ord('a')
     base_z = ord('z')
-    rounded_A = 0x1D49C
-    rounded_Z = 0x1D4B5
-    rounded_a = 0x1D4B6
-    rounded_z = 0x1D4CF
+    script_A = 0x1D49C
+    script_Z = 0x1D4B5
+    script_a = 0x1D4B6
+    script_z = 0x1D4CF
+    fat_script_A = 0x1D4D0
+    fat_script_Z = 0x1D4E9
+    fat_script_a = 0x1D4EA
+    fat_script_z = 0x1D503
+    fat_base_A = 0x1D400
+    fat_base_Z = 0x1D419
+    fat_base_a = 0x1D41A
+    fat_base_z = 0x1D433
+    fat_base_0 = 0x1D7CE
+    fat_base_9 = 0x1D7D7
     out = StringIO()
     for c in text:
         ch = ord(c)
         if base_A <= ch and ch <= base_Z:
-            out.write(chr(rounded_A+(ch-base_A)))
+            out.write(chr(script_A+(ch-base_A)))
         elif base_a <= ch and ch <= base_z:
-            out.write(chr(rounded_a+(ch-base_a)))
+            out.write(chr(script_a+(ch-base_a)))
+        elif fat_base_A <= ch and ch <= fat_base_Z:
+            out.write(chr(fat_script_A+(ch-fat_base_A)))
+        elif fat_base_a <= ch and ch <= fat_base_z:
+            out.write(chr(fat_script_a+(ch-fat_base_a)))
         else:
             out.write(c)
     return out.getvalue()
+
+def double_map_special() -> Dict[str, int]:
+    double_C = 0x2102 # Complex Numbers
+    double_H = 0x210D # Hamilton Numbers
+    double_N = 0x2115 # Natural Numbers
+    double_P = 0x2119
+    double_Q = 0x211A # Rational Numbers
+    double_R = 0x211D # Real Numbers
+    double_Z = 0x2124 # Integer Numbers
+    return { 
+        'C': double_C, 'H': double_H, 'N': double_N,
+        'P': double_P, 'Q': double_Q, 'R': double_R,
+        'Z': double_Z }
 
 def double(text: str) -> str: # gothic, blackletter
     base_A = ord('A')
@@ -490,15 +536,7 @@ def double(text: str) -> str: # gothic, blackletter
     double_a = 0x1D552
     double_0 = 0x1D7D8
     double_9 = 0x1D7E1
-    double_C = 0x2102 # Complex Numbers
-    double_H = 0x210D # Hamilton Numbers
-    double_N = 0x2115 # Natural Numbers
-    double_P = 0x2119
-    double_Q = 0x211A # Rational Numbers
-    double_R = 0x211D # Real Numbers
-    double_Z = 0x2124 # Integer Numbers
-    double_map = { 'C' : double_C, 'H': double_H, 'N': double_N, 
-        'P': double_P, 'Q': double_Q, 'R': double_R, 'Z': double_Z }
+    double_map = double_map_special()
     out = StringIO()
     for c in text:
         ch = ord(c)
@@ -608,14 +646,14 @@ def bold(text: str) -> str:
     fat_fraktur_Z = 0x1D585
     fat_fraktur_a = 0x1D586
     fat_fraktur_z = 0x1D59F
-    rounded_A = 0x1D49C
-    rounded_Z = 0x1D4B5
-    rounded_a = 0x1D4B6
-    rounded_z = 0x1D4CF
-    fat_rounded_A = 0x1D4D0
-    fat_rounded_Z = 0x1D4E9
-    fat_rounded_a = 0x1D4EA
-    fat_rounded_z = 0x1D503
+    script_A = 0x1D49C
+    script_Z = 0x1D4B5
+    script_a = 0x1D4B6
+    script_z = 0x1D4CF
+    fat_script_A = 0x1D4D0
+    fat_script_Z = 0x1D4E9
+    fat_script_a = 0x1D4EA
+    fat_script_z = 0x1D503
     greek_A = 0x391
     greek_O = 0x3A9
     greek_a = 0x3B1
@@ -640,6 +678,7 @@ def bold(text: str) -> str:
     fat_sla_greek_a = 0x1D736
     fat_sla_greek_o = 0x1D74E
     fat_sla_greek_diffs = 0x1D74F
+    de_fraktur = de_fraktur_map_special()
     out = StringIO()
     for c in text:
         ch = ord(c)
@@ -665,14 +704,16 @@ def bold(text: str) -> str:
             out.write(chr(fat_sla_sans_A+(ch-sla_sans_A)))
         elif sla_sans_a <= ch and ch <= sla_sans_z:
             out.write(chr(fat_sla_sans_a+(ch-sla_sans_a)))
+        elif ch in de_fraktur:
+            out.write(chr(fat_fraktur_A+(de_fraktur[ch] - base_A)))
         elif fraktur_A <= ch and ch <= fraktur_Z:
             out.write(chr(fat_fraktur_A+(ch-fraktur_A)))
         elif fraktur_a <= ch and ch <= fraktur_z:
             out.write(chr(fat_fraktur_a+(ch-fraktur_a)))
-        elif rounded_A <= ch and ch <= rounded_Z:
-            out.write(chr(fat_rounded_A+(ch-rounded_A)))
-        elif rounded_a <= ch and ch <= rounded_z:
-            out.write(chr(fat_rounded_a+(ch-rounded_a)))
+        elif script_A <= ch and ch <= script_Z:
+            out.write(chr(fat_script_A+(ch-script_A)))
+        elif script_a <= ch and ch <= script_z:
+            out.write(chr(fat_script_a+(ch-script_a)))
         elif greek_A <= ch and ch <= greek_O:
             out.write(chr(fat_greek_A+(ch-greek_A)))
         elif greek_a <= ch and ch <= greek_o:
@@ -864,8 +905,8 @@ def convert(cmd: str, text: str) -> str:
         text = fraktur(text)
     if "ital" in cmd or "name" in cmd or "slant" in cmd:
         text = ital(text)
-    if "round" in cmd or "scripted" in cmd or "writ" in cmd:
-        text = rounded(text)
+    if "round" in cmd or "script" in cmd or "writ" in cmd:
+        text = script(text)
     if "cour" in cmd or "type" in cmd or "mono" in cmd:
         text = courier(text)
     if "fat" in cmd or "bold" in cmd:

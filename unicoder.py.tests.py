@@ -177,9 +177,13 @@ class UnicoderTest(unittest.TestCase):
         uni = unicoder.convert("wide", "abcdefghijklmnopqrstuvwxyz")
         self.assertEqual(uni, "𝕒𝕓𝕔𝕕𝕖𝕗𝕘𝕙𝕚𝕛𝕜𝕝𝕞𝕟𝕠𝕡𝕢𝕣𝕤𝕥𝕦𝕧𝕨𝕩𝕪𝕫")
     def test_203_norm_double(self) -> None:
+        uni = unicoder.convert("double", "AB-DEFG-IJKLM-O---STUVWXY-")
+        self.assertEqual(uni, "𝔸𝔹-𝔻𝔼𝔽𝔾-𝕀𝕁𝕂𝕃𝕄-𝕆---𝕊𝕋𝕌𝕍𝕎𝕏𝕐-")
         uni = unicoder.convert("double", "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
         self.assertEqual(uni, "𝔸𝔹ℂ𝔻𝔼𝔽𝔾ℍ𝕀𝕁𝕂𝕃𝕄ℕ𝕆ℙℚℝ𝕊𝕋𝕌𝕍𝕎𝕏𝕐ℤ")
     def test_204_norm_double(self) -> None:
+        uni = unicoder.convert("wide", "AB-DEFG-IJKLM-O---STUVWXY-")
+        self.assertEqual(uni, "𝔸𝔹-𝔻𝔼𝔽𝔾-𝕀𝕁𝕂𝕃𝕄-𝕆---𝕊𝕋𝕌𝕍𝕎𝕏𝕐-")
         uni = unicoder.convert("wide", "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
         self.assertEqual(uni, "𝔸𝔹ℂ𝔻𝔼𝔽𝔾ℍ𝕀𝕁𝕂𝕃𝕄ℕ𝕆ℙℚℝ𝕊𝕋𝕌𝕍𝕎𝕏𝕐ℤ")
     def test_205_norm_double(self) -> None:
@@ -224,6 +228,76 @@ class UnicoderTest(unittest.TestCase):
     def test_246_numm_double(self) -> None:
         uni = unicoder.double("0123456789")
         self.assertEqual(uni, "𝟘𝟙𝟚𝟛𝟜𝟝𝟞𝟟𝟠𝟡")
+    #
+    def test_250_norm_script(self) -> None:
+        uni = unicoder.convert("fix", "abcxyzABCXYZ")
+        self.assertEqual(uni, "abcxyzABCXYZ")
+    def test_251_norm_script(self) -> None:
+        uni = unicoder.convert("script", "abcd-f-hijklmn-pqrstuvwxyz")
+        self.assertEqual(uni, "𝒶𝒷𝒸𝒹-𝒻-𝒽𝒾𝒿𝓀𝓁𝓂𝓃-𝓅𝓆𝓇𝓈𝓉𝓊𝓋𝓌𝓍𝓎𝓏")
+    def test_252_norm_script(self) -> None:
+        uni = unicoder.convert("round", "abcd-f-hijklmn-pqrstuvwxyz")
+        self.assertEqual(uni, "𝒶𝒷𝒸𝒹-𝒻-𝒽𝒾𝒿𝓀𝓁𝓂𝓃-𝓅𝓆𝓇𝓈𝓉𝓊𝓋𝓌𝓍𝓎𝓏")
+    def test_253_norm_script(self) -> None:
+        uni = unicoder.convert("script", "A-CD--G--JK--NOPQ-STUVWXYZ")
+        self.assertEqual(uni, "𝒜-𝒞𝒟--𝒢--𝒥𝒦--𝒩𝒪𝒫𝒬-𝒮𝒯𝒰𝒱𝒲𝒳𝒴𝒵")
+    def test_254_norm_script(self) -> None:
+        uni = unicoder.convert("round", "A-CD--G--JK--NOPQ-STUVWXYZ")
+        self.assertEqual(uni, "𝒜-𝒞𝒟--𝒢--𝒥𝒦--𝒩𝒪𝒫𝒬-𝒮𝒯𝒰𝒱𝒲𝒳𝒴𝒵")
+    def test_255_norm_script(self) -> None:
+        uni = unicoder.script("abcd-f-hijklmn-pqrstuvwxyz")
+        self.assertEqual(uni, "𝒶𝒷𝒸𝒹-𝒻-𝒽𝒾𝒿𝓀𝓁𝓂𝓃-𝓅𝓆𝓇𝓈𝓉𝓊𝓋𝓌𝓍𝓎𝓏")
+    def test_256_norm_script(self) -> None:
+        uni = unicoder.script("abcd-f-hijklmn-pqrstuvwxyz")
+        self.assertEqual(uni, "𝒶𝒷𝒸𝒹-𝒻-𝒽𝒾𝒿𝓀𝓁𝓂𝓃-𝓅𝓆𝓇𝓈𝓉𝓊𝓋𝓌𝓍𝓎𝓏")
+    def test_257_norm_script(self) -> None:
+        uni = unicoder.script("A-CD--G--JK--NOPQ-STUVWXYZ")
+        self.assertEqual(uni, "𝒜-𝒞𝒟--𝒢--𝒥𝒦--𝒩𝒪𝒫𝒬-𝒮𝒯𝒰𝒱𝒲𝒳𝒴𝒵")
+    def test_258_norm_script(self) -> None:
+        uni = unicoder.script("A-CD--G--JK--NOPQ-STUVWXYZ")
+        self.assertEqual(uni, "𝒜-𝒞𝒟--𝒢--𝒥𝒦--𝒩𝒪𝒫𝒬-𝒮𝒯𝒰𝒱𝒲𝒳𝒴𝒵")
+    def test_260_bold_script(self) -> None:
+        uni = unicoder.convert("fix", "abcxyzABXY")
+        self.assertEqual(uni, "abcxyzABXY")
+    def test_261_bold_script(self) -> None:
+        uni = unicoder.convert("fatscript", "abcdefghijklmnopqrstuvwxyz")
+        self.assertEqual(uni, "𝓪𝓫𝓬𝓭𝓮𝓯𝓰𝓱𝓲𝓳𝓴𝓵𝓶𝓷𝓸𝓹𝓺𝓻𝓼𝓽𝓾𝓿𝔀𝔁𝔂𝔃")
+    def test_262_bold_script(self) -> None:
+        uni = unicoder.convert("boldround", "abcdefghijklmnopqrstuvwxyz")
+        self.assertEqual(uni, "𝓪𝓫𝓬𝓭𝓮𝓯𝓰𝓱𝓲𝓳𝓴𝓵𝓶𝓷𝓸𝓹𝓺𝓻𝓼𝓽𝓾𝓿𝔀𝔁𝔂𝔃")
+    def test_263_bold_script(self) -> None:
+        uni = unicoder.convert("fatscript", "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+        self.assertEqual(uni, "𝓐𝓑𝓒𝓓𝓔𝓕𝓖𝓗𝓘𝓙𝓚𝓛𝓜𝓝𝓞𝓟𝓠𝓡𝓢𝓣𝓤𝓥𝓦𝓧𝓨𝓩")
+    def test_264_bold_script(self) -> None:
+        uni = unicoder.convert("boldround", "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+        self.assertEqual(uni, "𝓐𝓑𝓒𝓓𝓔𝓕𝓖𝓗𝓘𝓙𝓚𝓛𝓜𝓝𝓞𝓟𝓠𝓡𝓢𝓣𝓤𝓥𝓦𝓧𝓨𝓩")
+    def test_272_bold_script(self) -> None:
+        uni = unicoder.bold(unicoder.script("abcdefghijklmnopqrstuvwxyz"))
+        self.assertEqual(uni, "𝓪𝓫𝓬𝓭𝓮𝓯𝓰𝓱𝓲𝓳𝓴𝓵𝓶𝓷𝓸𝓹𝓺𝓻𝓼𝓽𝓾𝓿𝔀𝔁𝔂𝔃")
+    def test_273_bold_script(self) -> None:
+        uni = unicoder.bold(unicoder.script("ABCDEFGHIJKLMNOPQRSTUVWXYZ"))
+        self.assertEqual(uni, "𝓐𝓑𝓒𝓓𝓔𝓕𝓖𝓗𝓘𝓙𝓚𝓛𝓜𝓝𝓞𝓟𝓠𝓡𝓢𝓣𝓤𝓥𝓦𝓧𝓨𝓩")
+    def test_277_bold_script(self) -> None:
+        uni = unicoder.script(unicoder.bold("abcdefghijklmnopqrstuvwxyz"))
+        self.assertEqual(uni, "𝓪𝓫𝓬𝓭𝓮𝓯𝓰𝓱𝓲𝓳𝓴𝓵𝓶𝓷𝓸𝓹𝓺𝓻𝓼𝓽𝓾𝓿𝔀𝔁𝔂𝔃")
+    def test_278_bold_script(self) -> None:
+        uni = unicoder.script(unicoder.bold("ABCDEFGHIJKLMNOPQRSTUVWXYZ"))
+        self.assertEqual(uni, "𝓐𝓑𝓒𝓓𝓔𝓕𝓖𝓗𝓘𝓙𝓚𝓛𝓜𝓝𝓞𝓟𝓠𝓡𝓢𝓣𝓤𝓥𝓦𝓧𝓨𝓩")
+    def test_290_numm_script(self) -> None:
+        uni = unicoder.convert("fix", "0123456789")
+        self.assertEqual(uni, "0123456789")
+    def test_291_numm_script(self) -> None:
+        uni = unicoder.convert("script", "0123456789")
+        self.assertEqual(uni, "0123456789")
+    def test_292_numm_script(self) -> None:
+        uni = unicoder.convert("round", "0123456789")
+        self.assertEqual(uni, "0123456789")
+    def test_295_numm_script(self) -> None:
+        uni = unicoder.script("0123456789")
+        self.assertEqual(uni, "0123456789")
+    def test_296_numm_script(self) -> None:
+        uni = unicoder.script("0123456789")
+        self.assertEqual(uni, "0123456789")
     #
     def test_300_norm_courier(self) -> None:
         uni = unicoder.convert("fix", "abcxyzABCXYZ")
@@ -280,9 +354,13 @@ class UnicoderTest(unittest.TestCase):
     def test_503_norm_frak(self) -> None:
         uni = unicoder.convert("frak", "AB-DEFG--JKLMNOPQ-STUVWXY-")
         self.assertEqual(uni, "𝔄𝔅-𝔇𝔈𝔉𝔊--𝔍𝔎𝔏𝔐𝔑𝔒𝔓𝔔-𝔖𝔗𝔘𝔙𝔚𝔛𝔜-")
+        uni = unicoder.convert("frak", "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+        self.assertEqual(uni, "𝔄𝔅ℭ𝔇𝔈𝔉𝔊ℌℑ𝔍𝔎𝔏𝔐𝔑𝔒𝔓𝔔ℜ𝔖𝔗𝔘𝔙𝔚𝔛𝔜ℨ")
     def test_504_norm_frak(self) -> None:
         uni = unicoder.convert("black", "AB-DEFG--JKLMNOPQ-STUVWXY-")
         self.assertEqual(uni, "𝔄𝔅-𝔇𝔈𝔉𝔊--𝔍𝔎𝔏𝔐𝔑𝔒𝔓𝔔-𝔖𝔗𝔘𝔙𝔚𝔛𝔜-")
+        uni = unicoder.convert("black", "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+        self.assertEqual(uni, "𝔄𝔅ℭ𝔇𝔈𝔉𝔊ℌℑ𝔍𝔎𝔏𝔐𝔑𝔒𝔓𝔔ℜ𝔖𝔗𝔘𝔙𝔚𝔛𝔜ℨ")
     def test_505_norm_frak(self) -> None:
         uni = unicoder.fraktur("abcdefghijklmnopqrstuvwxyz")
         self.assertEqual(uni, "𝔞𝔟𝔠𝔡𝔢𝔣𝔤𝔥𝔦𝔧𝔨𝔩𝔪𝔫𝔬𝔭𝔮𝔯𝔰𝔱𝔲𝔳𝔴𝔵𝔶𝔷")
