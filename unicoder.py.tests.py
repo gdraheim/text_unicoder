@@ -12,6 +12,9 @@ logg = logging.getLogger("TEST")
 
 norm_abcdefghijklmnopqrstuvwxyz = "abcdefghijklmnopqrstuvwxyz"
 norm_ABCDEFGHIJKLMNOPQRSTUVWXYZ = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+mono_abcdefghijklmnopqrstuvwxyz = "𝚊𝚋𝚌𝚍𝚎𝚏𝚐𝚑𝚒𝚓𝚔𝚕𝚖𝚗𝚘𝚙𝚚𝚛𝚜𝚝𝚞𝚟𝚠𝚡𝚢𝚣"
+mono_ABCDEFGHIJKLMNOPQRSTUVWXYZ = "𝙰𝙱𝙲𝙳𝙴𝙵𝙶𝙷𝙸𝙹𝙺𝙻𝙼𝙽𝙾𝙿𝚀𝚁𝚂𝚃𝚄𝚅𝚆𝚇𝚈𝚉"
+
 
 class UnicoderTest(unittest.TestCase):
     def test_001_opt_scan(self) -> None:
@@ -305,28 +308,28 @@ class UnicoderTest(unittest.TestCase):
         self.assertEqual(uni, "abcxyzABCXYZ")
     def test_301_norm_courier(self) -> None:
         uni = unicoder.convert("courier", norm_abcdefghijklmnopqrstuvwxyz)
-        self.assertEqual(uni, "𝚊𝚋𝚌𝚍𝚎𝚏𝚐𝚑𝚒𝚓𝚔𝚕𝚖𝚗𝚘𝚙𝚚𝚛𝚜𝚝𝚞𝚟𝚠𝚡𝚢𝚣")
+        self.assertEqual(uni, mono_abcdefghijklmnopqrstuvwxyz)
     def test_302_norm_courier(self) -> None:
         uni = unicoder.convert("mono", norm_abcdefghijklmnopqrstuvwxyz)
-        self.assertEqual(uni, "𝚊𝚋𝚌𝚍𝚎𝚏𝚐𝚑𝚒𝚓𝚔𝚕𝚖𝚗𝚘𝚙𝚚𝚛𝚜𝚝𝚞𝚟𝚠𝚡𝚢𝚣")
+        self.assertEqual(uni, mono_abcdefghijklmnopqrstuvwxyz)
     def test_303_norm_courier(self) -> None:
         uni = unicoder.convert("courier", norm_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
-        self.assertEqual(uni, "𝙰𝙱𝙲𝙳𝙴𝙵𝙶𝙷𝙸𝙹𝙺𝙻𝙼𝙽𝙾𝙿𝚀𝚁𝚂𝚃𝚄𝚅𝚆𝚇𝚈𝚉")
+        self.assertEqual(uni, mono_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
     def test_304_norm_courier(self) -> None:
         uni = unicoder.convert("mono", norm_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
-        self.assertEqual(uni, "𝙰𝙱𝙲𝙳𝙴𝙵𝙶𝙷𝙸𝙹𝙺𝙻𝙼𝙽𝙾𝙿𝚀𝚁𝚂𝚃𝚄𝚅𝚆𝚇𝚈𝚉")
+        self.assertEqual(uni, mono_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
     def test_305_norm_courier(self) -> None:
         uni = unicoder.courier(norm_abcdefghijklmnopqrstuvwxyz)
-        self.assertEqual(uni, "𝚊𝚋𝚌𝚍𝚎𝚏𝚐𝚑𝚒𝚓𝚔𝚕𝚖𝚗𝚘𝚙𝚚𝚛𝚜𝚝𝚞𝚟𝚠𝚡𝚢𝚣")
+        self.assertEqual(uni, mono_abcdefghijklmnopqrstuvwxyz)
     def test_306_norm_courier(self) -> None:
         uni = unicoder.courier(norm_abcdefghijklmnopqrstuvwxyz)
-        self.assertEqual(uni, "𝚊𝚋𝚌𝚍𝚎𝚏𝚐𝚑𝚒𝚓𝚔𝚕𝚖𝚗𝚘𝚙𝚚𝚛𝚜𝚝𝚞𝚟𝚠𝚡𝚢𝚣")
+        self.assertEqual(uni, mono_abcdefghijklmnopqrstuvwxyz)
     def test_307_norm_courier(self) -> None:
         uni = unicoder.courier(norm_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
-        self.assertEqual(uni, "𝙰𝙱𝙲𝙳𝙴𝙵𝙶𝙷𝙸𝙹𝙺𝙻𝙼𝙽𝙾𝙿𝚀𝚁𝚂𝚃𝚄𝚅𝚆𝚇𝚈𝚉")
+        self.assertEqual(uni, mono_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
     def test_308_norm_courier(self) -> None:
         uni = unicoder.courier(norm_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
-        self.assertEqual(uni, "𝙰𝙱𝙲𝙳𝙴𝙵𝙶𝙷𝙸𝙹𝙺𝙻𝙼𝙽𝙾𝙿𝚀𝚁𝚂𝚃𝚄𝚅𝚆𝚇𝚈𝚉")
+        self.assertEqual(uni, mono_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
     def test_340_numm_courier(self) -> None:
         uni = unicoder.convert("fix", "0123456789")
         self.assertEqual(uni, "0123456789")
