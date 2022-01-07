@@ -909,6 +909,8 @@ def convert(cmd: str, text: str) -> str:
         text = script(text)
     if "cour" in cmd or "type" in cmd or "mono" in cmd:
         text = courier(text)
+    if "sans" in cmd or "vect" in cmd:
+        text = sans(text)
     if "fat" in cmd or "bold" in cmd:
         text = bold(text)
     return text
