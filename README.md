@@ -28,7 +28,7 @@ The nobr thin fract parts are particularly useful for Wikipedia.
 
 Just for amusement, this is the result when running the commands shown above. 
 Note that the bold and italic text snippets do not rely on \<i\> \<b\> \<font\> hints
-or some similar style markup, instead they use unicode codepoints from the 
+or some similar style markup, instead they use different codepoints from the 
 [Mathematical Alphanumeric Symbols](https://en.wikipedia.org/wiki/Mathematical_Alphanumeric_Symbols)
 unicode blocks. Likewise fraktur and greek and double stroke characters are used 
 often in the field of mathematics. The sans and mono are rarely used however.
@@ -48,8 +48,6 @@ often in the field of mathematics. The sans and mono are rarely used however.
     15¼ km/h
     15 1/4 km/h
     15 1/4 km/h
-
-https://en.wikipedia.org/wiki/Mathematical_Alphanumeric_Symbols
 
 ### TESTSUITE
 
