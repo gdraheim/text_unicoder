@@ -23,3 +23,23 @@ Examples:
 
 This script helps to bold or slanted text to various social media platforms.
 The nobr thin fract parts are particularly useful for Wikipedia.
+
+# RESULT
+
+Just for amusement, this is the result when running the commands shown above:
+
+    𝐟𝐨𝐨𝐛𝐚𝐫
+    𝑓𝑜𝑜𝑏𝑎𝑟
+    𝒇𝒐𝒐𝒃𝒂𝒓
+    𝕗𝕠𝕠𝕓𝕒𝕣
+    𝚏𝚘𝚘𝚋𝚊𝚛
+    foobar
+    φωβαρ
+    ΦΩΒΑΡ
+    𝔣𝔬𝔬𝔟𝔞𝔯
+    𝖋𝖔𝖔𝖇𝖆𝖗
+    15¼
+    15¼ km/h
+    15¼ km/h
+    15 1/4 km/h
+    15 1/4 km/h
