@@ -1,0 +1,9 @@
+*.pyc
+*.tmp
+tmp
+tmp.
+.mypy_cache
+dist
+*.egg-info
+build
+TEST-*
