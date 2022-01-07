@@ -47,3 +47,14 @@ often in the field of mathematics. The sans and mono are rarely used however.
     15¼ km/h
     15 1/4 km/h
     15 1/4 km/h
+
+### TESTSUITE
+
+Yes, there is a testsuite with more than a hundred unittests for the functions.
+The module can also be imported as helper to other scripts.
+
+For developers, please use "make check" for the testsuite and do run also
+the "make type" for mypy typehints checks and "make pep" for pep8 style checks.
+
+
+
