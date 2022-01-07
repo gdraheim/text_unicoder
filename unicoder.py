@@ -460,8 +460,8 @@ def fraktur(text: str) -> str: # gothic, blackletter
     base_9 = ord('9')
     fraktur_A = 0x1D504
     fraktur_a = 0x1D51E
-    fat_base_0 = 0x1D7CE
-    fat_base_9 = 0x1D7D7
+    bold_base_0 = 0x1D7CE
+    bold_base_9 = 0x1D7D7
     fraktur_map = fraktur_map_special()
     out = StringIO()
     for c in text:
@@ -473,7 +473,7 @@ def fraktur(text: str) -> str: # gothic, blackletter
         elif base_a <= ch and ch <= base_z:
             out.write(chr(fraktur_a+(ch-base_a)))
         # elif base_0 <= ch and ch <= base_9:
-        #     out.write(chr(fat_base_0+(ch-base_0)))
+        #     out.write(chr(bold_base_0+(ch-base_0)))
         else:
             out.write(c)
     return out.getvalue()
@@ -487,16 +487,16 @@ def script(text: str) -> str: # real cursive
     script_Z = 0x1D4B5
     script_a = 0x1D4B6
     script_z = 0x1D4CF
-    fat_script_A = 0x1D4D0
-    fat_script_Z = 0x1D4E9
-    fat_script_a = 0x1D4EA
-    fat_script_z = 0x1D503
-    fat_base_A = 0x1D400
-    fat_base_Z = 0x1D419
-    fat_base_a = 0x1D41A
-    fat_base_z = 0x1D433
-    fat_base_0 = 0x1D7CE
-    fat_base_9 = 0x1D7D7
+    bold_script_A = 0x1D4D0
+    bold_script_Z = 0x1D4E9
+    bold_script_a = 0x1D4EA
+    bold_script_z = 0x1D503
+    bold_base_A = 0x1D400
+    bold_base_Z = 0x1D419
+    bold_base_a = 0x1D41A
+    bold_base_z = 0x1D433
+    bold_base_0 = 0x1D7CE
+    bold_base_9 = 0x1D7D7
     out = StringIO()
     for c in text:
         ch = ord(c)
@@ -504,10 +504,10 @@ def script(text: str) -> str: # real cursive
             out.write(chr(script_A+(ch-base_A)))
         elif base_a <= ch and ch <= base_z:
             out.write(chr(script_a+(ch-base_a)))
-        elif fat_base_A <= ch and ch <= fat_base_Z:
-            out.write(chr(fat_script_A+(ch-fat_base_A)))
-        elif fat_base_a <= ch and ch <= fat_base_z:
-            out.write(chr(fat_script_a+(ch-fat_base_a)))
+        elif bold_base_A <= ch and ch <= bold_base_Z:
+            out.write(chr(bold_script_A+(ch-bold_base_A)))
+        elif bold_base_a <= ch and ch <= bold_base_z:
+            out.write(chr(bold_script_a+(ch-bold_base_a)))
         else:
             out.write(c)
     return out.getvalue()
@@ -603,129 +603,129 @@ def bold(text: str) -> str:
     base_0 = ord('0')
     base_9 = ord('9')
     base_sz = 0xDF
-    fat_base_A = 0x1D400
-    fat_base_Z = 0x1D419
-    fat_base_a = 0x1D41A
-    fat_base_z = 0x1D433
-    fat_base_0 = 0x1D7CE
-    fat_base_9 = 0x1D7D7
+    bold_base_A = 0x1D400
+    bold_base_Z = 0x1D419
+    bold_base_a = 0x1D41A
+    bold_base_z = 0x1D433
+    bold_base_0 = 0x1D7CE
+    bold_base_9 = 0x1D7D7
     sla_base_A = 0x1D434
     sla_base_Z = 0x1D44D
     sla_base_a = 0x1D44E
     sla_base_z = 0x1D467
-    fat_sla_base_A = 0x1D468
-    fat_sla_base_Z = 0x1D481
-    fat_sla_base_a = 0x1D482
-    fat_sla_base_z = 0x1D49B
+    bold_sla_base_A = 0x1D468
+    bold_sla_base_Z = 0x1D481
+    bold_sla_base_a = 0x1D482
+    bold_sla_base_z = 0x1D49B
     sans_A = 0x1D5A0
     sans_Z = 0x1D5B9
     sans_a = 0x1D5BA
     sans_z = 0x1D5D3
     sans_0 = 0x1D7E2
     sans_9 = 0x1D7EB
-    fat_sans_A = 0x1D5D4
-    fat_sans_Z = 0x1D5ED
-    fat_sans_a = 0x1D5EE
-    fat_sans_z = 0x1D607
-    fat_sans_0 = 0x1D7EC
-    fat_sans_9 = 0x1D8F5
+    bold_sans_A = 0x1D5D4
+    bold_sans_Z = 0x1D5ED
+    bold_sans_a = 0x1D5EE
+    bold_sans_z = 0x1D607
+    bold_sans_0 = 0x1D7EC
+    bold_sans_9 = 0x1D8F5
     sla_sans_A = 0x1D608
     sla_sans_Z = 0x1D621
     sla_sans_a = 0x1D622
     sla_sans_z = 0x1D63B
-    fat_sla_sans_A = 0x1D63E
-    fat_sla_sans_Z = 0x1D655
-    fat_sla_sans_a = 0x1D656
-    fat_sla_sans_z = 0x1D66F
+    bold_sla_sans_A = 0x1D63E
+    bold_sla_sans_Z = 0x1D655
+    bold_sla_sans_a = 0x1D656
+    bold_sla_sans_z = 0x1D66F
     #
     fraktur_A = 0x1D504
     fraktur_Z = 0x1D51D
     fraktur_a = 0x1D51E
     fraktur_z = 0x1D537
-    fat_fraktur_A = 0x1D56C
-    fat_fraktur_Z = 0x1D585
-    fat_fraktur_a = 0x1D586
-    fat_fraktur_z = 0x1D59F
+    bold_fraktur_A = 0x1D56C
+    bold_fraktur_Z = 0x1D585
+    bold_fraktur_a = 0x1D586
+    bold_fraktur_z = 0x1D59F
     script_A = 0x1D49C
     script_Z = 0x1D4B5
     script_a = 0x1D4B6
     script_z = 0x1D4CF
-    fat_script_A = 0x1D4D0
-    fat_script_Z = 0x1D4E9
-    fat_script_a = 0x1D4EA
-    fat_script_z = 0x1D503
+    bold_script_A = 0x1D4D0
+    bold_script_Z = 0x1D4E9
+    bold_script_a = 0x1D4EA
+    bold_script_z = 0x1D503
     greek_A = 0x391
     greek_O = 0x3A9
     greek_a = 0x3B1
     greek_o = 0x3C9
     greek_nabla = 0x8711
     greek_diffs = 0x2202
-    fat_greek_A = 0x1D6A8
-    fat_greek_O = 0x1D6C0
-    fat_greek_nabla = 0x1D6C1
-    fat_greek_a = 0x1D6C2
-    fat_greek_o = 0x1D6DA
-    fat_greek_diffs = 0x1D6DB
+    bold_greek_A = 0x1D6A8
+    bold_greek_O = 0x1D6C0
+    bold_greek_nabla = 0x1D6C1
+    bold_greek_a = 0x1D6C2
+    bold_greek_o = 0x1D6DA
+    bold_greek_diffs = 0x1D6DB
     sla_greek_A = 0x1D6E2
     sla_greek_O = 0x1D6FA
     sla_greek_nabla = 0x1D6FB
     sla_greek_a = 0x1D6FC
     sla_greek_o = 0x1D714
     sla_greek_diffs = 0x1D715
-    fat_sla_greek_A = 0x1D71C
-    fat_sla_greek_O = 0x1D734
-    fat_sla_greek_nabla = 0x1D735
-    fat_sla_greek_a = 0x1D736
-    fat_sla_greek_o = 0x1D74E
-    fat_sla_greek_diffs = 0x1D74F
+    bold_sla_greek_A = 0x1D71C
+    bold_sla_greek_O = 0x1D734
+    bold_sla_greek_nabla = 0x1D735
+    bold_sla_greek_a = 0x1D736
+    bold_sla_greek_o = 0x1D74E
+    bold_sla_greek_diffs = 0x1D74F
     de_fraktur = de_fraktur_map_special()
     out = StringIO()
     for c in text:
         ch = ord(c)
         if base_A <= ch and ch <= base_Z:
-            out.write(chr(fat_base_A+(ch-base_A)))
+            out.write(chr(bold_base_A+(ch-base_A)))
         elif base_a <= ch and ch <= base_z:
-            out.write(chr(fat_base_a+(ch-base_a)))
+            out.write(chr(bold_base_a+(ch-base_a)))
         elif base_0 <= ch and ch <= base_9:
-            out.write(chr(fat_base_0+(ch-base_0)))
+            out.write(chr(bold_base_0+(ch-base_0)))
         elif base_sz == ch:
-            out.write(chr(fat_greek_a+1))
+            out.write(chr(bold_greek_a+1))
         elif sla_base_A <= ch and ch <= sla_base_Z:
-            out.write(chr(fat_sla_base_A+(ch-sla_base_A)))
+            out.write(chr(bold_sla_base_A+(ch-sla_base_A)))
         elif sla_base_a <= ch and ch <= sla_base_z:
-            out.write(chr(fat_sla_base_a+(ch-sla_base_a)))
+            out.write(chr(bold_sla_base_a+(ch-sla_base_a)))
         elif sans_A <= ch and ch <= sans_Z:
-            out.write(chr(fat_sans_A+(ch-sans_A)))
+            out.write(chr(bold_sans_A+(ch-sans_A)))
         elif sans_a <= ch and ch <= sans_z:
-            out.write(chr(fat_sans_a+(ch-sans_a)))
+            out.write(chr(bold_sans_a+(ch-sans_a)))
         elif sans_0 <= ch and ch <= sans_9:
-            out.write(chr(fat_sans_0+(ch-sans_0)))
+            out.write(chr(bold_sans_0+(ch-sans_0)))
         elif sla_sans_A <= ch and ch <= sla_sans_Z:
-            out.write(chr(fat_sla_sans_A+(ch-sla_sans_A)))
+            out.write(chr(bold_sla_sans_A+(ch-sla_sans_A)))
         elif sla_sans_a <= ch and ch <= sla_sans_z:
-            out.write(chr(fat_sla_sans_a+(ch-sla_sans_a)))
+            out.write(chr(bold_sla_sans_a+(ch-sla_sans_a)))
         elif ch in de_fraktur:
-            out.write(chr(fat_fraktur_A+(de_fraktur[ch] - base_A)))
+            out.write(chr(bold_fraktur_A+(de_fraktur[ch] - base_A)))
         elif fraktur_A <= ch and ch <= fraktur_Z:
-            out.write(chr(fat_fraktur_A+(ch-fraktur_A)))
+            out.write(chr(bold_fraktur_A+(ch-fraktur_A)))
         elif fraktur_a <= ch and ch <= fraktur_z:
-            out.write(chr(fat_fraktur_a+(ch-fraktur_a)))
+            out.write(chr(bold_fraktur_a+(ch-fraktur_a)))
         elif script_A <= ch and ch <= script_Z:
-            out.write(chr(fat_script_A+(ch-script_A)))
+            out.write(chr(bold_script_A+(ch-script_A)))
         elif script_a <= ch and ch <= script_z:
-            out.write(chr(fat_script_a+(ch-script_a)))
+            out.write(chr(bold_script_a+(ch-script_a)))
         elif greek_A <= ch and ch <= greek_O:
-            out.write(chr(fat_greek_A+(ch-greek_A)))
+            out.write(chr(bold_greek_A+(ch-greek_A)))
         elif greek_a <= ch and ch <= greek_o:
-            out.write(chr(fat_greek_a+(ch-greek_a)))
+            out.write(chr(bold_greek_a+(ch-greek_a)))
         elif greek_nabla == ch:
-            out.write(chr(fat_greek_nabla))
+            out.write(chr(bold_greek_nabla))
         elif greek_diffs == ch:
-            out.write(chr(fat_greek_diffs))
+            out.write(chr(bold_greek_diffs))
         elif sla_greek_A <= ch and ch <= sla_greek_O+1:
-            out.write(chr(fat_sla_greek_A+(ch-sla_greek_A)))
+            out.write(chr(bold_sla_greek_A+(ch-sla_greek_A)))
         elif sla_greek_a <= ch and ch <= sla_greek_o+1:
-            out.write(chr(fat_sla_greek_a+(ch-sla_greek_a)))
+            out.write(chr(bold_sla_greek_a+(ch-sla_greek_a)))
         else:
             out.write(c)
     return out.getvalue()
@@ -751,22 +751,22 @@ def ital(text: str) -> str:
     sla_sans_Z = 0x1D621
     sla_sans_a = 0x1D622
     sla_sans_z = 0x1D63B
-    fat_base_A = 0x1D400
-    fat_base_Z = 0x1D419
-    fat_base_a = 0x1D41A
-    fat_base_z = 0x1D433
-    fat_sla_base_A = 0x1D468
-    fat_sla_base_Z = 0x1D481
-    fat_sla_base_a = 0x1D482
-    fat_sla_base_z = 0x1D49B
-    fat_sans_A = 0x1D5D4
-    fat_sans_Z = 0x1D5ED
-    fat_sans_a = 0x1D5EE
-    fat_sans_z = 0x1D607
-    fat_sla_sans_A = 0x1D63E
-    fat_sla_sans_Z = 0x1D655
-    fat_sla_sans_a = 0x1D656
-    fat_sla_sans_z = 0x1D66F
+    bold_base_A = 0x1D400
+    bold_base_Z = 0x1D419
+    bold_base_a = 0x1D41A
+    bold_base_z = 0x1D433
+    bold_sla_base_A = 0x1D468
+    bold_sla_base_Z = 0x1D481
+    bold_sla_base_a = 0x1D482
+    bold_sla_base_z = 0x1D49B
+    bold_sans_A = 0x1D5D4
+    bold_sans_Z = 0x1D5ED
+    bold_sans_a = 0x1D5EE
+    bold_sans_z = 0x1D607
+    bold_sla_sans_A = 0x1D63E
+    bold_sla_sans_Z = 0x1D655
+    bold_sla_sans_a = 0x1D656
+    bold_sla_sans_z = 0x1D66F
     #
     fraktur_A = 0x1D504
     fraktur_Z = 0x1D51D
@@ -776,14 +776,14 @@ def ital(text: str) -> str:
     sla_fraktur_Z = 0x1D585
     sla_fraktur_a = 0x1D586
     sla_fraktur_z = 0x1D59F
-    fat_fraktur_A = 0x1D56C
-    fat_fraktur_Z = 0x1D585
-    fat_fraktur_a = 0x1D586
-    fat_fraktur_z = 0x1D59F
-    # fat_sla_fraktur_A = n/a
-    # fat_sla_fraktur_Z = n/a
-    # fat_sla_fraktur_a = n/a
-    # fat_sla_fraktur_z = n/a
+    bold_fraktur_A = 0x1D56C
+    bold_fraktur_Z = 0x1D585
+    bold_fraktur_a = 0x1D586
+    bold_fraktur_z = 0x1D59F
+    # bold_sla_fraktur_A = n/a
+    # bold_sla_fraktur_Z = n/a
+    # bold_sla_fraktur_a = n/a
+    # bold_sla_fraktur_z = n/a
     greek_A = 0x391
     greek_O = 0x3A9
     greek_a = 0x3B1
@@ -796,18 +796,18 @@ def ital(text: str) -> str:
     sla_greek_a = 0x1D6FC
     sla_greek_o = 0x1D714
     sla_greek_diffs = 0x1D715
-    fat_greek_A = 0x1D6A8
-    fat_greek_O = 0x1D6C0
-    fat_greek_nabla = 0x1D6C1
-    fat_greek_a = 0x1D6C2
-    fat_greek_o = 0x1D6DA
-    fat_greek_diffs = 0x1D6DB
-    fat_sla_greek_A = 0x1D71C
-    fat_sla_greek_O = 0x1D734
-    fat_sla_greek_nabla = 0x1D735
-    fat_sla_greek_a = 0x1D736
-    fat_sla_greek_o = 0x1D74E
-    fat_sla_greek_diffs = 0x1D74F
+    bold_greek_A = 0x1D6A8
+    bold_greek_O = 0x1D6C0
+    bold_greek_nabla = 0x1D6C1
+    bold_greek_a = 0x1D6C2
+    bold_greek_o = 0x1D6DA
+    bold_greek_diffs = 0x1D6DB
+    bold_sla_greek_A = 0x1D71C
+    bold_sla_greek_O = 0x1D734
+    bold_sla_greek_nabla = 0x1D735
+    bold_sla_greek_a = 0x1D736
+    bold_sla_greek_o = 0x1D74E
+    bold_sla_greek_diffs = 0x1D74F
     out = StringIO()
     for c in text:
         ch = ord(c)
@@ -817,18 +817,18 @@ def ital(text: str) -> str:
             out.write(chr(sla_base_a+(ch-base_a)))
         elif base_sz == ch:
             out.write(chr(sla_greek_a+1))
-        elif fat_base_A <= ch and ch <= fat_base_Z:
-            out.write(chr(fat_sla_base_A+(ch-fat_base_A)))
-        elif fat_base_a <= ch and ch <= fat_base_z:
-            out.write(chr(fat_sla_base_a+(ch-fat_base_a)))
+        elif bold_base_A <= ch and ch <= bold_base_Z:
+            out.write(chr(bold_sla_base_A+(ch-bold_base_A)))
+        elif bold_base_a <= ch and ch <= bold_base_z:
+            out.write(chr(bold_sla_base_a+(ch-bold_base_a)))
         elif sans_A <= ch and ch <= sans_Z:
             out.write(chr(sla_sans_A+(ch-sans_A)))
         elif sans_a <= ch and ch <= sans_z:
             out.write(chr(sla_sans_a+(ch-sans_a)))
-        elif fat_sans_A <= ch and ch <= fat_sans_Z:
-            out.write(chr(fat_sla_sans_A+(ch-fat_sans_A)))
-        elif fat_sans_a <= ch and ch <= fat_sans_z:
-            out.write(chr(fat_sla_sans_a+(ch-fat_sans_a)))
+        elif bold_sans_A <= ch and ch <= bold_sans_Z:
+            out.write(chr(bold_sla_sans_A+(ch-bold_sans_A)))
+        elif bold_sans_a <= ch and ch <= bold_sans_z:
+            out.write(chr(bold_sla_sans_a+(ch-bold_sans_a)))
         elif fraktur_A <= ch and ch <= fraktur_Z:
             out.write(chr(sla_fraktur_A+(ch-fraktur_A)))
         elif fraktur_a <= ch and ch <= fraktur_z:
@@ -841,10 +841,10 @@ def ital(text: str) -> str:
             out.write(chr(sla_greek_nabla))
         elif greek_diffs == ch:
             out.write(chr(sla_greek_diffs))
-        elif fat_greek_A <= ch and ch <= fat_greek_O+1:
-            out.write(chr(fat_sla_greek_A+(ch-fat_greek_A)))
-        elif fat_greek_a <= ch and ch <= fat_greek_o+1:
-            out.write(chr(fat_sla_greek_a+(ch-fat_greek_a)))
+        elif bold_greek_A <= ch and ch <= bold_greek_O+1:
+            out.write(chr(bold_sla_greek_A+(ch-bold_greek_A)))
+        elif bold_greek_a <= ch and ch <= bold_greek_o+1:
+            out.write(chr(bold_sla_greek_a+(ch-bold_greek_a)))
         else:
             out.write(c)
     return out.getvalue()
