@@ -14,7 +14,11 @@ norm_abcdefghijklmnopqrstuvwxyz = "abcdefghijklmnopqrstuvwxyz"
 norm_ABCDEFGHIJKLMNOPQRSTUVWXYZ = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 mono_abcdefghijklmnopqrstuvwxyz = "𝚊𝚋𝚌𝚍𝚎𝚏𝚐𝚑𝚒𝚓𝚔𝚕𝚖𝚗𝚘𝚙𝚚𝚛𝚜𝚝𝚞𝚟𝚠𝚡𝚢𝚣"
 mono_ABCDEFGHIJKLMNOPQRSTUVWXYZ = "𝙰𝙱𝙲𝙳𝙴𝙵𝙶𝙷𝙸𝙹𝙺𝙻𝙼𝙽𝙾𝙿𝚀𝚁𝚂𝚃𝚄𝚅𝚆𝚇𝚈𝚉"
-
+sans_abcdefghijklmnopqrstuvwxyz = "𝖺𝖻𝖼𝖽𝖾𝖿𝗀𝗁𝗂𝗃𝗄𝗅𝗆𝗇𝗈𝗉𝗊𝗋𝗌𝗍𝗎𝗏𝗐𝗑𝗒𝗓"
+sans_ABCDEFGHIJKLMNOPQRSTUVWXYZ = "𝖠𝖡𝖢𝖣𝖤𝖥𝖦𝖧𝖨𝖩𝖪𝖫𝖬𝖭𝖮𝖯𝖰𝖱𝖲𝖳𝖴𝖵𝖶𝖷𝖸𝖹"
+norm_0123456789 = "0123456789"
+mono_0123456789 = "𝟶𝟷𝟸𝟹𝟺𝟻𝟼𝟽𝟾𝟿"
+sans_0123456789 = "𝟢𝟣𝟤𝟥𝟦𝟧𝟨𝟩𝟪𝟫"
 
 class UnicoderTest(unittest.TestCase):
     def test_001_opt_scan(self) -> None:
@@ -120,29 +124,29 @@ class UnicoderTest(unittest.TestCase):
         uni = unicoder.bold(unicoder.ital(norm_ABCDEFGHIJKLMNOPQRSTUVWXYZ))
         self.assertEqual(uni, "𝑨𝑩𝑪𝑫𝑬𝑭𝑮𝑯𝑰𝑱𝑲𝑳𝑴𝑵𝑶𝑷𝑸𝑹𝑺𝑻𝑼𝑽𝑾𝑿𝒀𝒁")
     def test_150_bold_numm(self) -> None:
-        uni = unicoder.convert("fix", "0123456789")
-        self.assertEqual(uni, "0123456789")
+        uni = unicoder.convert("fix", norm_0123456789)
+        self.assertEqual(uni, norm_0123456789)
     def test_151_bold_numm(self) -> None:
-        uni = unicoder.convert("fat", "0123456789")
+        uni = unicoder.convert("fat", norm_0123456789)
         self.assertEqual(uni, "𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗")
     def test_152_bold_numm(self) -> None:
-        uni = unicoder.convert("bold", "0123456789")
+        uni = unicoder.convert("bold", norm_0123456789)
         self.assertEqual(uni, "𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗")
     def test_155_bold_numm(self) -> None:
-        uni = unicoder.bold("0123456789")
+        uni = unicoder.bold(norm_0123456789)
         self.assertEqual(uni, "𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗")
     def test_156_bold_numm(self) -> None:
-        uni = unicoder.bold("0123456789")
+        uni = unicoder.bold(norm_0123456789)
         self.assertEqual(uni, "𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗")
     def test_160_ital_numm(self) -> None:
-        uni = unicoder.convert("fix", "0123456789")
-        self.assertEqual(uni, "0123456789")
+        uni = unicoder.convert("fix", norm_0123456789)
+        self.assertEqual(uni, norm_0123456789)
     def test_161_ital_numm(self) -> None:
-        uni = unicoder.convert("slant", "0123456789")
-        self.assertEqual(uni, "0123456789")
+        uni = unicoder.convert("slant", norm_0123456789)
+        self.assertEqual(uni, norm_0123456789)
     def test_162_ital_numm(self) -> None:
-        uni = unicoder.convert("ital", "0123456789")
-        self.assertEqual(uni, "0123456789")
+        uni = unicoder.convert("ital", norm_0123456789)
+        self.assertEqual(uni, norm_0123456789)
     def test_170_bold_base_sz(self) -> None:
         uni = unicoder.convert("fix", "abcxyzABCXYZ0123456789ß")
         self.assertEqual(uni, "abcxyzABCXYZ0123456789ß")
@@ -218,19 +222,19 @@ class UnicoderTest(unittest.TestCase):
         uni = unicoder.bold(unicoder.double("abcxyzABXY"))
         self.assertEqual(uni, "𝕒𝕓𝕔𝕩𝕪𝕫𝔸𝔹𝕏𝕐")
     def test_240_numm_double(self) -> None:
-        uni = unicoder.convert("fix", "0123456789")
-        self.assertEqual(uni, "0123456789")
+        uni = unicoder.convert("fix", norm_0123456789)
+        self.assertEqual(uni, norm_0123456789)
     def test_241_numm_double(self) -> None:
-        uni = unicoder.convert("double", "0123456789")
+        uni = unicoder.convert("double", norm_0123456789)
         self.assertEqual(uni, "𝟘𝟙𝟚𝟛𝟜𝟝𝟞𝟟𝟠𝟡")
     def test_242_numm_double(self) -> None:
-        uni = unicoder.convert("wide", "0123456789")
+        uni = unicoder.convert("wide", norm_0123456789)
         self.assertEqual(uni, "𝟘𝟙𝟚𝟛𝟜𝟝𝟞𝟟𝟠𝟡")
     def test_245_numm_double(self) -> None:
-        uni = unicoder.double("0123456789")
+        uni = unicoder.double(norm_0123456789)
         self.assertEqual(uni, "𝟘𝟙𝟚𝟛𝟜𝟝𝟞𝟟𝟠𝟡")
     def test_246_numm_double(self) -> None:
-        uni = unicoder.double("0123456789")
+        uni = unicoder.double(norm_0123456789)
         self.assertEqual(uni, "𝟘𝟙𝟚𝟛𝟜𝟝𝟞𝟟𝟠𝟡")
     #
     def test_250_norm_script(self) -> None:
@@ -288,24 +292,28 @@ class UnicoderTest(unittest.TestCase):
         uni = unicoder.script(unicoder.bold(norm_ABCDEFGHIJKLMNOPQRSTUVWXYZ))
         self.assertEqual(uni, "𝓐𝓑𝓒𝓓𝓔𝓕𝓖𝓗𝓘𝓙𝓚𝓛𝓜𝓝𝓞𝓟𝓠𝓡𝓢𝓣𝓤𝓥𝓦𝓧𝓨𝓩")
     def test_290_numm_script(self) -> None:
-        uni = unicoder.convert("fix", "0123456789")
-        self.assertEqual(uni, "0123456789")
+        uni = unicoder.convert("fix", norm_0123456789)
+        self.assertEqual(uni, norm_0123456789)
     def test_291_numm_script(self) -> None:
-        uni = unicoder.convert("script", "0123456789")
-        self.assertEqual(uni, "0123456789")
+        uni = unicoder.convert("script", norm_0123456789)
+        self.assertEqual(uni, norm_0123456789)
     def test_292_numm_script(self) -> None:
-        uni = unicoder.convert("round", "0123456789")
-        self.assertEqual(uni, "0123456789")
+        uni = unicoder.convert("round", norm_0123456789)
+        self.assertEqual(uni, norm_0123456789)
     def test_295_numm_script(self) -> None:
-        uni = unicoder.script("0123456789")
-        self.assertEqual(uni, "0123456789")
+        uni = unicoder.script(norm_0123456789)
+        self.assertEqual(uni, norm_0123456789)
     def test_296_numm_script(self) -> None:
-        uni = unicoder.script("0123456789")
-        self.assertEqual(uni, "0123456789")
+        uni = unicoder.script(norm_0123456789)
+        self.assertEqual(uni, norm_0123456789)
     #
     def test_300_norm_courier(self) -> None:
-        uni = unicoder.convert("fix", "abcxyzABCXYZ")
-        self.assertEqual(uni, "abcxyzABCXYZ")
+        uni = unicoder.convert("fix", norm_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, norm_abcdefghijklmnopqrstuvwxyz)
+        self.assertNotEqual(norm_abcdefghijklmnopqrstuvwxyz,
+                            sans_abcdefghijklmnopqrstuvwxyz)
+        self.assertNotEqual(mono_abcdefghijklmnopqrstuvwxyz,
+                            sans_abcdefghijklmnopqrstuvwxyz)
     def test_301_norm_courier(self) -> None:
         uni = unicoder.convert("courier", norm_abcdefghijklmnopqrstuvwxyz)
         self.assertEqual(uni, mono_abcdefghijklmnopqrstuvwxyz)
@@ -331,63 +339,67 @@ class UnicoderTest(unittest.TestCase):
         uni = unicoder.courier(norm_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
         self.assertEqual(uni, mono_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
     def test_340_numm_courier(self) -> None:
-        uni = unicoder.convert("fix", "0123456789")
-        self.assertEqual(uni, "0123456789")
+        uni = unicoder.convert("fix", norm_0123456789)
+        self.assertEqual(uni, norm_0123456789)
     def test_341_numm_courier(self) -> None:
-        uni = unicoder.convert("courier", "0123456789")
-        self.assertEqual(uni, "𝟶𝟷𝟸𝟹𝟺𝟻𝟼𝟽𝟾𝟿")
+        uni = unicoder.convert("courier", norm_0123456789)
+        self.assertEqual(uni, mono_0123456789)
     def test_342_numm_courier(self) -> None:
-        uni = unicoder.convert("mono", "0123456789")
-        self.assertEqual(uni, "𝟶𝟷𝟸𝟹𝟺𝟻𝟼𝟽𝟾𝟿")
+        uni = unicoder.convert("mono", norm_0123456789)
+        self.assertEqual(uni, mono_0123456789)
     def test_345_numm_courier(self) -> None:
-        uni = unicoder.courier("0123456789")
-        self.assertEqual(uni, "𝟶𝟷𝟸𝟹𝟺𝟻𝟼𝟽𝟾𝟿")
+        uni = unicoder.courier(norm_0123456789)
+        self.assertEqual(uni, mono_0123456789)
     def test_346_numm_courier(self) -> None:
-        uni = unicoder.courier("0123456789")
-        self.assertEqual(uni, "𝟶𝟷𝟸𝟹𝟺𝟻𝟼𝟽𝟾𝟿")
+        uni = unicoder.courier(norm_0123456789)
+        self.assertEqual(uni, mono_0123456789)
     #
     def test_400_norm_sans(self) -> None:
-        uni = unicoder.convert("fix", "abcxyzABCXYZ")
-        self.assertEqual(uni, "abcxyzABCXYZ")
+        uni = unicoder.convert("fix", norm_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, norm_abcdefghijklmnopqrstuvwxyz)
+        self.assertNotEqual(norm_abcdefghijklmnopqrstuvwxyz,
+                            sans_abcdefghijklmnopqrstuvwxyz)
+        self.assertNotEqual(mono_abcdefghijklmnopqrstuvwxyz,
+                            sans_abcdefghijklmnopqrstuvwxyz)
     def test_401_norm_sans(self) -> None:
         uni = unicoder.convert("sans", norm_abcdefghijklmnopqrstuvwxyz)
-        self.assertEqual(uni, "𝖺𝖻𝖼𝖽𝖾𝖿𝗀𝗁𝗂𝗃𝗄𝗅𝗆𝗇𝗈𝗉𝗊𝗋𝗌𝗍𝗎𝗏𝗐𝗑𝗒𝗓")
+        self.assertEqual(uni, sans_abcdefghijklmnopqrstuvwxyz)
     def test_402_norm_sans(self) -> None:
         uni = unicoder.convert("vect", norm_abcdefghijklmnopqrstuvwxyz)
-        self.assertEqual(uni, "𝖺𝖻𝖼𝖽𝖾𝖿𝗀𝗁𝗂𝗃𝗄𝗅𝗆𝗇𝗈𝗉𝗊𝗋𝗌𝗍𝗎𝗏𝗐𝗑𝗒𝗓")
+        self.assertEqual(uni, sans_abcdefghijklmnopqrstuvwxyz)
     def test_403_norm_sans(self) -> None:
         uni = unicoder.convert("sans", norm_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
-        self.assertEqual(uni, "𝖠𝖡𝖢𝖣𝖤𝖥𝖦𝖧𝖨𝖩𝖪𝖫𝖬𝖭𝖮𝖯𝖰𝖱𝖲𝖳𝖴𝖵𝖶𝖷𝖸𝖹")
+        self.assertEqual(uni, sans_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
     def test_404_norm_sans(self) -> None:
         uni = unicoder.convert("vect", norm_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
-        self.assertEqual(uni, "𝖠𝖡𝖢𝖣𝖤𝖥𝖦𝖧𝖨𝖩𝖪𝖫𝖬𝖭𝖮𝖯𝖰𝖱𝖲𝖳𝖴𝖵𝖶𝖷𝖸𝖹")
+        self.assertEqual(uni, sans_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
     def test_405_norm_sans(self) -> None:
         uni = unicoder.sans(norm_abcdefghijklmnopqrstuvwxyz)
-        self.assertEqual(uni, "𝖺𝖻𝖼𝖽𝖾𝖿𝗀𝗁𝗂𝗃𝗄𝗅𝗆𝗇𝗈𝗉𝗊𝗋𝗌𝗍𝗎𝗏𝗐𝗑𝗒𝗓")
+        self.assertEqual(uni, sans_abcdefghijklmnopqrstuvwxyz)
     def test_406_norm_sans(self) -> None:
         uni = unicoder.sans(norm_abcdefghijklmnopqrstuvwxyz)
-        self.assertEqual(uni, "𝖺𝖻𝖼𝖽𝖾𝖿𝗀𝗁𝗂𝗃𝗄𝗅𝗆𝗇𝗈𝗉𝗊𝗋𝗌𝗍𝗎𝗏𝗐𝗑𝗒𝗓")
+        self.assertEqual(uni, sans_abcdefghijklmnopqrstuvwxyz)
     def test_407_norm_sans(self) -> None:
         uni = unicoder.sans(norm_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
-        self.assertEqual(uni, "𝖠𝖡𝖢𝖣𝖤𝖥𝖦𝖧𝖨𝖩𝖪𝖫𝖬𝖭𝖮𝖯𝖰𝖱𝖲𝖳𝖴𝖵𝖶𝖷𝖸𝖹")
+        self.assertEqual(uni, sans_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
     def test_408_norm_sans(self) -> None:
         uni = unicoder.sans(norm_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
-        self.assertEqual(uni, "𝖠𝖡𝖢𝖣𝖤𝖥𝖦𝖧𝖨𝖩𝖪𝖫𝖬𝖭𝖮𝖯𝖰𝖱𝖲𝖳𝖴𝖵𝖶𝖷𝖸𝖹")
+        self.assertEqual(uni, sans_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
     def test_410_numm_sans(self) -> None:
-        uni = unicoder.convert("fix", "0123456789")
-        self.assertEqual(uni, "0123456789")
+        uni = unicoder.convert("fix", norm_0123456789)
+        self.assertEqual(uni, norm_0123456789)
     def test_411_numm_sans(self) -> None:
-        uni = unicoder.convert("sans", "0123456789")
-        self.assertEqual(uni, "𝟢𝟣𝟤𝟥𝟦𝟧𝟨𝟩𝟪𝟫")
+        uni = unicoder.convert("sans", norm_0123456789)
+        self.assertEqual(uni, sans_0123456789)
     def test_412_numm_sans(self) -> None:
-        uni = unicoder.convert("vect", "0123456789")
-        self.assertEqual(uni, "𝟢𝟣𝟤𝟥𝟦𝟧𝟨𝟩𝟪𝟫")
+        uni = unicoder.convert("vect", norm_0123456789)
+        self.assertEqual(uni, sans_0123456789)
     def test_415_numm_sans(self) -> None:
-        uni = unicoder.sans("0123456789")
-        self.assertEqual(uni, "𝟢𝟣𝟤𝟥𝟦𝟧𝟨𝟩𝟪𝟫")
+        uni = unicoder.sans(norm_0123456789)
+        self.assertEqual(uni, sans_0123456789)
     def test_416_numm_sans(self) -> None:
-        uni = unicoder.sans("0123456789")
-        self.assertEqual(uni, "𝟢𝟣𝟤𝟥𝟦𝟧𝟨𝟩𝟪𝟫")
+        uni = unicoder.sans(norm_0123456789)
+        self.assertEqual(uni, sans_0123456789)
     #
     def test_500_norm_frak(self) -> None:
         uni = unicoder.convert("fix", norm_abcdefghijklmnopqrstuvwxyz)
