@@ -903,15 +903,16 @@ def convert(cmd: str, text: str) -> str:
         text = greek(text)
     if "black" in cmd or "frak" in cmd:
         text = fraktur(text)
-    if "ital" in cmd or "name" in cmd or "slant" in cmd:
-        text = ital(text)
     if "round" in cmd or "script" in cmd or "writ" in cmd:
         text = script(text)
     if "cour" in cmd or "type" in cmd or "mono" in cmd:
         text = courier(text)
     if "sans" in cmd or "vect" in cmd:
         text = sans(text)
-    if "fat" in cmd or "bold" in cmd:
+    # and the variants in ital and bold
+    if "ital" in cmd or "name" in cmd or "slant" in cmd:
+        text = ital(text)
+    if "bold" in cmd or "fat" in cmd:
         text = bold(text)
     return text
 
