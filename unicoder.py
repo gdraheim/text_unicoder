@@ -605,7 +605,7 @@ def sans(text: str) -> str:
     bold_ital_base_Z = 0x1D481
     bold_ital_base_a = 0x1D482
     bold_ital_base_z = 0x1D49B
-    bold_ital_sans_A = 0x1D63E
+    bold_ital_sans_A = 0x1D63C
     bold_ital_sans_Z = 0x1D655
     bold_ital_sans_a = 0x1D656
     bold_ital_sans_z = 0x1D66F
@@ -628,14 +628,10 @@ def sans(text: str) -> str:
             out.write(chr(ital_sans_A+(ch-ital_base_A)))
         elif ital_base_a <= ch and ch <= ital_base_z:
             out.write(chr(ital_sans_a+(ch-ital_base_a)))
-        elif ital_base_0 <= ch and ch <= ital_base_9:
-            out.write(chr(ital_sans_0+(ch-ital_base_0)))
         elif bold_ital_base_A <= ch and ch <= bold_ital_base_Z:
             out.write(chr(bold_ital_sans_A+(ch-bold_ital_base_A)))
         elif bold_ital_base_a <= ch and ch <= bold_ital_base_z:
             out.write(chr(bold_ital_sans_a+(ch-bold_ital_base_a)))
-        elif bold_ital_base_0 <= ch and ch <= bold_ital_base_9:
-            out.write(chr(bold_ital_sans_0+(ch-bold_ital_base_0)))
         else:
             out.write(c)
     return out.getvalue()
@@ -680,7 +676,7 @@ def bold(text: str) -> str:
     ital_sans_Z = 0x1D621
     ital_sans_a = 0x1D622
     ital_sans_z = 0x1D63B
-    bold_ital_sans_A = 0x1D63E
+    bold_ital_sans_A = 0x1D63C
     bold_ital_sans_Z = 0x1D655
     bold_ital_sans_a = 0x1D656
     bold_ital_sans_z = 0x1D66F

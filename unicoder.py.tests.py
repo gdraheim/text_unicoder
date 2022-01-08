@@ -23,9 +23,12 @@ sans_0123456789 = "𝟢𝟣𝟤𝟥𝟦𝟧𝟨𝟩𝟪𝟫"
 bold_sans_abcdefghijklmnopqrstuvwxyz = "𝗮𝗯𝗰𝗱𝗲𝗳𝗴𝗵𝗶𝗷𝗸𝗹𝗺𝗻𝗼𝗽𝗾𝗿𝘀𝘁𝘂𝘃𝘄𝘅𝘆𝘇"
 bold_sans_ABCDEFGHIJKLMNOPQRSTUVWXYZ = "𝗔𝗕𝗖𝗗𝗘𝗙𝗚𝗛𝗜𝗝𝗞𝗟𝗠𝗡𝗢𝗣𝗤𝗥𝗦𝗧𝗨𝗩𝗪𝗫𝗬𝗭"
 bold_sans_0123456789 = "𝟬𝟭𝟮𝟯𝟰𝟱𝟲𝟳𝟴𝟵"
-
 ital_sans_abcdefghijklmnopqrstuvwxyz = "𝘢𝘣𝘤𝘥𝘦𝘧𝘨𝘩𝘪𝘫𝘬𝘭𝘮𝘯𝘰𝘱𝘲𝘳𝘴𝘵𝘶𝘷𝘸𝘹𝘺𝘻"
 ital_sans_ABCDEFGHIJKLMNOPQRSTUVWXYZ = "𝘈𝘉𝘊𝘋𝘌𝘍𝘎𝘏𝘐𝘑𝘒𝘓𝘔𝘕𝘖𝘗𝘘𝘙𝘚𝘛𝘜𝘝𝘞𝘟𝘠𝘡"
+ital_sans_0123456789 = "𝟢𝟣𝟤𝟥𝟦𝟧𝟨𝟩𝟪𝟫"
+bold_ital_sans_abcdefghijklmnopqrstuvwxyz = "𝙖𝙗𝙘𝙙𝙚𝙛𝙜𝙝𝙞𝙟𝙠𝙡𝙢𝙣𝙤𝙥𝙦𝙧𝙨𝙩𝙪𝙫𝙬𝙭𝙮𝙯"
+bold_ital_sans_ABCDEFGHIJKLMNOPQRSTUVWXYZ = "𝘼𝘽𝘾𝘿𝙀𝙁𝙂𝙃𝙄𝙅𝙆𝙇𝙈𝙉𝙊𝙋𝙌𝙍𝙎𝙏𝙐𝙑𝙒𝙓𝙔𝙕"
+bold_ital_sans_0123456789 = "𝟬𝟭𝟮𝟯𝟰𝟱𝟲𝟳𝟴𝟵"
 
 class UnicoderTest(unittest.TestCase):
     def test_001_opt_scan(self) -> None:
@@ -446,6 +449,88 @@ class UnicoderTest(unittest.TestCase):
     def test_436_numm_bold_sans(self) -> None:
         uni = unicoder.sans(unicoder.bold(base_0123456789))
         self.assertEqual(uni, bold_sans_0123456789)
+    def test_441_ital_sans(self) -> None:
+        uni = unicoder.convert("italsans", base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, ital_sans_abcdefghijklmnopqrstuvwxyz)
+    def test_442_ital_sans(self) -> None:
+        uni = unicoder.convert("slantvect", base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, ital_sans_abcdefghijklmnopqrstuvwxyz)
+    def test_443_ital_sans(self) -> None:
+        uni = unicoder.convert("italsans", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        self.assertEqual(uni, ital_sans_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+    def test_444_ital_sans(self) -> None:
+        uni = unicoder.convert("slantvect", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        self.assertEqual(uni, ital_sans_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+    def test_445_ital_sans(self) -> None:
+        uni = unicoder.ital(unicoder.sans(base_abcdefghijklmnopqrstuvwxyz))
+        self.assertEqual(uni, ital_sans_abcdefghijklmnopqrstuvwxyz)
+    def test_446_ital_sans(self) -> None:
+        uni = unicoder.sans(unicoder.ital(base_abcdefghijklmnopqrstuvwxyz))
+        self.assertEqual(uni, ital_sans_abcdefghijklmnopqrstuvwxyz)
+    def test_447_ital_sans(self) -> None:
+        uni = unicoder.ital(unicoder.sans(base_ABCDEFGHIJKLMNOPQRSTUVWXYZ))
+        self.assertEqual(uni, ital_sans_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+    def test_448_ital_sans(self) -> None:
+        uni = unicoder.sans(unicoder.ital(base_ABCDEFGHIJKLMNOPQRSTUVWXYZ))
+        self.assertEqual(uni, ital_sans_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+    def test_450_numm_ital_sans(self) -> None:
+        uni = unicoder.convert("fix", base_0123456789)
+        self.assertEqual(uni, base_0123456789)
+    def test_451_numm_ital_sans(self) -> None:
+        uni = unicoder.convert("italsans", base_0123456789)
+        self.assertEqual(uni, ital_sans_0123456789)
+    def test_452_numm_ital_sans(self) -> None:
+        uni = unicoder.convert("slantvect", base_0123456789)
+        self.assertEqual(uni, ital_sans_0123456789)
+    def test_455_numm_ital_sans(self) -> None:
+        uni = unicoder.ital(unicoder.sans(base_0123456789))
+        self.assertEqual(uni, ital_sans_0123456789)
+    def test_456_numm_ital_sans(self) -> None:
+        uni = unicoder.sans(unicoder.ital(base_0123456789))
+        self.assertEqual(uni, ital_sans_0123456789)
+    def test_461_bold_ital_sans(self) -> None:
+        uni = unicoder.convert("bolditalsans", base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, bold_ital_sans_abcdefghijklmnopqrstuvwxyz)
+    def test_462_bold_ital_sans(self) -> None:
+        uni = unicoder.convert("fatslantvect", base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, bold_ital_sans_abcdefghijklmnopqrstuvwxyz)
+    def test_463_bold_ital_sans(self) -> None:
+        uni = unicoder.convert("bolditalsans", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        self.assertEqual(uni, bold_ital_sans_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+    def test_464_bold_ital_sans(self) -> None:
+        uni = unicoder.convert("fatslantvect", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        self.assertEqual(uni, bold_ital_sans_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+    def test_465_bold_ital_sans(self) -> None:
+        uni = unicoder.bold(unicoder.ital(
+            unicoder.sans(base_abcdefghijklmnopqrstuvwxyz)))
+        self.assertEqual(uni, bold_ital_sans_abcdefghijklmnopqrstuvwxyz)
+    def test_466_bold_ital_sans(self) -> None:
+        uni = unicoder.sans(
+            unicoder.bold(unicoder.ital(base_abcdefghijklmnopqrstuvwxyz)))
+        self.assertEqual(uni, bold_ital_sans_abcdefghijklmnopqrstuvwxyz)
+    def test_467_bold_ital_sans(self) -> None:
+        uni = unicoder.bold(unicoder.ital(
+            unicoder.sans(base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)))
+        self.assertEqual(uni, bold_ital_sans_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+    def test_468_bold_ital_sans(self) -> None:
+        uni = unicoder.sans(
+            unicoder.bold(unicoder.ital(base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)))
+        self.assertEqual(uni, bold_ital_sans_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+    def test_470_numm_bold_ital_sans(self) -> None:
+        uni = unicoder.convert("fix", base_0123456789)
+        self.assertEqual(uni, base_0123456789)
+    def test_471_numm_bold_ital_sans(self) -> None:
+        uni = unicoder.convert("bolditalsans", base_0123456789)
+        self.assertEqual(uni, bold_ital_sans_0123456789)
+    def test_472_numm_bold_ital_sans(self) -> None:
+        uni = unicoder.convert("fatslantvect", base_0123456789)
+        self.assertEqual(uni, bold_ital_sans_0123456789)
+    def test_475_numm_bold_ital_sans(self) -> None:
+        uni = unicoder.bold(unicoder.ital(unicoder.sans(base_0123456789)))
+        self.assertEqual(uni, bold_ital_sans_0123456789)
+    def test_476_numm_bold_ital_sans(self) -> None:
+        uni = unicoder.sans(unicoder.bold(unicoder.ital(base_0123456789)))
+        self.assertEqual(uni, bold_ital_sans_0123456789)
 
     #
     def test_500_norm_frak(self) -> None:
