@@ -1,10 +1,11 @@
-F= unicoder.py
-D=$(basename $F)
-B= 2021
+#! /usr/bin/make -f
+
+BASEYEAR= 2021
 FOR=today
 
 FILES = *.py *.cfg
 PYTHON3 = python3
+TWINE = twine
 
 PARALLEL = -j2
 
@@ -15,17 +16,20 @@ version1:
 
 version:
 	@ grep -l __version__ $(FILES) | { while read f; do : \
-	; Y=`date +%Y -d "$(FOR)"` ; X=$$(expr $$Y - $B); D=`date +%W%u -d "$(FOR)"` ; sed -i \
-	-e "/^version /s/[.]-*[0123456789][0123456789][0123456789]*/.$$X$$D/" \
-	-e "/^ *__version__/s/[.]-*[0123456789][0123456789][0123456789]*\"/.$$X$$D\"/" \
-	-e "/^ *__version__/s/[.]\\([0123456789]\\)\"/.\\1.$$X$$D\"/" \
-	-e "/^ *__copyright__/s/(C) [0123456789]*-[0123456789]*/(C) $B-$$Y/" \
-	-e "/^ *__copyright__/s/(C) [0123456789]* /(C) $$Y /" \
+	; THISYEAR=`date +%Y -d "$(FOR)"` ; YEARS=$$(expr $$THISYEAR - $(BASEYEAR)) \
+        ; WEEKnDAY=`date +%W%u -d "$(FOR)"` ; sed -i \
+	-e "/^version /s/[.]-*[0123456789][0123456789][0123456789]*/.$$YEARS$$WEEKnDAY/" \
+	-e "/^ *__version__/s/[.]-*[0123456789][0123456789][0123456789]*\"/.$$YEARS$$WEEKnDAY\"/" \
+	-e "/^ *__version__/s/[.]\\([0123456789]\\)\"/.\\1.$$YEARS$$WEEKnDAY\"/" \
+	-e "/^ *__copyright__/s/(C) [0123456789]*-[0123456789]*/(C) $(BASEYEAR)-$$THISYEAR/" \
+	-e "/^ *__copyright__/s/(C) [0123456789]* /(C) $$THISYEAR /" \
 	$$f; done; }
 	@ grep ^__version__ $(FILES)
 
 help:
 	$(PYTHON3) unicoder.py --help
+
+check: ; $(MAKE) tests && $(MAKE) clean
 
 tests:
 	$(PYTHON3) unicoder.py.tests.py -vvv
@@ -36,25 +40,38 @@ test_%:
 clean:
 	- rm *.pyc 
 	- rm -rf *.tmp
-	- rm setup.py
+	- rm -rf tmp tmp.files
+	- rm TEST-*.xml
+	- rm setup.py README
+	- rm -rf build dist *.egg-info
+
+############## https://pypi.org/project/unicoder
+
+README: README.md Makefile
+	cat README.md | sed -e "/\\/badge/d" > README
+setup.py: Makefile
+	{ echo '#!/usr/bin/env python3' \
+	; echo 'import setuptools' \
+	; echo 'setuptools.setup()' ; } > setup.py
+	chmod +x setup.py
+setup.py.tmp: Makefile
+	echo "import setuptools ; setuptools.setup()" > setup.py
 
 sdist bdist bdist_wheel:
 	- rm -rf dist build unicoder.egg-info
-	{ echo '#!/usr/bin/env python' \
-	; echo 'from setuptools import setup' \
-	; echo 'setup()' ; } > setup.py
+	$(MAKE) $(PARALLEL) README setup.py
 	$(PYTHON3) setup.py $@
-	rm setup.py
+	- rm -v setup.py README
 
 .PHONY: build
 build:
 	rm -rf build dist *.egg-info
-	echo "import setuptools ; setuptools.setup()" > setup.py
+	$(MAKE) $(PARALLEL) README setup.py
 	# pip install --root=~/local . -v
-	python3 setup.py sdist
-	rm setup.py
-	twine check dist/*
-	: twine upload dist/*
+	$(PYTHON3) setup.py sdist
+	- rm -v setup.py README
+	$(TWINE) check dist/*
+	: $(TWINE) upload dist/*
 
 # ------------------------------------------------------------
 
