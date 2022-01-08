@@ -889,24 +889,24 @@ class UnicoderTest(unittest.TestCase):
         self.assertEqual(uni, "15⅔ km/h more")
         self.assertNotEqual(uni, txt)
     def test_941_norm_1_5(self) -> None:
-        txt = "15 1/5 km/h more"
+        txt = "go 15 1/5 km/h more"
         uni = unicoder.convert("fract", txt)
-        self.assertEqual(uni, "15⅕ km/h more")
+        self.assertEqual(uni, "go 15⅕ km/h more")
         self.assertNotEqual(uni, txt)
     def test_942_norm_2_5(self) -> None:
-        txt = "15 2/5 km/h more"
+        txt = "go 15 2/5 km/h more"
         uni = unicoder.convert("fract", txt)
-        self.assertEqual(uni, "15⅖ km/h more")
+        self.assertEqual(uni, "go 15⅖ km/h more")
         self.assertNotEqual(uni, txt)
     def test_943_norm_3_5(self) -> None:
-        txt = "15 3/5 km/h more"
+        txt = "go 15 3/5 km/h more"
         uni = unicoder.convert("fract", txt)
-        self.assertEqual(uni, "15⅗ km/h more")
+        self.assertEqual(uni, "go 15⅗ km/h more")
         self.assertNotEqual(uni, txt)
     def test_944_norm_4_5(self) -> None:
-        txt = "15 4/5 km/h more"
+        txt = "go 15 4/5 km/h more"
         uni = unicoder.convert("fract", txt)
-        self.assertEqual(uni, "15⅘ km/h more")
+        self.assertEqual(uni, "go 15⅘ km/h more")
         self.assertNotEqual(uni, txt)
 
 
