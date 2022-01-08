@@ -270,7 +270,7 @@ def fractions(text: str) -> str:
                 space = ""
     return out.getvalue()
 
-norm_greek_upper = {
+norm_greek_upper: Dict[str, Tuple[int, ...]] = {
     "A": (0x391,),  # Alpha
     "B": (0x392,),  # Beta
     "G": (0x393,),  # Gamma
@@ -307,7 +307,7 @@ norm_greek_upper = {
     "V": (0x2207,),  # Nabla Operatur
 }
 
-norm_greek_lower = {
+norm_greek_lower: Dict[str, Tuple[int, ...]] = {
     "a": (0x3B1,),  # Alpha
     "b": (0x3B2,),  # Beta
     "g": (0x3B3,),  # Gamma
@@ -438,7 +438,7 @@ def greek(text: str) -> str:
             out.write(c)
     return out.getvalue()
 
-norm_rune_lower : Dict[str, Tuple[int, ...]] = {
+norm_rune_lower: Dict[str, Tuple[int, ...]] = {
     "f": (0x16A0,),  # Fehu
     "u": (0x16A2,),  # Uruz
     "th": (0x16A6,),  # Thurs
