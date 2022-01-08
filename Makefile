@@ -77,7 +77,10 @@ type.t:
 
 AUTOPEP8=autopep8
 pep style: 
-	$(MAKE) $(PARALLEL) pep.r
+	$(MAKE) $(PARALLEL) pep.r pep.t
 pep.r style.r:
 	$(AUTOPEP8) unicoder.py --in-place
 	git --no-pager diff unicoder.py
+pep.t style.t:
+	$(AUTOPEP8) unicoder.py --in-place
+	git --no-pager diff unicoder.py.tests.py
