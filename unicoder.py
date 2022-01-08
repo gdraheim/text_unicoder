@@ -397,7 +397,7 @@ def greek(text: str) -> str:
         dh = ord(d)
         if ital_base_A <= dh and dh <= ital_base_Z:
             d = chr(norm_base_A + (dh - ital_base_A))
-        if ch in ital_base_lower:
+        if dh in ital_base_lower:
             d = chr(ital_base_lower[dh])
         if ital_base_a <= dh and dh <= ital_base_z:
             d = chr(norm_base_a + (dh - ital_base_a))
