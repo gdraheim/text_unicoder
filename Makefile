@@ -27,7 +27,7 @@ version:
 help:
 	$(PYTHON3) unicoder.py --help
 
-check:
+tests:
 	$(PYTHON3) unicoder.py.tests.py -vvv
 
 test_%:
