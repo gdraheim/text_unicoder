@@ -448,6 +448,36 @@ class UnicoderTest(unittest.TestCase):
     def test_346_numm_courier(self) -> None:
         uni = unicoder.courier(base_0123456789)
         self.assertEqual(uni, mono_0123456789)
+    def test_350_norm_initial(self) -> None:
+        uni = unicoder.convert("init", "Hello world")
+        self.assertEqual(uni, "ℍello world")
+    def test_351_norm_initial(self) -> None:
+        uni = unicoder.convert("caps", "Hello world")
+        self.assertEqual(uni, "ℍello world")
+    def test_352_norm_initial(self) -> None:
+        uni = unicoder.convert("init", "say Hello world")
+        self.assertEqual(uni, "say ℍello world")
+    def test_353_norm_initial(self) -> None:
+        uni = unicoder.convert("caps", "say Hello world")
+        self.assertEqual(uni, "say ℍello world")
+    def test_354_norm_initial(self) -> None:
+        uni = unicoder.convert("init", "Say Hello world")
+        self.assertEqual(uni, "𝕊ay Hello world")
+    def test_355_norm_initial(self) -> None:
+        uni = unicoder.convert("caps", "Say Hello world")
+        self.assertEqual(uni, "𝕊ay Hello world")
+    def test_360_norm_initial(self) -> None:
+        uni = unicoder.initial("Hello world")
+        self.assertEqual(uni, "ℍello world")
+    def test_361_norm_initial(self) -> None:
+        uni = unicoder.initial("say Hello world")
+        self.assertEqual(uni, "say ℍello world")
+    def test_362_norm_initial(self) -> None:
+        uni = unicoder.initial("Say Hello world")
+        self.assertEqual(uni, "𝕊ay Hello world")
+    def test_363_norm_initial(self) -> None:
+        uni = unicoder.initial("Say Hello world.\nYes, I will do.")
+        self.assertEqual(uni, "𝕊ay Hello world.\n𝕐es, I will do.")
     #
     def test_400_norm_sans(self) -> None:
         uni = unicoder.convert("fix", base_abcdefghijklmnopqrstuvwxyz)
