@@ -12,13 +12,13 @@ import logging
 logg = logging.getLogger("UNICODER")
 
 if True:
-    base_A = ord('A')
-    base_Z = ord('Z')
-    base_a = ord('a')
-    base_z = ord('z')
-    base_0 = ord('0')
-    base_9 = ord('9')
-    base_sz = 0xDF
+    norm_base_A = ord('A')
+    norm_base_Z = ord('Z')
+    norm_base_a = ord('a')
+    norm_base_z = ord('z')
+    norm_base_0 = ord('0')
+    norm_base_9 = ord('9')
+    norm_base_sz = 0xDF
     ital_base_A = 0x1D434
     ital_base_Z = 0x1D44D
     ital_base_a = 0x1D44E
@@ -128,8 +128,8 @@ if True:
 def nobrspace(text: str) -> str:
     """replace base space by thin nobreak space """
     base_space = ord(' ')
-    base_0 = ord('0')
-    base_9 = ord('9')
+    norm_base_0 = ord('0')
+    norm_base_9 = ord('9')
     nobr_space = 0x00A0
     thin_space = 0x202F
     numm_space = 0x2007
@@ -138,7 +138,7 @@ def nobrspace(text: str) -> str:
     for c in text:
         ch = ord(c)
         if base_space == ch:
-            if base_0 <= last_ch and last_ch <= base_9:
+            if norm_base_0 <= last_ch and last_ch <= norm_base_9:
                 out.write(chr(numm_space))
             else:
                 out.write(chr(nobr_space))
@@ -358,7 +358,7 @@ def greek(text: str) -> str:
             skip = False
             continue
         ch = ord(c)
-        if base_A <= ch and ch <= base_Z:
+        if norm_base_A <= ch and ch <= norm_base_Z:
             if i+1 < len(text):
                c2 = text[i+1]
             else:
@@ -372,7 +372,7 @@ def greek(text: str) -> str:
                    out.write(chr(n))
             else:
                logg.error("did not find greek for '%s'", c)
-        elif base_a <= ch and ch <= base_z:
+        elif norm_base_a <= ch and ch <= norm_base_z:
             if i+1 < len(text):
                c2 = text[i+1]
             else:
@@ -477,7 +477,7 @@ def rune(text: str) -> str: # gothic, blackletter
             skip = False
             continue
         ch = ord(c)
-        if base_A <= ch and ch <= base_Z:
+        if norm_base_A <= ch and ch <= norm_base_Z:
             if i+1 < len(text):
                c2 = text[i+1]
             else:
@@ -491,7 +491,7 @@ def rune(text: str) -> str: # gothic, blackletter
                    out.write(chr(n))
             else:
                logg.error("did not find greek for '%s'", c)
-        elif base_a <= ch and ch <= base_z:
+        elif norm_base_a <= ch and ch <= norm_base_z:
             if i+1 < len(text):
                c2 = text[i+1]
             else:
@@ -532,12 +532,12 @@ def fraktur(text: str) -> str: # gothic, blackletter
         ch = ord(c)
         if c in fraktur_map:
             out.write(chr(fraktur_map[c]))
-        elif base_A <= ch and ch <= base_Z:
-            out.write(chr(fraktur_A+(ch-base_A)))
-        elif base_a <= ch and ch <= base_z:
-            out.write(chr(fraktur_a+(ch-base_a)))
-        # elif base_0 <= ch and ch <= base_9:
-        #     out.write(chr(bold_base_0+(ch-base_0)))
+        elif norm_base_A <= ch and ch <= norm_base_Z:
+            out.write(chr(fraktur_A+(ch-norm_base_A)))
+        elif norm_base_a <= ch and ch <= norm_base_z:
+            out.write(chr(fraktur_a+(ch-norm_base_a)))
+        # elif norm_base_0 <= ch and ch <= norm_base_9:
+        #     out.write(chr(bold_base_0+(ch-norm_base_0)))
         else:
             out.write(c)
     return out.getvalue()
@@ -546,10 +546,10 @@ def script(text: str) -> str: # real cursive
     out = StringIO()
     for c in text:
         ch = ord(c)
-        if base_A <= ch and ch <= base_Z:
-            out.write(chr(script_A+(ch-base_A)))
-        elif base_a <= ch and ch <= base_z:
-            out.write(chr(script_a+(ch-base_a)))
+        if norm_base_A <= ch and ch <= norm_base_Z:
+            out.write(chr(script_A+(ch-norm_base_A)))
+        elif norm_base_a <= ch and ch <= norm_base_z:
+            out.write(chr(script_a+(ch-norm_base_a)))
         elif bold_base_A <= ch and ch <= bold_base_Z:
             out.write(chr(bold_script_A+(ch-bold_base_A)))
         elif bold_base_a <= ch and ch <= bold_base_z:
@@ -578,12 +578,12 @@ def double(text: str) -> str: # gothic, blackletter
         ch = ord(c)
         if c in double_map:
             out.write(chr(double_map[c]))
-        elif base_A <= ch and ch <= base_Z:
-            out.write(chr(double_A+(ch-base_A)))
-        elif base_a <= ch and ch <= base_z:
-            out.write(chr(double_a+(ch-base_a)))
-        elif base_0 <= ch and ch <= base_9:
-            out.write(chr(double_0+(ch-base_0)))
+        elif norm_base_A <= ch and ch <= norm_base_Z:
+            out.write(chr(double_A+(ch-norm_base_A)))
+        elif norm_base_a <= ch and ch <= norm_base_z:
+            out.write(chr(double_a+(ch-norm_base_a)))
+        elif norm_base_0 <= ch and ch <= norm_base_9:
+            out.write(chr(double_0+(ch-norm_base_0)))
         else:
             out.write(c)
     return out.getvalue()
@@ -592,12 +592,12 @@ def courier(text: str) -> str: # gothic, blackletter
     out = StringIO()
     for c in text:
         ch = ord(c)
-        if base_A <= ch and ch <= base_Z:
-            out.write(chr(cour_A+(ch-base_A)))
-        elif base_a <= ch and ch <= base_z:
-            out.write(chr(cour_a+(ch-base_a)))
-        elif base_0 <= ch and ch <= base_9:
-            out.write(chr(cour_0+(ch-base_0)))
+        if norm_base_A <= ch and ch <= norm_base_Z:
+            out.write(chr(cour_A+(ch-norm_base_A)))
+        elif norm_base_a <= ch and ch <= norm_base_z:
+            out.write(chr(cour_a+(ch-norm_base_a)))
+        elif norm_base_0 <= ch and ch <= norm_base_9:
+            out.write(chr(cour_0+(ch-norm_base_0)))
         else:
             out.write(c)
     return out.getvalue()
@@ -606,8 +606,8 @@ def uppercasedouble(text: str) -> str: # gothic, blackletter
     out = StringIO()
     for c in text:
         ch = ord(c)
-        if base_A <= ch and ch <= base_Z:
-            out.write(chr(double_A+(ch-base_A)))
+        if norm_base_A <= ch and ch <= norm_base_Z:
+            out.write(chr(double_A+(ch-norm_base_A)))
         else:
             out.write(c)
     return out.getvalue()
@@ -616,12 +616,12 @@ def sans(text: str) -> str:
     out = StringIO()
     for c in text:
         ch = ord(c)
-        if base_A <= ch and ch <= base_Z:
-            out.write(chr(sans_A+(ch-base_A)))
-        elif base_a <= ch and ch <= base_z:
-            out.write(chr(sans_a+(ch-base_a)))
-        elif base_0 <= ch and ch <= base_9:
-            out.write(chr(sans_0+(ch-base_0)))
+        if norm_base_A <= ch and ch <= norm_base_Z:
+            out.write(chr(sans_A+(ch-norm_base_A)))
+        elif norm_base_a <= ch and ch <= norm_base_z:
+            out.write(chr(sans_a+(ch-norm_base_a)))
+        elif norm_base_0 <= ch and ch <= norm_base_9:
+            out.write(chr(sans_0+(ch-norm_base_0)))
         elif bold_base_A <= ch and ch <= bold_base_Z:
             out.write(chr(bold_sans_A+(ch-bold_base_A)))
         elif bold_base_a <= ch and ch <= bold_base_z:
@@ -647,13 +647,13 @@ def bold(text: str) -> str:
     out = StringIO()
     for c in text:
         ch = ord(c)
-        if base_A <= ch and ch <= base_Z:
-            out.write(chr(bold_base_A+(ch-base_A)))
-        elif base_a <= ch and ch <= base_z:
-            out.write(chr(bold_base_a+(ch-base_a)))
-        elif base_0 <= ch and ch <= base_9:
-            out.write(chr(bold_base_0+(ch-base_0)))
-        elif base_sz == ch:
+        if norm_base_A <= ch and ch <= norm_base_Z:
+            out.write(chr(bold_base_A+(ch-norm_base_A)))
+        elif norm_base_a <= ch and ch <= norm_base_z:
+            out.write(chr(bold_base_a+(ch-norm_base_a)))
+        elif norm_base_0 <= ch and ch <= norm_base_9:
+            out.write(chr(bold_base_0+(ch-norm_base_0)))
+        elif norm_base_sz == ch:
             out.write(chr(bold_greek_a+1))
         elif ital_base_A <= ch and ch <= ital_base_Z:
             out.write(chr(bold_ital_base_A+(ch-ital_base_A)))
@@ -670,7 +670,7 @@ def bold(text: str) -> str:
         elif ital_sans_a <= ch and ch <= ital_sans_z:
             out.write(chr(bold_ital_sans_a+(ch-ital_sans_a)))
         elif ch in de_fraktur:
-            out.write(chr(bold_fraktur_A+(de_fraktur[ch] - base_A)))
+            out.write(chr(bold_fraktur_A+(de_fraktur[ch] - norm_base_A)))
         elif fraktur_A <= ch and ch <= fraktur_Z:
             out.write(chr(bold_fraktur_A+(ch-fraktur_A)))
         elif fraktur_a <= ch and ch <= fraktur_z:
@@ -700,12 +700,12 @@ def ital(text: str) -> str:
     out = StringIO()
     for c in text:
         ch = ord(c)
-        if base_A <= ch and ch <= base_Z:
-            out.write(chr(ital_base_A+(ch-base_A)))
-        elif base_a <= ch and ch <= base_z:
-            out.write(chr(ital_base_a+(ch-base_a)))
-        elif base_sz == ch:
-            out.write(chr(ital_greek_a+1))
+        if norm_base_A <= ch and ch <= norm_base_Z:
+            out.write(chr(ital_base_A+(ch-norm_base_A)))
+        elif norm_base_a <= ch and ch <= norm_base_z:
+            out.write(chr(ital_base_a+(ch-norm_base_a)))
+        elif norm_base_sz == ch:
+            out.write(chr(ital_greek_a+1)) # beta
         elif bold_base_A <= ch and ch <= bold_base_Z:
             out.write(chr(bold_ital_base_A+(ch-bold_base_A)))
         elif bold_base_a <= ch and ch <= bold_base_z:
