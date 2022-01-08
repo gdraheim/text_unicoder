@@ -513,7 +513,7 @@ norm_fraktur_encode : Dict[str, int] = {
     'I': norm_fraktur__I,
     'R': norm_fraktur__R, 
     'Z': norm_fraktur__Z }
-norm_fraktur_decode : Dict[int, int] = {
+norm_fraktur_upper : Dict[int, int] = {
     norm_fraktur__C: ord('C'), 
     norm_fraktur__H: ord('H'), 
     norm_fraktur__I: ord('I'),
@@ -536,11 +536,50 @@ def fraktur(text: str) -> str: # gothic, blackletter
             out.write(c)
     return out.getvalue()
 
+norm_script__B = 0x212C #
+norm_script__E = 0x2130 #
+norm_script__F = 0x2131 #
+norm_script__H = 0x210B #
+norm_script__I = 0x2110 #
+norm_script__L = 0x2112 #
+norm_script__M = 0x2133 #
+norm_script__R = 0x211B #
+norm_script__e = 0x212F #
+norm_script__g = 0x210A #
+norm_script__o = 0x2134 #
+norm_script_encode : Dict[str, int] = {
+    'B': norm_script__B, 
+    'E': norm_script__E, 
+    'F': norm_script__F, 
+    'H': norm_script__H, 
+    'I': norm_script__I, 
+    'L': norm_script__L, 
+    'M': norm_script__M, 
+    'R': norm_script__R, 
+    'e': norm_script__e, 
+    'g': norm_script__g, 
+    'o': norm_script__o }
+norm_script_upper : Dict[int, int] = {
+    norm_script__B: ord('B'), 
+    norm_script__E: ord('E'), 
+    norm_script__F: ord('F'), 
+    norm_script__H: ord('H'), 
+    norm_script__I: ord('I'), 
+    norm_script__L: ord('L'), 
+    norm_script__M: ord('M'), 
+    norm_script__R: ord('R') }
+norm_script_lower : Dict[int, int] = {
+    norm_script__e: ord('e'), 
+    norm_script__g: ord('g'), 
+    norm_script__o: ord('o') }
+
 def script(text: str) -> str: # real cursive
     out = StringIO()
     for c in text:
         ch = ord(c)
-        if norm_base_A <= ch and ch <= norm_base_Z:
+        if c in norm_script_encode:
+            out.write(chr(norm_script_encode[c]))
+        elif norm_base_A <= ch and ch <= norm_base_Z:
             out.write(chr(norm_script_A+(ch-norm_base_A)))
         elif norm_base_a <= ch and ch <= norm_base_z:
             out.write(chr(norm_script_a+(ch-norm_base_a)))
@@ -567,7 +606,7 @@ norm_double_encode : Dict[str, int] = {
     'Q': norm_double__Q, 
     'R': norm_double__R,
     'Z': norm_double__Z }
-norm_double_decode : Dict[int, int] = {
+norm_double_upper : Dict[int, int] = {
     norm_double__C: ord('C'), 
     norm_double__H: ord('H'), 
     norm_double__N: ord('N'),
@@ -672,12 +711,16 @@ def bold(text: str) -> str:
             out.write(chr(bold_ital_sans_A+(ch-ital_sans_A)))
         elif ital_sans_a <= ch and ch <= ital_sans_z:
             out.write(chr(bold_ital_sans_a+(ch-ital_sans_a)))
-        elif ch in norm_fraktur_decode:
-            out.write(chr(bold_fraktur_A+(norm_fraktur_decode[ch] - norm_base_A)))
+        elif ch in norm_fraktur_upper:
+            out.write(chr(bold_fraktur_A+(norm_fraktur_upper[ch] - norm_base_A)))
         elif norm_fraktur_A <= ch and ch <= norm_fraktur_Y:
             out.write(chr(bold_fraktur_A+(ch-norm_fraktur_A)))
         elif norm_fraktur_a <= ch and ch <= norm_fraktur_z:
             out.write(chr(bold_fraktur_a+(ch-norm_fraktur_a)))
+        elif ch in norm_script_upper:
+            out.write(chr(bold_script_A+(norm_script_upper[ch] - norm_base_A)))
+        elif ch in norm_script_lower:
+            out.write(chr(bold_script_a+(norm_script_lower[ch] - norm_base_a)))
         elif norm_script_A <= ch and ch <= norm_script_Z:
             out.write(chr(bold_script_A+(ch-norm_script_A)))
         elif norm_script_a <= ch and ch <= norm_script_z:
