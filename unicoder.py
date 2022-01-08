@@ -163,32 +163,6 @@ def fractions(text: str) -> str:
                 space = ""
     return out.getvalue()
 
-def sans(text: str) -> str:
-    base_A = ord('A')
-    base_Z = ord('Z')
-    base_a = ord('a')
-    base_z = ord('z')
-    base_0 = ord('0')
-    base_9 = ord('9')
-    sans_A = 0x1D5A0
-    sans_Z = 0x1D5B9
-    sans_a = 0x1D5BA
-    sans_z = 0x1D5D3
-    sans_0 = 0x1D7E2
-    sans_9 = 0x1D7EB
-    out = StringIO()
-    for c in text:
-        ch = ord(c)
-        if base_A <= ch and ch <= base_Z:
-            out.write(chr(sans_A+(ch-base_A)))
-        elif base_a <= ch and ch <= base_z:
-            out.write(chr(sans_a+(ch-base_a)))
-        elif base_0 <= ch and ch <= base_9:
-            out.write(chr(sans_0+(ch-base_0)))
-        else:
-            out.write(c)
-    return out.getvalue()
-
 greek_upper = {
    "A": (0x391,), # Alpha
    "B": (0x392,), # Beta
@@ -593,6 +567,79 @@ def uppercasedouble(text: str) -> str: # gothic, blackletter
         else:
             out.write(c)
     return out.getvalue()
+
+def sans(text: str) -> str:
+    base_A = ord('A')
+    base_Z = ord('Z')
+    base_a = ord('a')
+    base_z = ord('z')
+    base_0 = ord('0')
+    base_9 = ord('9')
+    sans_A = 0x1D5A0
+    sans_Z = 0x1D5B9
+    sans_a = 0x1D5BA
+    sans_z = 0x1D5D3
+    sans_0 = 0x1D7E2
+    sans_9 = 0x1D7EB
+    bold_base_A = 0x1D400
+    bold_base_Z = 0x1D419
+    bold_base_a = 0x1D41A
+    bold_base_z = 0x1D433
+    bold_base_0 = 0x1D7CE
+    bold_base_9 = 0x1D7D7
+    bold_sans_A = 0x1D5D4
+    bold_sans_Z = 0x1D5ED
+    bold_sans_a = 0x1D5EE
+    bold_sans_z = 0x1D607
+    bold_sans_0 = 0x1D7EC
+    bold_sans_9 = 0x1D8F5
+    ital_base_A = 0x1D434
+    ital_base_Z = 0x1D44D
+    ital_base_a = 0x1D44E
+    ital_base_z = 0x1D467
+    ital_sans_A = 0x1D608
+    ital_sans_Z = 0x1D621
+    ital_sans_a = 0x1D622
+    ital_sans_z = 0x1D63B
+    bold_ital_base_A = 0x1D468
+    bold_ital_base_Z = 0x1D481
+    bold_ital_base_a = 0x1D482
+    bold_ital_base_z = 0x1D49B
+    bold_ital_sans_A = 0x1D63E
+    bold_ital_sans_Z = 0x1D655
+    bold_ital_sans_a = 0x1D656
+    bold_ital_sans_z = 0x1D66F
+    out = StringIO()
+    for c in text:
+        ch = ord(c)
+        if base_A <= ch and ch <= base_Z:
+            out.write(chr(sans_A+(ch-base_A)))
+        elif base_a <= ch and ch <= base_z:
+            out.write(chr(sans_a+(ch-base_a)))
+        elif base_0 <= ch and ch <= base_9:
+            out.write(chr(sans_0+(ch-base_0)))
+        elif bold_base_A <= ch and ch <= bold_base_Z:
+            out.write(chr(bold_sans_A+(ch-bold_base_A)))
+        elif bold_base_a <= ch and ch <= bold_base_z:
+            out.write(chr(bold_sans_a+(ch-bold_base_a)))
+        elif bold_base_0 <= ch and ch <= bold_base_9:
+            out.write(chr(bold_sans_0+(ch-bold_base_0)))
+        elif ital_base_A <= ch and ch <= ital_base_Z:
+            out.write(chr(ital_sans_A+(ch-ital_base_A)))
+        elif ital_base_a <= ch and ch <= ital_base_z:
+            out.write(chr(ital_sans_a+(ch-ital_base_a)))
+        elif ital_base_0 <= ch and ch <= ital_base_9:
+            out.write(chr(ital_sans_0+(ch-ital_base_0)))
+        elif bold_ital_base_A <= ch and ch <= bold_ital_base_Z:
+            out.write(chr(bold_ital_sans_A+(ch-bold_ital_base_A)))
+        elif bold_ital_base_a <= ch and ch <= bold_ital_base_z:
+            out.write(chr(bold_ital_sans_a+(ch-bold_ital_base_a)))
+        elif bold_ital_base_0 <= ch and ch <= bold_ital_base_9:
+            out.write(chr(bold_ital_sans_0+(ch-bold_ital_base_0)))
+        else:
+            out.write(c)
+    return out.getvalue()
+
 
 def bold(text: str) -> str:
     logg.debug("apply fat to ascii/black letters")
