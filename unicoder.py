@@ -71,10 +71,10 @@ if True:
     bold_fraktur_Z = 0x1D585
     bold_fraktur_a = 0x1D586
     bold_fraktur_z = 0x1D59F
-    ital_fraktur_A = 0x1D56C
-    ital_fraktur_Z = 0x1D585
-    ital_fraktur_a = 0x1D586
-    ital_fraktur_z = 0x1D59F
+    # ital_fraktur_A = 0x1D56C
+    # ital_fraktur_Z = 0x1D585
+    # ital_fraktur_a = 0x1D586
+    # ital_fraktur_z = 0x1D59F
     # bold_ital_fraktur_A = n/a
     # bold_ital_fraktur_Z = n/a
     # bold_ital_fraktur_a = n/a
@@ -726,10 +726,6 @@ def ital(text: str) -> str:
             out.write(chr(bold_ital_sans_A + (ch - bold_sans_A)))
         elif bold_sans_a <= ch and ch <= bold_sans_z:
             out.write(chr(bold_ital_sans_a + (ch - bold_sans_a)))
-        elif norm_fraktur_A <= ch and ch <= norm_fraktur_Y:
-            out.write(chr(ital_fraktur_A + (ch - norm_fraktur_A)))
-        elif norm_fraktur_a <= ch and ch <= norm_fraktur_z:
-            out.write(chr(ital_fraktur_a + (ch - norm_fraktur_a)))
         elif norm_greek_nabla == ch:
             out.write(chr(ital_greek_nabla))
         elif norm_greek_diffs == ch:
