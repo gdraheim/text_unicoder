@@ -2,7 +2,7 @@
 from __future__ import print_function
 
 __copyright__ = "(C) 2021-2022 Guido U. Draheim, licensed under the APLv2"
-__version__ = "1.0.1016"
+__version__ = "1.1.1016"
 
 from typing import List, Dict, Generator
 from io import StringIO
