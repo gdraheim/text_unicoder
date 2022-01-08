@@ -438,86 +438,43 @@ def greek(text: str) -> str:
             out.write(c)
     return out.getvalue()
 
-rune_upper = {
-   "A": (0x391,), # Alpha
-   "B": (0x392,), # Beta
-   "G": (0x393,), # Gamma
-   "D": (0x394,), # Delta
-   "E": (0x395,), # Epsilon
-   "Z": (0x396,), # Zeta
-   "H": (0x397,), # Eta
-   "TH": (0x398,), # Theta
-   "I": (0x399,), # Iota
-   "K": (0x39A,), # Kappa
-   "L": (0x39B,), # Lambda
-   "M": (0x39C,), # My
-   "N": (0x39D,), # Ny
-   "X": (0x39E,), # Xi
-   "o": (0x39F,), # Omikron
-   "P": (0x3A0,), # Pi
-   "R": (0x3A1,), # Rho
-                    # Schluss-Sigma
-   "S": (0x3A3,), # Sigma
-   "T": (0x3A4,), # Tau
-   "Y": (0x3A5,), # Ypsilon
-   "F": (0x3A6,), # Phi
-   "PH": (0x3A6,), # Phi
-   "C": (0x3A7,), # Chi
-   "CH": (0x3A7,), # Chi
-   "CK": (0x39A,), # Kappa
-   "W": (0x3A8,), # Psi
-   "U": (0x3A9,), # Omega
-   "OO": (0x3A9,), # Omega
-   #
-   "J": (0x399,), # Iota
-   "Q": (0x39A,), # Kappa
-   "QU": (0x39A,), # Kappa
-   "V": (0x2207,), # Nabla Operatur
-}
-
 rune_lower = {
-   "a": (0x3B1,), # Alpha
-   "b": (0x3B2,), # Beta
-   "g": (0x3B3,), # Gamma
-   "d": (0x3B4,), # Delta
-   "e": (0x3B5,), # Epsilon
-   "z": (0x3B6,), # Zeta
-   "h": (0x3B7,), # Eta
-   "th": (0x3B8,), # Theta
-   "i": (0x3B9,), # Iota
-   "k": (0x3BA,), # Kappa
-   "l": (0x3BB,), # Lambda
-   "m": (0x3BC,), # My
-   "n": (0x3BD,), # Ny
-   "x": (0x3BE,), # Xi
-   "o": (0x3BF,), # Omikron
-   "p": (0x3C0,), # Pi
-   "r": (0x3C1,), # Rho
-   "s": (0x3C3,), # Sigma
-   "t": (0x3C4,), # Tau
-   "y": (0x3C5,), # Ypsilon
-   "f": (0x3C6,), # Phi
-   "ph": (0x3C6,), # Phi
-   "c": (0x3C7,), # Chi
-   "ch": (0x3C7,), # Chi
-   "ck": (0x3BA,), # Kappa
-   "w": (0x3C8,), # Psi
-   "u": (0x3C9,), # Omega
-   "oo": (0x3C9,), # Omega
+   "f": (0x16A0,),  # Fehu
+   "u": (0x16A2,),  # Uruz
+   "th": (0x16A6,), # Thurs
+   "a": (0x16A8,),  # ansuz
+   "r": (0x16B1,),  # raido
+   "k": (0x16B3,),  # kaunan
+   "g": (0x16B7,),  # gebo
+   "w": (0x16D5,),  # wunja # 0x1F7 0x1BF
+   "h": (0x16BA,),  # hagalaz
+   "n": (0x16BE,),  # naudiz
+   "i": (0x16C1,),  # isaz
+   "j": (0x16E1,),  # jera
+   "y": (0x16C7,),  # ihwaz
+   "p": (0x16C8,),  # perth
+   "z": (0x16C9,),  # algiz
+   "s": (0x16CB,),  # sowilo
+   "t": (0x16CF,),  # tiwaz
+   "b": (0x16D2,),  # berkan
+   "e": (0x16D6,),  # ehwaz
+   "m": (0x16D7,),  # mannaz
+   "l": (0x16DA,),  # laguz
+   "ng": (0x16DC,),  # ingwaz
+   "o": (0x16DF,),  # othila
+   "d": (0x16DE,),  # dagaz
    #
-   "j": (0x3B9,), # Iota
-   "q": (0x3BA,), # Kappa
-   "qu": (0x3BA,), # Kappa
-   "v": (0x2202,), # Differential
+   "c": (0x16B3,),  # kaunan
+   "q": (0x16B3,),  # kaunan
+   "qu": (0x16B3,),  # kaunan
+   "u": (0x16B9,),  # wunja
+   "v": (0x16B9,),  # wunja
+   "x": (0x16B3,0x16CB),  # kaunan, sowilo
 }
 
 def rune(text: str) -> str: # gothic, blackletter
-    rune_A = 0x391
-    rune_O = 0x3A9
-    rune_a = 0x3B1
-    rune_o = 0x3C9
-    rune_nabla = 0x8711
-    rune_diffs = 0x2202
+    rune_a = 0x16A0
+    rune_o = 0x16F8
     out = StringIO()
     skip = False
     for i, c in enumerate(text):
@@ -526,33 +483,26 @@ def rune(text: str) -> str: # gothic, blackletter
             continue
         ch = ord(c)
         if norm_base_A <= ch and ch <= norm_base_Z:
-            if i+1 < len(text):
-               c2 = text[i+1]
-            else:
-               c2 = " "
-            if c+c2 in rune_upper:
-               for n in rune_upper[c+c2]:
-                   out.write(chr(n))
-               skip = True
-            elif c in rune_upper:
-               for n in rune_upper[c]:
-                   out.write(chr(n))
-            else:
-               logg.error("did not find greek for '%s'", c)
-        elif norm_base_a <= ch and ch <= norm_base_z:
-            if i+1 < len(text):
-               c2 = text[i+1]
-            else:
-               c2 = " "
-            if c+c2 in rune_lower:
-               for n in rune_lower[c+c2]:
+            ch = norm_base_a + (ch - norm_base_A)
+            c = chr(ch)
+        if i+1 < len(text):
+           d = text[i+1]
+        else:
+           d = " "
+        dh = ord(d)
+        if norm_base_A <= dh and dh <= norm_base_Z:
+            dh = norm_base_a + (dh - norm_base_A)
+            d = chr(dh)
+        if norm_base_a <= ch and ch <= norm_base_z:
+            if c+d in rune_lower:
+               for n in rune_lower[c+d]:
                    out.write(chr(n))
                skip = True
             elif c in rune_lower:
                for n in rune_lower[c]:
                    out.write(chr(n))
             else:
-               logg.error("did not find greek for '%s'", c)
+               logg.error("did not find rune for '%s'", c)
         else:
             out.write(c)
     return out.getvalue()
@@ -901,6 +851,8 @@ def convert(cmd: str, text: str) -> str:
         text = double(text)
     if "caps" in cmd or "init" in cmd:
         text = uppercasedouble(text)
+    if "rune" in cmd or "futark" in cmd:
+        text = rune(text)
     if "greek" in cmd or "math" in cmd:
         text = greek(text)
     if "black" in cmd or "frak" in cmd:
