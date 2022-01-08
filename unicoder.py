@@ -671,6 +671,8 @@ def sans(text: str) -> str:
             out.write(chr(bold_sans_a+(ch-bold_base_a)))
         elif bold_base_0 <= ch and ch <= bold_base_9:
             out.write(chr(bold_sans_0+(ch-bold_base_0)))
+        elif ch in ital_base_lower:
+            out.write(chr(ital_sans_a+(ital_base_lower[ch] - norm_base_a)))
         elif ital_base_A <= ch and ch <= ital_base_Z:
             out.write(chr(ital_sans_A+(ch-ital_base_A)))
         elif ital_base_a <= ch and ch <= ital_base_z:
@@ -683,6 +685,56 @@ def sans(text: str) -> str:
             out.write(c)
     return out.getvalue()
 
+ital_base__h = 0x210E # Planck constant
+ital_base_encode : Dict[str, int] = {
+    'h': ital_base__h }
+ital_base_lower : Dict[int, int] = {
+    ital_base__h: ord('h') }
+
+def ital(text: str) -> str:
+    logg.debug("apply slant to ascii/black letters")
+    out = StringIO()
+    for c in text:
+        ch = ord(c)
+        if c in ital_base_encode:
+            out.write(chr(ital_base_encode[c]))
+        elif norm_base_A <= ch and ch <= norm_base_Z:
+            out.write(chr(ital_base_A+(ch-norm_base_A)))
+        elif norm_base_a <= ch and ch <= norm_base_z:
+            out.write(chr(ital_base_a+(ch-norm_base_a)))
+        elif norm_base_sz == ch:
+            out.write(chr(ital_greek_a+1)) # beta
+        elif bold_base_A <= ch and ch <= bold_base_Z:
+            out.write(chr(bold_ital_base_A+(ch-bold_base_A)))
+        elif bold_base_a <= ch and ch <= bold_base_z:
+            out.write(chr(bold_ital_base_a+(ch-bold_base_a)))
+        elif norm_sans_A <= ch and ch <= norm_sans_Z:
+            out.write(chr(ital_sans_A+(ch-norm_sans_A)))
+        elif norm_sans_a <= ch and ch <= norm_sans_z:
+            out.write(chr(ital_sans_a+(ch-norm_sans_a)))
+        elif bold_sans_A <= ch and ch <= bold_sans_Z:
+            out.write(chr(bold_ital_sans_A+(ch-bold_sans_A)))
+        elif bold_sans_a <= ch and ch <= bold_sans_z:
+            out.write(chr(bold_ital_sans_a+(ch-bold_sans_a)))
+        elif norm_fraktur_A <= ch and ch <= norm_fraktur_Y:
+            out.write(chr(ital_fraktur_A+(ch-norm_fraktur_A)))
+        elif norm_fraktur_a <= ch and ch <= norm_fraktur_z:
+            out.write(chr(ital_fraktur_a+(ch-norm_fraktur_a)))
+        elif norm_greek_A <= ch and ch <= norm_greek_O:
+            out.write(chr(ital_greek_A+(ch-norm_greek_A)))
+        elif norm_greek_a <= ch and ch <= norm_greek_o:
+            out.write(chr(ital_greek_a+(ch-norm_greek_a)))
+        elif norm_greek_nabla == ch:
+            out.write(chr(ital_greek_nabla))
+        elif norm_greek_diffs == ch:
+            out.write(chr(ital_greek_diffs))
+        elif bold_greek_A <= ch and ch <= bold_greek_O+1:
+            out.write(chr(bold_ital_greek_A+(ch-bold_greek_A)))
+        elif bold_greek_a <= ch and ch <= bold_greek_o+1:
+            out.write(chr(bold_ital_greek_a+(ch-bold_greek_a)))
+        else:
+            out.write(c)
+    return out.getvalue()
 
 def bold(text: str) -> str:
     logg.debug("apply fat to ascii/black letters")
@@ -697,6 +749,8 @@ def bold(text: str) -> str:
             out.write(chr(bold_base_0+(ch-norm_base_0)))
         elif norm_base_sz == ch:
             out.write(chr(bold_greek_a+1))
+        elif ch in ital_base_lower:
+            out.write(chr(bold_ital_base_a+(ital_base_lower[ch] - norm_base_a)))
         elif ital_base_A <= ch and ch <= ital_base_Z:
             out.write(chr(bold_ital_base_A+(ch-ital_base_A)))
         elif ital_base_a <= ch and ch <= ital_base_z:
@@ -741,48 +795,6 @@ def bold(text: str) -> str:
             out.write(c)
     return out.getvalue()
 
-def ital(text: str) -> str:
-    logg.debug("apply slant to ascii/black letters")
-    out = StringIO()
-    for c in text:
-        ch = ord(c)
-        if norm_base_A <= ch and ch <= norm_base_Z:
-            out.write(chr(ital_base_A+(ch-norm_base_A)))
-        elif norm_base_a <= ch and ch <= norm_base_z:
-            out.write(chr(ital_base_a+(ch-norm_base_a)))
-        elif norm_base_sz == ch:
-            out.write(chr(ital_greek_a+1)) # beta
-        elif bold_base_A <= ch and ch <= bold_base_Z:
-            out.write(chr(bold_ital_base_A+(ch-bold_base_A)))
-        elif bold_base_a <= ch and ch <= bold_base_z:
-            out.write(chr(bold_ital_base_a+(ch-bold_base_a)))
-        elif norm_sans_A <= ch and ch <= norm_sans_Z:
-            out.write(chr(ital_sans_A+(ch-norm_sans_A)))
-        elif norm_sans_a <= ch and ch <= norm_sans_z:
-            out.write(chr(ital_sans_a+(ch-norm_sans_a)))
-        elif bold_sans_A <= ch and ch <= bold_sans_Z:
-            out.write(chr(bold_ital_sans_A+(ch-bold_sans_A)))
-        elif bold_sans_a <= ch and ch <= bold_sans_z:
-            out.write(chr(bold_ital_sans_a+(ch-bold_sans_a)))
-        elif norm_fraktur_A <= ch and ch <= norm_fraktur_Y:
-            out.write(chr(ital_fraktur_A+(ch-norm_fraktur_A)))
-        elif norm_fraktur_a <= ch and ch <= norm_fraktur_z:
-            out.write(chr(ital_fraktur_a+(ch-norm_fraktur_a)))
-        elif norm_greek_A <= ch and ch <= norm_greek_O:
-            out.write(chr(ital_greek_A+(ch-norm_greek_A)))
-        elif norm_greek_a <= ch and ch <= norm_greek_o:
-            out.write(chr(ital_greek_a+(ch-norm_greek_a)))
-        elif norm_greek_nabla == ch:
-            out.write(chr(ital_greek_nabla))
-        elif norm_greek_diffs == ch:
-            out.write(chr(ital_greek_diffs))
-        elif bold_greek_A <= ch and ch <= bold_greek_O+1:
-            out.write(chr(bold_ital_greek_A+(ch-bold_greek_A)))
-        elif bold_greek_a <= ch and ch <= bold_greek_o+1:
-            out.write(chr(bold_ital_greek_a+(ch-bold_greek_a)))
-        else:
-            out.write(c)
-    return out.getvalue()
 
 class Scanned:
     text: str = ""
