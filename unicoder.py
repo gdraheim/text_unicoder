@@ -4,7 +4,7 @@ from __future__ import print_function
 __copyright__ = "(C) 2021-2022 Guido U. Draheim, licensed under the APLv2"
 __version__ = "1.1.1016"
 
-from typing import List, Dict, Generator
+from typing import List, Dict, Generator, Tuple
 from io import StringIO
 import sys
 import logging
@@ -438,7 +438,7 @@ def greek(text: str) -> str:
             out.write(c)
     return out.getvalue()
 
-rune_lower = {
+norm_rune_lower : Dict[str, Tuple[int, ...]] = {
     "f": (0x16A0,),  # Fehu
     "u": (0x16A2,),  # Uruz
     "th": (0x16A6,),  # Thurs
@@ -494,12 +494,12 @@ def rune(text: str) -> str:  # gothic, blackletter
             dh = norm_base_a + (dh - norm_base_A)
             d = chr(dh)
         if norm_base_a <= ch and ch <= norm_base_z:
-            if c + d in rune_lower:
-                for n in rune_lower[c + d]:
+            if c + d in norm_rune_lower:
+                for n in norm_rune_lower[c + d]:
                     out.write(chr(n))
                 skip = True
-            elif c in rune_lower:
-                for n in rune_lower[c]:
+            elif c in norm_rune_lower:
+                for n in norm_rune_lower[c]:
                     out.write(chr(n))
             else:
                 logg.error("did not find rune for '%s'", c)
