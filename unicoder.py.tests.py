@@ -791,6 +791,67 @@ class UnicoderTest(unittest.TestCase):
         uni = unicoder.greek(
             unicoder.bold(unicoder.ital(base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)))
         self.assertEqual(uni, ":𝜜𝜝𝜲𝜟𝜠𝜱𝜞𝜢𝜤𝜤𝜥𝜦𝜧𝜨𝜪𝜫𝜥𝜬𝜮𝜯𝜴∇𝜳𝜩𝜰𝜡")
+
+    def test_680_norm_greek(self) -> None:
+        uni = unicoder.convert("greek", ":foobar")
+        self.assertEqual(uni, ":φωβαρ")
+    def test_681_norm_greek(self) -> None:
+        uni = unicoder.convert("greek", ":FOOBAR")
+        self.assertEqual(uni, ":ΦΩΒΑΡ")
+    def test_682_norm_greek(self) -> None:
+        uni = unicoder.convert("boldgreek", ":foobar")
+        self.assertEqual(uni, ":𝛗𝛚𝛃𝛂𝛒")
+    def test_683_norm_greek(self) -> None:
+        uni = unicoder.convert("boldgreek", ":FOOBAR")
+        self.assertEqual(uni, ":𝚽𝛀𝚩𝚨𝚸")
+    def test_684_norm_greek(self) -> None:
+        uni = unicoder.convert("italgreek", ":foobar")
+        self.assertEqual(uni, ":𝜑𝜔𝛽𝛼𝜌")
+    def test_685_norm_greek(self) -> None:
+        uni = unicoder.convert("italgreek", ":FOOBAR")
+        self.assertEqual(uni, ":𝛷𝛺𝛣𝛢𝛲")
+    def test_686_norm_greek(self) -> None:
+        uni = unicoder.convert("italboldgreek", ":foobar")
+        self.assertEqual(uni, ":𝝋𝝎𝜷𝜶𝝆")
+    def test_687_norm_greek(self) -> None:
+        uni = unicoder.convert("italboldgreek", ":FOOBAR")
+        self.assertEqual(uni, ":𝜱𝜴𝜝𝜜𝜬")
+    def test_690_norm_greek(self) -> None:
+        uni = unicoder.greek(":foobar")
+        self.assertEqual(uni, ":φωβαρ")
+    def test_691_norm_greek(self) -> None:
+        uni = unicoder.greek(":FOOBAR")
+        self.assertEqual(uni, ":ΦΩΒΑΡ")
+    def test_692_norm_greek(self) -> None:
+        uni = unicoder.greek(unicoder.bold(":foobar"))
+        self.assertEqual(uni, ":𝛗𝛚𝛃𝛂𝛒")
+    def test_693_norm_greek(self) -> None:
+        uni = unicoder.greek(unicoder.bold(":FOOBAR"))
+        self.assertEqual(uni, ":𝚽𝛀𝚩𝚨𝚸")
+    def test_694_norm_greek(self) -> None:
+        uni = unicoder.greek(unicoder.ital(":foobar"))
+        self.assertEqual(uni, ":𝜑𝜔𝛽𝛼𝜌")
+    def test_695_norm_greek(self) -> None:
+        uni = unicoder.greek(unicoder.ital(":FOOBAR"))
+        self.assertEqual(uni, ":𝛷𝛺𝛣𝛢𝛲")
+    def test_696_norm_greek(self) -> None:
+        uni = unicoder.greek(unicoder.ital(unicoder.bold(":foobar")))
+        self.assertEqual(uni, ":𝝋𝝎𝜷𝜶𝝆")
+    def test_697_norm_greek(self) -> None:
+        uni = unicoder.greek(unicoder.ital(unicoder.bold(":FOOBAR")))
+        self.assertEqual(uni, ":𝜱𝜴𝜝𝜜𝜬")
+    def test_698_norm_greek(self) -> None:
+        old = unicoder.norm_greek_upper
+        unicoder.norm_greek_upper = unicoder.norm_greek_lower
+        uni = unicoder.greek(":FOOBAR")
+        unicoder.norm_greek_upper = old
+        self.assertEqual(uni, ":FOOBAR")
+    def test_699_norm_greek(self) -> None:
+        old = unicoder.norm_greek_lower
+        unicoder.norm_greek_lower = unicoder.norm_greek_upper
+        uni = unicoder.greek(unicoder.bold(":foobar"))
+        unicoder.norm_greek_lower = old
+        self.assertEqual(uni, ":foobar")
     #
     def test_700_norm_rune(self) -> None:
         uni = unicoder.convert("fix", base_abcdefghijklmnopqrstuvwxyz)
