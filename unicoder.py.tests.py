@@ -877,19 +877,19 @@ class UnicoderTest(unittest.TestCase):
     def test_707_norm_rune(self) -> None:
         uni = unicoder.rune(base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
         self.assertEqual(uni, ":ᚨᛒᚳᛞᛖᚠᚷᚺᛁᛡᚳᛚᛗᚾᛟᛈᚳᚱᛋᛏᚹᚹᛕᚳᛋᛇᛉ")
-    def test_781_norm_rune_quaengeln(self) -> None:
+    def test_741_norm_rune_quaengeln(self) -> None:
         uni = unicoder.rune(":quaengeln")
         self.assertEqual(uni, ":ᚳᚨᛖᛜᛖᛚᚾ")
-    def test_782_norm_rune_quaengeln(self) -> None:
+    def test_742_norm_rune_quaengeln(self) -> None:
         uni = unicoder.rune(":QUAENGELN")
         self.assertEqual(uni, ":ᚳᚨᛖᛜᛖᛚᚾ")
-    def test_798_norm_rune_notfound(self) -> None:
+    def test_748_norm_rune_notfound(self) -> None:
         old = unicoder.norm_rune_lower
         unicoder.norm_rune_lower = unicoder.norm_greek_upper
         uni = unicoder.rune(":FOOBAR")
         unicoder.norm_rune_lower = old
         self.assertEqual(uni, ":foobar")
-    def test_799_norm_rune_notfound(self) -> None:
+    def test_749_norm_rune_notfound(self) -> None:
         old = unicoder.norm_rune_lower
         unicoder.norm_rune_lower = unicoder.norm_greek_upper
         uni = unicoder.rune(":foobar")
