@@ -5,6 +5,7 @@ FOR=today
 
 FILES = *.py *.cfg
 PYTHON3 = python3
+COVERAGE3 = $(PYTHON3) -m coverage
 TWINE = twine
 
 PARALLEL = -j2
@@ -31,11 +32,21 @@ help:
 
 check: ; $(MAKE) tests && $(MAKE) clean
 
-tests:
-	$(PYTHON3) unicoder.py.tests.py -vvv
+tests: ;  $(PYTHON3) unicoder.py.tests.py -vvv $(TESTFLAGS)
+test_%: ; $(PYTHON3) unicoder.py.tests.py -vvv $(TESTFLAGS) $@
 
-test_%:
-	$(PYTHON3) unicoder.py.tests.py -vvv $@
+ests: ;  $(COVERAGE3) run unicoder.py.tests.py -vvv $(TESTFLAGS)
+est_%: ; $(COVERAGE3) run unicoder.py.tests.py -vvv $(TESTFLAGS) t$@
+
+COVERAGEFILES = unicoder.py
+cov coverage: 
+	$(COVERAGE3) erase 
+	$(MAKE) ests 
+	$(COVERAGE3) xml $(COVERAGEFLAGS) $(COVERAGEFILES)
+	$(COVERAGE3) annotate $(COVERAGEFLAGS) $(COVERAGEFILES)
+	$(COVERAGE3) report $(COVERAGEFLAGS) $(COVERAGEFILES)
+	@ wc -l unicoder.py,cover | sed -e "s/^\\([^ ]*\\)  *\\(.*\\)/\\2      \\1 lines/"
+
 
 clean:
 	- rm *.pyc 
