@@ -63,10 +63,10 @@ if True:
     bold_sans_a = 0x1D5EE
     bold_sans_z = 0x1D607
     #
-    fraktur_A = 0x1D504
-    fraktur_Z = 0x1D51D
-    fraktur_a = 0x1D51E
-    fraktur_z = 0x1D537
+    norm_fraktur_A = 0x1D504
+    norm_fraktur_Y = 0x1D51C
+    norm_fraktur_a = 0x1D51E
+    norm_fraktur_z = 0x1D537
     bold_fraktur_A = 0x1D56C
     bold_fraktur_Z = 0x1D585
     bold_fraktur_a = 0x1D586
@@ -510,14 +510,14 @@ def rune(text: str) -> str: # gothic, blackletter
     return out.getvalue()
 
 def fraktur_map_special() -> Dict[str, int]:
-    fraktur_C = 0x212D # Complex Numbers
-    fraktur_H = 0x210C # Hamilton Numbers
-    fraktur_I = 0x2111 
-    fraktur_R = 0x211C # Real Numbers
-    fraktur_Z = 0x2128 # Integer Numbers
+    norm_fraktur_C = 0x212D # Complex Numbers
+    norm_fraktur_H = 0x210C # Hamilton Numbers
+    norm_fraktur_I = 0x2111 
+    norm_fraktur_R = 0x211C # Real Numbers
+    norm_fraktur_Z = 0x2128 # Integer Numbers
     return { 
-        'C': fraktur_C, 'H': fraktur_H, 'I': fraktur_I,
-        'R': fraktur_R, 'Z': fraktur_Z }
+        'C': norm_fraktur_C, 'H': norm_fraktur_H, 'I': norm_fraktur_I,
+        'R': norm_fraktur_R, 'Z': norm_fraktur_Z }
 def de_fraktur_map_special() -> Dict[int, int]:
     fraktur_map = fraktur_map_special()
     map : Dict[int, int] = {}
@@ -533,9 +533,9 @@ def fraktur(text: str) -> str: # gothic, blackletter
         if c in fraktur_map:
             out.write(chr(fraktur_map[c]))
         elif norm_base_A <= ch and ch <= norm_base_Z:
-            out.write(chr(fraktur_A+(ch-norm_base_A)))
+            out.write(chr(norm_fraktur_A+(ch-norm_base_A)))
         elif norm_base_a <= ch and ch <= norm_base_z:
-            out.write(chr(fraktur_a+(ch-norm_base_a)))
+            out.write(chr(norm_fraktur_a+(ch-norm_base_a)))
         # elif norm_base_0 <= ch and ch <= norm_base_9:
         #     out.write(chr(bold_base_0+(ch-norm_base_0)))
         else:
@@ -671,10 +671,10 @@ def bold(text: str) -> str:
             out.write(chr(bold_ital_sans_a+(ch-ital_sans_a)))
         elif ch in de_fraktur:
             out.write(chr(bold_fraktur_A+(de_fraktur[ch] - norm_base_A)))
-        elif fraktur_A <= ch and ch <= fraktur_Z:
-            out.write(chr(bold_fraktur_A+(ch-fraktur_A)))
-        elif fraktur_a <= ch and ch <= fraktur_z:
-            out.write(chr(bold_fraktur_a+(ch-fraktur_a)))
+        elif norm_fraktur_A <= ch and ch <= norm_fraktur_Y:
+            out.write(chr(bold_fraktur_A+(ch-norm_fraktur_A)))
+        elif norm_fraktur_a <= ch and ch <= norm_fraktur_z:
+            out.write(chr(bold_fraktur_a+(ch-norm_fraktur_a)))
         elif script_A <= ch and ch <= script_Z:
             out.write(chr(bold_script_A+(ch-script_A)))
         elif script_a <= ch and ch <= script_z:
@@ -718,10 +718,10 @@ def ital(text: str) -> str:
             out.write(chr(bold_ital_sans_A+(ch-bold_sans_A)))
         elif bold_sans_a <= ch and ch <= bold_sans_z:
             out.write(chr(bold_ital_sans_a+(ch-bold_sans_a)))
-        elif fraktur_A <= ch and ch <= fraktur_Z:
-            out.write(chr(ital_fraktur_A+(ch-fraktur_A)))
-        elif fraktur_a <= ch and ch <= fraktur_z:
-            out.write(chr(ital_fraktur_a+(ch-fraktur_a)))
+        elif norm_fraktur_A <= ch and ch <= norm_fraktur_Y:
+            out.write(chr(ital_fraktur_A+(ch-norm_fraktur_A)))
+        elif norm_fraktur_a <= ch and ch <= norm_fraktur_z:
+            out.write(chr(ital_fraktur_a+(ch-norm_fraktur_a)))
         elif greek_A <= ch and ch <= greek_O:
             out.write(chr(ital_greek_A+(ch-greek_A)))
         elif greek_a <= ch and ch <= greek_o:
