@@ -67,7 +67,7 @@ MYPY_STRICT = --strict --show-error-codes --show-error-context --no-warn-unused-
 
 
 type: 
-	$(MAKE) $(PARALLEL) type.r type.t
+	$(MAKE) type.r type.t
 type.r:
 	$(MYPY) $(MYPY_STRICT) unicoder.py
 	- rm -rf .mypy_cache
