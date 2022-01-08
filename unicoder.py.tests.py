@@ -840,13 +840,13 @@ class UnicoderTest(unittest.TestCase):
     def test_697_norm_greek(self) -> None:
         uni = unicoder.greek(unicoder.ital(unicoder.bold(":FOOBAR")))
         self.assertEqual(uni, ":𝜱𝜴𝜝𝜜𝜬")
-    def test_698_norm_greek(self) -> None:
+    def test_698_norm_greek_notfound(self) -> None:
         old = unicoder.norm_greek_upper
         unicoder.norm_greek_upper = unicoder.norm_greek_lower
         uni = unicoder.greek(":FOOBAR")
         unicoder.norm_greek_upper = old
         self.assertEqual(uni, ":FOOBAR")
-    def test_699_norm_greek(self) -> None:
+    def test_699_norm_greek_notfound(self) -> None:
         old = unicoder.norm_greek_lower
         unicoder.norm_greek_lower = unicoder.norm_greek_upper
         uni = unicoder.greek(unicoder.bold(":foobar"))
@@ -877,6 +877,24 @@ class UnicoderTest(unittest.TestCase):
     def test_707_norm_rune(self) -> None:
         uni = unicoder.rune(base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
         self.assertEqual(uni, ":ᚨᛒᚳᛞᛖᚠᚷᚺᛁᛡᚳᛚᛗᚾᛟᛈᚳᚱᛋᛏᚹᚹᛕᚳᛋᛇᛉ")
+    def test_781_norm_rune_quaengeln(self) -> None:
+        uni = unicoder.rune(":quaengeln")
+        self.assertEqual(uni, ":ᚳᚨᛖᛜᛖᛚᚾ")
+    def test_782_norm_rune_quaengeln(self) -> None:
+        uni = unicoder.rune(":QUAENGELN")
+        self.assertEqual(uni, ":ᚳᚨᛖᛜᛖᛚᚾ")
+    def test_798_norm_rune_notfound(self) -> None:
+        old = unicoder.norm_rune_lower
+        unicoder.norm_rune_lower = unicoder.norm_greek_upper
+        uni = unicoder.rune(":FOOBAR")
+        unicoder.norm_rune_lower = old
+        self.assertEqual(uni, ":foobar")
+    def test_799_norm_rune_notfound(self) -> None:
+        old = unicoder.norm_rune_lower
+        unicoder.norm_rune_lower = unicoder.norm_greek_upper
+        uni = unicoder.rune(":foobar")
+        unicoder.norm_rune_lower = old
+        self.assertEqual(uni, ":foobar")
     #
     def test_800_norm_value(self) -> None:
         txt = "15 km/h more"
