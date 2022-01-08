@@ -25,10 +25,10 @@ bold_sans_ABCDEFGHIJKLMNOPQRSTUVWXYZ = "𝗔𝗕𝗖𝗗𝗘𝗙𝗚𝗛𝗜𝗝
 bold_sans_0123456789 = "𝟬𝟭𝟮𝟯𝟰𝟱𝟲𝟳𝟴𝟵"
 ital_sans_abcdefghijklmnopqrstuvwxyz = "𝘢𝘣𝘤𝘥𝘦𝘧𝘨𝘩𝘪𝘫𝘬𝘭𝘮𝘯𝘰𝘱𝘲𝘳𝘴𝘵𝘶𝘷𝘸𝘹𝘺𝘻"
 ital_sans_ABCDEFGHIJKLMNOPQRSTUVWXYZ = "𝘈𝘉𝘊𝘋𝘌𝘍𝘎𝘏𝘐𝘑𝘒𝘓𝘔𝘕𝘖𝘗𝘘𝘙𝘚𝘛𝘜𝘝𝘞𝘟𝘠𝘡"
-ital_sans_0123456789 = "𝟢𝟣𝟤𝟥𝟦𝟧𝟨𝟩𝟪𝟫"
+ital_sans_0123456789 = "𝟢𝟣𝟤𝟥𝟦𝟧𝟨𝟩𝟪𝟫" # aka sans
 bold_ital_sans_abcdefghijklmnopqrstuvwxyz = "𝙖𝙗𝙘𝙙𝙚𝙛𝙜𝙝𝙞𝙟𝙠𝙡𝙢𝙣𝙤𝙥𝙦𝙧𝙨𝙩𝙪𝙫𝙬𝙭𝙮𝙯"
 bold_ital_sans_ABCDEFGHIJKLMNOPQRSTUVWXYZ = "𝘼𝘽𝘾𝘿𝙀𝙁𝙂𝙃𝙄𝙅𝙆𝙇𝙈𝙉𝙊𝙋𝙌𝙍𝙎𝙏𝙐𝙑𝙒𝙓𝙔𝙕"
-bold_ital_sans_0123456789 = "𝟬𝟭𝟮𝟯𝟰𝟱𝟲𝟳𝟴𝟵"
+bold_ital_sans_0123456789 = "𝟬𝟭𝟮𝟯𝟰𝟱𝟲𝟳𝟴𝟵" # aka bold_sans
 
 class UnicoderTest(unittest.TestCase):
     def test_001_opt_scan(self) -> None:
@@ -488,6 +488,8 @@ class UnicoderTest(unittest.TestCase):
     def test_456_numm_ital_sans(self) -> None:
         uni = unicoder.sans(unicoder.ital(base_0123456789))
         self.assertEqual(uni, ital_sans_0123456789)
+    def test_459_numm_ital_sans(self) -> None:
+        self.assertEqual(ital_sans_0123456789, sans_0123456789)
     def test_461_bold_ital_sans(self) -> None:
         uni = unicoder.convert("bolditalsans", base_abcdefghijklmnopqrstuvwxyz)
         self.assertEqual(uni, bold_ital_sans_abcdefghijklmnopqrstuvwxyz)
@@ -535,6 +537,8 @@ class UnicoderTest(unittest.TestCase):
     def test_476_numm_bold_ital_sans(self) -> None:
         uni = unicoder.sans(unicoder.bold(unicoder.ital(base_0123456789)))
         self.assertEqual(uni, bold_ital_sans_0123456789)
+    def test_479_numm_bold_ital_sans(self) -> None:
+        self.assertEqual(bold_ital_sans_0123456789, bold_sans_0123456789)
 
     #
     def test_500_norm_frak(self) -> None:
