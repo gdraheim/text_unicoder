@@ -513,6 +513,10 @@ class UnicoderTest(unittest.TestCase):
             unicoder.sans(base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)))
         self.assertEqual(uni, bold_ital_sans_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
     def test_468_bold_ital_sans(self) -> None:
+        uni = unicoder.ital(unicoder.bold(
+            unicoder.sans(base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)))
+        self.assertEqual(uni, bold_ital_sans_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+    def test_469_bold_ital_sans(self) -> None:
         uni = unicoder.sans(
             unicoder.bold(unicoder.ital(base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)))
         self.assertEqual(uni, bold_ital_sans_ABCDEFGHIJKLMNOPQRSTUVWXYZ)

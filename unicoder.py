@@ -806,7 +806,7 @@ def ital(text: str) -> str:
     bold_sans_Z = 0x1D5ED
     bold_sans_a = 0x1D5EE
     bold_sans_z = 0x1D607
-    bold_ital_sans_A = 0x1D63E
+    bold_ital_sans_A = 0x1D63C
     bold_ital_sans_Z = 0x1D655
     bold_ital_sans_a = 0x1D656
     bold_ital_sans_z = 0x1D66F
