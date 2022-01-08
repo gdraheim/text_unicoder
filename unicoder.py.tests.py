@@ -562,8 +562,8 @@ class UnicoderTest(unittest.TestCase):
         uni = unicoder.fraktur("AB-DEFG--JKLMNOPQ-STUVWXY-")
         self.assertEqual(uni, "𝔄𝔅-𝔇𝔈𝔉𝔊--𝔍𝔎𝔏𝔐𝔑𝔒𝔓𝔔-𝔖𝔗𝔘𝔙𝔚𝔛𝔜-")
     def test_508_norm_frak(self) -> None:
-        uni = unicoder.fraktur("AB-DEFG--JKLMNOPQ-STUVWXY-")
-        self.assertEqual(uni, "𝔄𝔅-𝔇𝔈𝔉𝔊--𝔍𝔎𝔏𝔐𝔑𝔒𝔓𝔔-𝔖𝔗𝔘𝔙𝔚𝔛𝔜-")
+        uni = unicoder.fraktur(base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        self.assertEqual(uni, "𝔄𝔅ℭ𝔇𝔈𝔉𝔊ℌℑ𝔍𝔎𝔏𝔐𝔑𝔒𝔓𝔔ℜ𝔖𝔗𝔘𝔙𝔚𝔛𝔜ℨ")
     def test_510_bold_frak(self) -> None:
         uni = unicoder.convert("fix", base_abcdefghijklmnopqrstuvwxyz)
         self.assertEqual(uni, base_abcdefghijklmnopqrstuvwxyz)
