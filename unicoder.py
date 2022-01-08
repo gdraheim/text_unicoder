@@ -181,7 +181,7 @@ def thinspace(text: str) -> str:
 
 def fractions(text: str) -> str:
     """replace base space by thin nobreak space """
-    def splitfrac(text: str) -> Generator[str,str, None]:
+    def splitfrac(text: str) -> Generator[str, str, None]:
         frac = "0123456789/"
         if text[0] in frac:
             isfrac = True
@@ -271,76 +271,76 @@ def fractions(text: str) -> str:
     return out.getvalue()
 
 norm_greek_upper = {
-   "A": (0x391,), # Alpha
-   "B": (0x392,), # Beta
-   "G": (0x393,), # Gamma
-   "D": (0x394,), # Delta
-   "E": (0x395,), # Epsilon
-   "Z": (0x396,), # Zeta
-   "H": (0x397,), # Eta
-   "TH": (0x398,), # Theta
-   "I": (0x399,), # Iota
-   "K": (0x39A,), # Kappa
-   "L": (0x39B,), # Lambda
-   "M": (0x39C,), # My
-   "N": (0x39D,), # Ny
-   "X": (0x39E,), # Xi
-   "O": (0x39F,), # Omikron
-   "P": (0x3A0,), # Pi
-   "R": (0x3A1,), # Rho
-                    # Schluss-Sigma
-   "S": (0x3A3,), # Sigma
-   "T": (0x3A4,), # Tau
-   "Y": (0x3A5,), # Ypsilon
-   "F": (0x3A6,), # Phi
-   "PH": (0x3A6,), # Phi
-   "C": (0x3A7,), # Chi
-   "CH": (0x3A7,), # Chi
-   "CK": (0x39A,), # Kappa
-   "W": (0x3A8,), # Psi
-   "U": (0x3A9,), # Omega
-   "OO": (0x3A9,), # Omega
-   #
-   "J": (0x399,), # Iota
-   "Q": (0x39A,), # Kappa
-   "QU": (0x39A,), # Kappa
-   "V": (0x2207,), # Nabla Operatur
+    "A": (0x391,),  # Alpha
+    "B": (0x392,),  # Beta
+    "G": (0x393,),  # Gamma
+    "D": (0x394,),  # Delta
+    "E": (0x395,),  # Epsilon
+    "Z": (0x396,),  # Zeta
+    "H": (0x397,),  # Eta
+    "TH": (0x398,),  # Theta
+    "I": (0x399,),  # Iota
+    "K": (0x39A,),  # Kappa
+    "L": (0x39B,),  # Lambda
+    "M": (0x39C,),  # My
+    "N": (0x39D,),  # Ny
+    "X": (0x39E,),  # Xi
+    "O": (0x39F,),  # Omikron
+    "P": (0x3A0,),  # Pi
+    "R": (0x3A1,),  # Rho
+    # Schluss-Sigma
+    "S": (0x3A3,),  # Sigma
+    "T": (0x3A4,),  # Tau
+    "Y": (0x3A5,),  # Ypsilon
+    "F": (0x3A6,),  # Phi
+    "PH": (0x3A6,),  # Phi
+    "C": (0x3A7,),  # Chi
+    "CH": (0x3A7,),  # Chi
+    "CK": (0x39A,),  # Kappa
+    "W": (0x3A8,),  # Psi
+    "U": (0x3A9,),  # Omega
+    "OO": (0x3A9,),  # Omega
+    #
+    "J": (0x399,),  # Iota
+    "Q": (0x39A,),  # Kappa
+    "QU": (0x39A,),  # Kappa
+    "V": (0x2207,),  # Nabla Operatur
 }
 
 norm_greek_lower = {
-   "a": (0x3B1,), # Alpha
-   "b": (0x3B2,), # Beta
-   "g": (0x3B3,), # Gamma
-   "d": (0x3B4,), # Delta
-   "e": (0x3B5,), # Epsilon
-   "z": (0x3B6,), # Zeta
-   "h": (0x3B7,), # Eta
-   "th": (0x3B8,), # Theta
-   "i": (0x3B9,), # Iota
-   "k": (0x3BA,), # Kappa
-   "l": (0x3BB,), # Lambda
-   "m": (0x3BC,), # My
-   "n": (0x3BD,), # Ny
-   "x": (0x3BE,), # Xi
-   "o": (0x3BF,), # Omikron
-   "p": (0x3C0,), # Pi
-   "r": (0x3C1,), # Rho
-   "s": (0x3C3,), # Sigma
-   "t": (0x3C4,), # Tau
-   "y": (0x3C5,), # Ypsilon
-   "f": (0x3C6,), # Phi
-   "ph": (0x3C6,), # Phi
-   "c": (0x3C7,), # Chi
-   "ch": (0x3C7,), # Chi
-   "ck": (0x3BA,), # Kappa
-   "w": (0x3C8,), # Psi
-   "u": (0x3C9,), # Omega
-   "oo": (0x3C9,), # Omega
-   #
-   "j": (0x3B9,), # Iota
-   "q": (0x3BA,), # Kappa
-   "qu": (0x3BA,), # Kappa
-   "v": (0x2202,), # Differential
+    "a": (0x3B1,),  # Alpha
+    "b": (0x3B2,),  # Beta
+    "g": (0x3B3,),  # Gamma
+    "d": (0x3B4,),  # Delta
+    "e": (0x3B5,),  # Epsilon
+    "z": (0x3B6,),  # Zeta
+    "h": (0x3B7,),  # Eta
+    "th": (0x3B8,),  # Theta
+    "i": (0x3B9,),  # Iota
+    "k": (0x3BA,),  # Kappa
+    "l": (0x3BB,),  # Lambda
+    "m": (0x3BC,),  # My
+    "n": (0x3BD,),  # Ny
+    "x": (0x3BE,),  # Xi
+    "o": (0x3BF,),  # Omikron
+    "p": (0x3C0,),  # Pi
+    "r": (0x3C1,),  # Rho
+    "s": (0x3C3,),  # Sigma
+    "t": (0x3C4,),  # Tau
+    "y": (0x3C5,),  # Ypsilon
+    "f": (0x3C6,),  # Phi
+    "ph": (0x3C6,),  # Phi
+    "c": (0x3C7,),  # Chi
+    "ch": (0x3C7,),  # Chi
+    "ck": (0x3BA,),  # Kappa
+    "w": (0x3C8,),  # Psi
+    "u": (0x3C9,),  # Omega
+    "oo": (0x3C9,),  # Omega
+    #
+    "j": (0x3B9,),  # Iota
+    "q": (0x3BA,),  # Kappa
+    "qu": (0x3BA,),  # Kappa
+    "v": (0x2202,),  # Differential
 }
 
 def greek(text: str) -> str:
@@ -362,7 +362,7 @@ def greek(text: str) -> str:
         ch = ord(c)
         as_style = as_norm
         if ital_base_A <= ch and ch <= ital_base_Z:
-            ch = norm_base_A+(ch-ital_base_A)
+            ch = norm_base_A + (ch - ital_base_A)
             c = chr(ch)
             as_style = as_ital
         if ch in ital_base_lower:
@@ -370,109 +370,109 @@ def greek(text: str) -> str:
             c = chr(ch)
             as_style = as_ital
         if ital_base_a <= ch and ch <= ital_base_z:
-            ch = norm_base_a+(ch-ital_base_a)
+            ch = norm_base_a + (ch - ital_base_a)
             c = chr(ch)
             as_style = as_ital
         if bold_base_A <= ch and ch <= bold_base_Z:
-            ch = norm_base_A+(ch-bold_base_A)
+            ch = norm_base_A + (ch - bold_base_A)
             c = chr(ch)
             as_style = as_bold
         if bold_base_a <= ch and ch <= bold_base_z:
-            ch = norm_base_a+(ch-bold_base_a)
+            ch = norm_base_a + (ch - bold_base_a)
             c = chr(ch)
             as_style = as_bold
         if bold_ital_base_A <= ch and ch <= bold_ital_base_Z:
-            ch = norm_base_A+(ch-bold_ital_base_A)
+            ch = norm_base_A + (ch - bold_ital_base_A)
             c = chr(ch)
             as_style = as_bold_ital
         if bold_ital_base_a <= ch and ch <= bold_ital_base_z:
-            ch = norm_base_a+(ch-bold_ital_base_a)
+            ch = norm_base_a + (ch - bold_ital_base_a)
             c = chr(ch)
             as_style = as_bold_ital
-        if i+1 < len(text):
-           d = text[i+1]
+        if i + 1 < len(text):
+            d = text[i + 1]
         else:
-           d = " "
+            d = " "
         # orig_d = d
         dh = ord(d)
         if ital_base_A <= dh and dh <= ital_base_Z:
-            d = chr(norm_base_A+(dh-ital_base_A))
+            d = chr(norm_base_A + (dh - ital_base_A))
         if ch in ital_base_lower:
             d = chr(ital_base_lower[dh])
         if ital_base_a <= dh and dh <= ital_base_z:
-            d = chr(norm_base_a+(dh-ital_base_a))
+            d = chr(norm_base_a + (dh - ital_base_a))
         if bold_base_A <= dh and dh <= bold_base_Z:
-            d = chr(norm_base_A+(dh-bold_base_A))
+            d = chr(norm_base_A + (dh - bold_base_A))
         if bold_base_a <= dh and dh <= bold_base_z:
-            d = chr(norm_base_a+(dh-bold_base_a))
+            d = chr(norm_base_a + (dh - bold_base_a))
         if bold_ital_base_A <= dh and dh <= bold_ital_base_Z:
-            d = chr(norm_base_A+(dh-bold_ital_base_A))
+            d = chr(norm_base_A + (dh - bold_ital_base_A))
         if bold_ital_base_a <= dh and dh <= bold_ital_base_z:
-            d = chr(norm_base_a+(dh-bold_ital_base_a))
+            d = chr(norm_base_a + (dh - bold_ital_base_a))
         #
         # logg.info("'%s' => '%s' (%x) & '%s' => '%s'", orig_c, c, ch, orig_d, d)
         #
         if norm_base_A <= ch and ch <= norm_base_Z:
-            if c+d in norm_greek_upper:
-               for n in norm_greek_upper[c+d]:
-                   out.write(as_style(chr(n)))
-               skip = True
+            if c + d in norm_greek_upper:
+                for n in norm_greek_upper[c + d]:
+                    out.write(as_style(chr(n)))
+                skip = True
             elif c in norm_greek_upper:
-               for n in norm_greek_upper[c]:
-                   out.write(as_style(chr(n)))
+                for n in norm_greek_upper[c]:
+                    out.write(as_style(chr(n)))
             else:
-               logg.error("did not find greek for '%s'", c)
-               out.write(c)
+                logg.error("did not find greek for '%s'", c)
+                out.write(c)
         elif norm_base_a <= ch and ch <= norm_base_z:
-            if c+d in norm_greek_lower:
-               for n in norm_greek_lower[c+d]:
-                   out.write(as_style(chr(n)))
-               skip = True
+            if c + d in norm_greek_lower:
+                for n in norm_greek_lower[c + d]:
+                    out.write(as_style(chr(n)))
+                skip = True
             elif c in norm_greek_lower:
-               for n in norm_greek_lower[c]:
-                   out.write(as_style(chr(n)))
+                for n in norm_greek_lower[c]:
+                    out.write(as_style(chr(n)))
             else:
-               logg.error("did not find greek for '%s'", c)
-               out.write(c)
+                logg.error("did not find greek for '%s'", c)
+                out.write(c)
         else:
             out.write(c)
     return out.getvalue()
 
 rune_lower = {
-   "f": (0x16A0,),  # Fehu
-   "u": (0x16A2,),  # Uruz
-   "th": (0x16A6,), # Thurs
-   "a": (0x16A8,),  # ansuz
-   "r": (0x16B1,),  # raido
-   "k": (0x16B3,),  # kaunan
-   "g": (0x16B7,),  # gebo
-   "w": (0x16D5,),  # wunja # 0x1F7 0x1BF
-   "h": (0x16BA,),  # hagalaz
-   "n": (0x16BE,),  # naudiz
-   "i": (0x16C1,),  # isaz
-   "j": (0x16E1,),  # jera
-   "y": (0x16C7,),  # ihwaz
-   "p": (0x16C8,),  # perth
-   "z": (0x16C9,),  # algiz
-   "s": (0x16CB,),  # sowilo
-   "t": (0x16CF,),  # tiwaz
-   "b": (0x16D2,),  # berkan
-   "e": (0x16D6,),  # ehwaz
-   "m": (0x16D7,),  # mannaz
-   "l": (0x16DA,),  # laguz
-   "ng": (0x16DC,),  # ingwaz
-   "o": (0x16DF,),  # othila
-   "d": (0x16DE,),  # dagaz
-   #
-   "c": (0x16B3,),  # kaunan
-   "q": (0x16B3,),  # kaunan
-   "qu": (0x16B3,),  # kaunan
-   "u": (0x16B9,),  # wunja
-   "v": (0x16B9,),  # wunja
-   "x": (0x16B3,0x16CB),  # kaunan, sowilo
+    "f": (0x16A0,),  # Fehu
+    "u": (0x16A2,),  # Uruz
+    "th": (0x16A6,),  # Thurs
+    "a": (0x16A8,),  # ansuz
+    "r": (0x16B1,),  # raido
+    "k": (0x16B3,),  # kaunan
+    "g": (0x16B7,),  # gebo
+    "w": (0x16D5,),  # wunja # 0x1F7 0x1BF
+    "h": (0x16BA,),  # hagalaz
+    "n": (0x16BE,),  # naudiz
+    "i": (0x16C1,),  # isaz
+    "j": (0x16E1,),  # jera
+    "y": (0x16C7,),  # ihwaz
+    "p": (0x16C8,),  # perth
+    "z": (0x16C9,),  # algiz
+    "s": (0x16CB,),  # sowilo
+    "t": (0x16CF,),  # tiwaz
+    "b": (0x16D2,),  # berkan
+    "e": (0x16D6,),  # ehwaz
+    "m": (0x16D7,),  # mannaz
+    "l": (0x16DA,),  # laguz
+    "ng": (0x16DC,),  # ingwaz
+    "o": (0x16DF,),  # othila
+    "d": (0x16DE,),  # dagaz
+    #
+    "c": (0x16B3,),  # kaunan
+    "q": (0x16B3,),  # kaunan
+    "qu": (0x16B3,),  # kaunan
+    "u": (0x16B9,),  # wunja
+    "v": (0x16B9,),  # wunja
+    "x": (0x16B3, 0x16CB),  # kaunan, sowilo
 }
 
-def rune(text: str) -> str: # gothic, blackletter
+def rune(text: str) -> str:  # gothic, blackletter
     rune_a = 0x16A0
     rune_o = 0x16F8
     out = StringIO()
@@ -485,177 +485,177 @@ def rune(text: str) -> str: # gothic, blackletter
         if norm_base_A <= ch and ch <= norm_base_Z:
             ch = norm_base_a + (ch - norm_base_A)
             c = chr(ch)
-        if i+1 < len(text):
-           d = text[i+1]
+        if i + 1 < len(text):
+            d = text[i + 1]
         else:
-           d = " "
+            d = " "
         dh = ord(d)
         if norm_base_A <= dh and dh <= norm_base_Z:
             dh = norm_base_a + (dh - norm_base_A)
             d = chr(dh)
         if norm_base_a <= ch and ch <= norm_base_z:
-            if c+d in rune_lower:
-               for n in rune_lower[c+d]:
-                   out.write(chr(n))
-               skip = True
+            if c + d in rune_lower:
+                for n in rune_lower[c + d]:
+                    out.write(chr(n))
+                skip = True
             elif c in rune_lower:
-               for n in rune_lower[c]:
-                   out.write(chr(n))
+                for n in rune_lower[c]:
+                    out.write(chr(n))
             else:
-               logg.error("did not find rune for '%s'", c)
+                logg.error("did not find rune for '%s'", c)
         else:
             out.write(c)
     return out.getvalue()
 
-norm_fraktur__C = 0x212D # Complex Numbers
-norm_fraktur__H = 0x210C # Hamilton Numbers
-norm_fraktur__I = 0x2111 
-norm_fraktur__R = 0x211C # Real Numbers
-norm_fraktur__Z = 0x2128 # Integer Numbers
-norm_fraktur_encode : Dict[str, int] = {
-    'C': norm_fraktur__C, 
-    'H': norm_fraktur__H, 
+norm_fraktur__C = 0x212D  # Complex Numbers
+norm_fraktur__H = 0x210C  # Hamilton Numbers
+norm_fraktur__I = 0x2111
+norm_fraktur__R = 0x211C  # Real Numbers
+norm_fraktur__Z = 0x2128  # Integer Numbers
+norm_fraktur_encode: Dict[str, int] = {
+    'C': norm_fraktur__C,
+    'H': norm_fraktur__H,
     'I': norm_fraktur__I,
-    'R': norm_fraktur__R, 
-    'Z': norm_fraktur__Z }
-norm_fraktur_upper : Dict[int, int] = {
-    norm_fraktur__C: ord('C'), 
-    norm_fraktur__H: ord('H'), 
+    'R': norm_fraktur__R,
+    'Z': norm_fraktur__Z}
+norm_fraktur_upper: Dict[int, int] = {
+    norm_fraktur__C: ord('C'),
+    norm_fraktur__H: ord('H'),
     norm_fraktur__I: ord('I'),
-    norm_fraktur__R: ord('R'), 
-    norm_fraktur__Z: ord('Z') }
+    norm_fraktur__R: ord('R'),
+    norm_fraktur__Z: ord('Z')}
 
-def fraktur(text: str) -> str: # gothic, blackletter
+def fraktur(text: str) -> str:  # gothic, blackletter
     out = StringIO()
     for c in text:
         ch = ord(c)
         if c in norm_fraktur_encode:
             out.write(chr(norm_fraktur_encode[c]))
         elif norm_base_A <= ch and ch <= norm_base_Z:
-            out.write(chr(norm_fraktur_A+(ch-norm_base_A)))
+            out.write(chr(norm_fraktur_A + (ch - norm_base_A)))
         elif norm_base_a <= ch and ch <= norm_base_z:
-            out.write(chr(norm_fraktur_a+(ch-norm_base_a)))
+            out.write(chr(norm_fraktur_a + (ch - norm_base_a)))
         # elif norm_base_0 <= ch and ch <= norm_base_9:
         #     out.write(chr(bold_base_0+(ch-norm_base_0)))
         else:
             out.write(c)
     return out.getvalue()
 
-norm_script__B = 0x212C #
-norm_script__E = 0x2130 #
-norm_script__F = 0x2131 #
-norm_script__H = 0x210B #
-norm_script__I = 0x2110 #
-norm_script__L = 0x2112 #
-norm_script__M = 0x2133 #
-norm_script__R = 0x211B #
-norm_script__e = 0x212F #
-norm_script__g = 0x210A #
-norm_script__o = 0x2134 #
-norm_script_encode : Dict[str, int] = {
-    'B': norm_script__B, 
-    'E': norm_script__E, 
-    'F': norm_script__F, 
-    'H': norm_script__H, 
-    'I': norm_script__I, 
-    'L': norm_script__L, 
-    'M': norm_script__M, 
-    'R': norm_script__R, 
-    'e': norm_script__e, 
-    'g': norm_script__g, 
-    'o': norm_script__o }
-norm_script_upper : Dict[int, int] = {
-    norm_script__B: ord('B'), 
-    norm_script__E: ord('E'), 
-    norm_script__F: ord('F'), 
-    norm_script__H: ord('H'), 
-    norm_script__I: ord('I'), 
-    norm_script__L: ord('L'), 
-    norm_script__M: ord('M'), 
-    norm_script__R: ord('R') }
-norm_script_lower : Dict[int, int] = {
-    norm_script__e: ord('e'), 
-    norm_script__g: ord('g'), 
-    norm_script__o: ord('o') }
+norm_script__B = 0x212C
+norm_script__E = 0x2130
+norm_script__F = 0x2131
+norm_script__H = 0x210B
+norm_script__I = 0x2110
+norm_script__L = 0x2112
+norm_script__M = 0x2133
+norm_script__R = 0x211B
+norm_script__e = 0x212F
+norm_script__g = 0x210A
+norm_script__o = 0x2134
+norm_script_encode: Dict[str, int] = {
+    'B': norm_script__B,
+    'E': norm_script__E,
+    'F': norm_script__F,
+    'H': norm_script__H,
+    'I': norm_script__I,
+    'L': norm_script__L,
+    'M': norm_script__M,
+    'R': norm_script__R,
+    'e': norm_script__e,
+    'g': norm_script__g,
+    'o': norm_script__o}
+norm_script_upper: Dict[int, int] = {
+    norm_script__B: ord('B'),
+    norm_script__E: ord('E'),
+    norm_script__F: ord('F'),
+    norm_script__H: ord('H'),
+    norm_script__I: ord('I'),
+    norm_script__L: ord('L'),
+    norm_script__M: ord('M'),
+    norm_script__R: ord('R')}
+norm_script_lower: Dict[int, int] = {
+    norm_script__e: ord('e'),
+    norm_script__g: ord('g'),
+    norm_script__o: ord('o')}
 
-def script(text: str) -> str: # real cursive
+def script(text: str) -> str:  # real cursive
     out = StringIO()
     for c in text:
         ch = ord(c)
         if c in norm_script_encode:
             out.write(chr(norm_script_encode[c]))
         elif norm_base_A <= ch and ch <= norm_base_Z:
-            out.write(chr(norm_script_A+(ch-norm_base_A)))
+            out.write(chr(norm_script_A + (ch - norm_base_A)))
         elif norm_base_a <= ch and ch <= norm_base_z:
-            out.write(chr(norm_script_a+(ch-norm_base_a)))
+            out.write(chr(norm_script_a + (ch - norm_base_a)))
         elif bold_base_A <= ch and ch <= bold_base_Z:
-            out.write(chr(bold_script_A+(ch-bold_base_A)))
+            out.write(chr(bold_script_A + (ch - bold_base_A)))
         elif bold_base_a <= ch and ch <= bold_base_z:
-            out.write(chr(bold_script_a+(ch-bold_base_a)))
+            out.write(chr(bold_script_a + (ch - bold_base_a)))
         else:
             out.write(c)
     return out.getvalue()
 
-norm_double__C = 0x2102 # Complex Numbers
-norm_double__H = 0x210D # Hamilton Numbers
-norm_double__N = 0x2115 # Natural Numbers
+norm_double__C = 0x2102  # Complex Numbers
+norm_double__H = 0x210D  # Hamilton Numbers
+norm_double__N = 0x2115  # Natural Numbers
 norm_double__P = 0x2119
-norm_double__Q = 0x211A # Rational Numbers
-norm_double__R = 0x211D # Real Numbers
-norm_double__Z = 0x2124 # Integer Numbers
-norm_double_encode : Dict[str, int] = {
-    'C': norm_double__C, 
-    'H': norm_double__H, 
+norm_double__Q = 0x211A  # Rational Numbers
+norm_double__R = 0x211D  # Real Numbers
+norm_double__Z = 0x2124  # Integer Numbers
+norm_double_encode: Dict[str, int] = {
+    'C': norm_double__C,
+    'H': norm_double__H,
     'N': norm_double__N,
-    'P': norm_double__P, 
-    'Q': norm_double__Q, 
+    'P': norm_double__P,
+    'Q': norm_double__Q,
     'R': norm_double__R,
-    'Z': norm_double__Z }
-norm_double_upper : Dict[int, int] = {
-    norm_double__C: ord('C'), 
-    norm_double__H: ord('H'), 
+    'Z': norm_double__Z}
+norm_double_upper: Dict[int, int] = {
+    norm_double__C: ord('C'),
+    norm_double__H: ord('H'),
     norm_double__N: ord('N'),
-    norm_double__P: ord('P'), 
-    norm_double__Q: ord('Q'), 
+    norm_double__P: ord('P'),
+    norm_double__Q: ord('Q'),
     norm_double__R: ord('R'),
-    norm_double__Z: ord('Z') }
+    norm_double__Z: ord('Z')}
 
-def double(text: str) -> str: # gothic, blackletter
+def double(text: str) -> str:  # gothic, blackletter
     out = StringIO()
     for c in text:
         ch = ord(c)
         if c in norm_double_encode:
             out.write(chr(norm_double_encode[c]))
         elif norm_base_A <= ch and ch <= norm_base_Z:
-            out.write(chr(norm_double_A+(ch-norm_base_A)))
+            out.write(chr(norm_double_A + (ch - norm_base_A)))
         elif norm_base_a <= ch and ch <= norm_base_z:
-            out.write(chr(norm_double_a+(ch-norm_base_a)))
+            out.write(chr(norm_double_a + (ch - norm_base_a)))
         elif norm_base_0 <= ch and ch <= norm_base_9:
-            out.write(chr(norm_double_0+(ch-norm_base_0)))
+            out.write(chr(norm_double_0 + (ch - norm_base_0)))
         else:
             out.write(c)
     return out.getvalue()
 
-def courier(text: str) -> str: # gothic, blackletter
+def courier(text: str) -> str:  # gothic, blackletter
     out = StringIO()
     for c in text:
         ch = ord(c)
         if norm_base_A <= ch and ch <= norm_base_Z:
-            out.write(chr(norm_mono_A+(ch-norm_base_A)))
+            out.write(chr(norm_mono_A + (ch - norm_base_A)))
         elif norm_base_a <= ch and ch <= norm_base_z:
-            out.write(chr(norm_mono_a+(ch-norm_base_a)))
+            out.write(chr(norm_mono_a + (ch - norm_base_a)))
         elif norm_base_0 <= ch and ch <= norm_base_9:
-            out.write(chr(norm_mono_0+(ch-norm_base_0)))
+            out.write(chr(norm_mono_0 + (ch - norm_base_0)))
         else:
             out.write(c)
     return out.getvalue()
 
-def uppercasedouble(text: str) -> str: # gothic, blackletter
+def uppercasedouble(text: str) -> str:  # gothic, blackletter
     out = StringIO()
     for c in text:
         ch = ord(c)
         if norm_base_A <= ch and ch <= norm_base_Z:
-            out.write(chr(norm_double_A+(ch-norm_base_A)))
+            out.write(chr(norm_double_A + (ch - norm_base_A)))
         else:
             out.write(c)
     return out.getvalue()
@@ -665,36 +665,36 @@ def sans(text: str) -> str:
     for c in text:
         ch = ord(c)
         if norm_base_A <= ch and ch <= norm_base_Z:
-            out.write(chr(norm_sans_A+(ch-norm_base_A)))
+            out.write(chr(norm_sans_A + (ch - norm_base_A)))
         elif norm_base_a <= ch and ch <= norm_base_z:
-            out.write(chr(norm_sans_a+(ch-norm_base_a)))
+            out.write(chr(norm_sans_a + (ch - norm_base_a)))
         elif norm_base_0 <= ch and ch <= norm_base_9:
-            out.write(chr(norm_sans_0+(ch-norm_base_0)))
+            out.write(chr(norm_sans_0 + (ch - norm_base_0)))
         elif bold_base_A <= ch and ch <= bold_base_Z:
-            out.write(chr(bold_sans_A+(ch-bold_base_A)))
+            out.write(chr(bold_sans_A + (ch - bold_base_A)))
         elif bold_base_a <= ch and ch <= bold_base_z:
-            out.write(chr(bold_sans_a+(ch-bold_base_a)))
+            out.write(chr(bold_sans_a + (ch - bold_base_a)))
         elif bold_base_0 <= ch and ch <= bold_base_9:
-            out.write(chr(bold_sans_0+(ch-bold_base_0)))
+            out.write(chr(bold_sans_0 + (ch - bold_base_0)))
         elif ch in ital_base_lower:
-            out.write(chr(ital_sans_a+(ital_base_lower[ch] - norm_base_a)))
+            out.write(chr(ital_sans_a + (ital_base_lower[ch] - norm_base_a)))
         elif ital_base_A <= ch and ch <= ital_base_Z:
-            out.write(chr(ital_sans_A+(ch-ital_base_A)))
+            out.write(chr(ital_sans_A + (ch - ital_base_A)))
         elif ital_base_a <= ch and ch <= ital_base_z:
-            out.write(chr(ital_sans_a+(ch-ital_base_a)))
+            out.write(chr(ital_sans_a + (ch - ital_base_a)))
         elif bold_ital_base_A <= ch and ch <= bold_ital_base_Z:
-            out.write(chr(bold_ital_sans_A+(ch-bold_ital_base_A)))
+            out.write(chr(bold_ital_sans_A + (ch - bold_ital_base_A)))
         elif bold_ital_base_a <= ch and ch <= bold_ital_base_z:
-            out.write(chr(bold_ital_sans_a+(ch-bold_ital_base_a)))
+            out.write(chr(bold_ital_sans_a + (ch - bold_ital_base_a)))
         else:
             out.write(c)
     return out.getvalue()
 
-ital_base__h = 0x210E # Planck constant
-ital_base_encode : Dict[str, int] = {
-    'h': ital_base__h }
-ital_base_lower : Dict[int, int] = {
-    ital_base__h: ord('h') }
+ital_base__h = 0x210E  # Planck constant
+ital_base_encode: Dict[str, int] = {
+    'h': ital_base__h}
+ital_base_lower: Dict[int, int] = {
+    ital_base__h: ord('h')}
 
 def ital(text: str) -> str:
     logg.debug("apply slant to ascii/black letters")
@@ -704,39 +704,39 @@ def ital(text: str) -> str:
         if c in ital_base_encode:
             out.write(chr(ital_base_encode[c]))
         elif norm_base_A <= ch and ch <= norm_base_Z:
-            out.write(chr(ital_base_A+(ch-norm_base_A)))
+            out.write(chr(ital_base_A + (ch - norm_base_A)))
         elif norm_base_a <= ch and ch <= norm_base_z:
-            out.write(chr(ital_base_a+(ch-norm_base_a)))
+            out.write(chr(ital_base_a + (ch - norm_base_a)))
         elif norm_base_sz == ch:
-            out.write(chr(ital_greek_a+1)) # beta
+            out.write(chr(ital_greek_a + 1))  # beta
         elif bold_base_A <= ch and ch <= bold_base_Z:
-            out.write(chr(bold_ital_base_A+(ch-bold_base_A)))
+            out.write(chr(bold_ital_base_A + (ch - bold_base_A)))
         elif bold_base_a <= ch and ch <= bold_base_z:
-            out.write(chr(bold_ital_base_a+(ch-bold_base_a)))
+            out.write(chr(bold_ital_base_a + (ch - bold_base_a)))
         elif norm_sans_A <= ch and ch <= norm_sans_Z:
-            out.write(chr(ital_sans_A+(ch-norm_sans_A)))
+            out.write(chr(ital_sans_A + (ch - norm_sans_A)))
         elif norm_sans_a <= ch and ch <= norm_sans_z:
-            out.write(chr(ital_sans_a+(ch-norm_sans_a)))
+            out.write(chr(ital_sans_a + (ch - norm_sans_a)))
         elif bold_sans_A <= ch and ch <= bold_sans_Z:
-            out.write(chr(bold_ital_sans_A+(ch-bold_sans_A)))
+            out.write(chr(bold_ital_sans_A + (ch - bold_sans_A)))
         elif bold_sans_a <= ch and ch <= bold_sans_z:
-            out.write(chr(bold_ital_sans_a+(ch-bold_sans_a)))
+            out.write(chr(bold_ital_sans_a + (ch - bold_sans_a)))
         elif norm_fraktur_A <= ch and ch <= norm_fraktur_Y:
-            out.write(chr(ital_fraktur_A+(ch-norm_fraktur_A)))
+            out.write(chr(ital_fraktur_A + (ch - norm_fraktur_A)))
         elif norm_fraktur_a <= ch and ch <= norm_fraktur_z:
-            out.write(chr(ital_fraktur_a+(ch-norm_fraktur_a)))
+            out.write(chr(ital_fraktur_a + (ch - norm_fraktur_a)))
         elif norm_greek_A <= ch and ch <= norm_greek_O:
-            out.write(chr(ital_greek_A+(ch-norm_greek_A)))
+            out.write(chr(ital_greek_A + (ch - norm_greek_A)))
         elif norm_greek_a <= ch and ch <= norm_greek_o:
-            out.write(chr(ital_greek_a+(ch-norm_greek_a)))
+            out.write(chr(ital_greek_a + (ch - norm_greek_a)))
         elif norm_greek_nabla == ch:
             out.write(chr(ital_greek_nabla))
         elif norm_greek_diffs == ch:
             out.write(chr(ital_greek_diffs))
-        elif bold_greek_A <= ch and ch <= bold_greek_O+1:
-            out.write(chr(bold_ital_greek_A+(ch-bold_greek_A)))
-        elif bold_greek_a <= ch and ch <= bold_greek_o+1:
-            out.write(chr(bold_ital_greek_a+(ch-bold_greek_a)))
+        elif bold_greek_A <= ch and ch <= bold_greek_O + 1:
+            out.write(chr(bold_ital_greek_A + (ch - bold_greek_A)))
+        elif bold_greek_a <= ch and ch <= bold_greek_o + 1:
+            out.write(chr(bold_ital_greek_a + (ch - bold_greek_a)))
         else:
             out.write(c)
     return out.getvalue()
@@ -747,55 +747,55 @@ def bold(text: str) -> str:
     for c in text:
         ch = ord(c)
         if norm_base_A <= ch and ch <= norm_base_Z:
-            out.write(chr(bold_base_A+(ch-norm_base_A)))
+            out.write(chr(bold_base_A + (ch - norm_base_A)))
         elif norm_base_a <= ch and ch <= norm_base_z:
-            out.write(chr(bold_base_a+(ch-norm_base_a)))
+            out.write(chr(bold_base_a + (ch - norm_base_a)))
         elif norm_base_0 <= ch and ch <= norm_base_9:
-            out.write(chr(bold_base_0+(ch-norm_base_0)))
+            out.write(chr(bold_base_0 + (ch - norm_base_0)))
         elif norm_base_sz == ch:
-            out.write(chr(bold_greek_a+1))
+            out.write(chr(bold_greek_a + 1))
         elif ch in ital_base_lower:
-            out.write(chr(bold_ital_base_a+(ital_base_lower[ch] - norm_base_a)))
+            out.write(chr(bold_ital_base_a + (ital_base_lower[ch] - norm_base_a)))
         elif ital_base_A <= ch and ch <= ital_base_Z:
-            out.write(chr(bold_ital_base_A+(ch-ital_base_A)))
+            out.write(chr(bold_ital_base_A + (ch - ital_base_A)))
         elif ital_base_a <= ch and ch <= ital_base_z:
-            out.write(chr(bold_ital_base_a+(ch-ital_base_a)))
+            out.write(chr(bold_ital_base_a + (ch - ital_base_a)))
         elif norm_sans_A <= ch and ch <= norm_sans_Z:
-            out.write(chr(bold_sans_A+(ch-norm_sans_A)))
+            out.write(chr(bold_sans_A + (ch - norm_sans_A)))
         elif norm_sans_a <= ch and ch <= norm_sans_z:
-            out.write(chr(bold_sans_a+(ch-norm_sans_a)))
+            out.write(chr(bold_sans_a + (ch - norm_sans_a)))
         elif norm_sans_0 <= ch and ch <= norm_sans_9:
-            out.write(chr(bold_sans_0+(ch-norm_sans_0)))
+            out.write(chr(bold_sans_0 + (ch - norm_sans_0)))
         elif ital_sans_A <= ch and ch <= ital_sans_Z:
-            out.write(chr(bold_ital_sans_A+(ch-ital_sans_A)))
+            out.write(chr(bold_ital_sans_A + (ch - ital_sans_A)))
         elif ital_sans_a <= ch and ch <= ital_sans_z:
-            out.write(chr(bold_ital_sans_a+(ch-ital_sans_a)))
+            out.write(chr(bold_ital_sans_a + (ch - ital_sans_a)))
         elif ch in norm_fraktur_upper:
-            out.write(chr(bold_fraktur_A+(norm_fraktur_upper[ch] - norm_base_A)))
+            out.write(chr(bold_fraktur_A + (norm_fraktur_upper[ch] - norm_base_A)))
         elif norm_fraktur_A <= ch and ch <= norm_fraktur_Y:
-            out.write(chr(bold_fraktur_A+(ch-norm_fraktur_A)))
+            out.write(chr(bold_fraktur_A + (ch - norm_fraktur_A)))
         elif norm_fraktur_a <= ch and ch <= norm_fraktur_z:
-            out.write(chr(bold_fraktur_a+(ch-norm_fraktur_a)))
+            out.write(chr(bold_fraktur_a + (ch - norm_fraktur_a)))
         elif ch in norm_script_upper:
-            out.write(chr(bold_script_A+(norm_script_upper[ch] - norm_base_A)))
+            out.write(chr(bold_script_A + (norm_script_upper[ch] - norm_base_A)))
         elif ch in norm_script_lower:
-            out.write(chr(bold_script_a+(norm_script_lower[ch] - norm_base_a)))
+            out.write(chr(bold_script_a + (norm_script_lower[ch] - norm_base_a)))
         elif norm_script_A <= ch and ch <= norm_script_Z:
-            out.write(chr(bold_script_A+(ch-norm_script_A)))
+            out.write(chr(bold_script_A + (ch - norm_script_A)))
         elif norm_script_a <= ch and ch <= norm_script_z:
-            out.write(chr(bold_script_a+(ch-norm_script_a)))
+            out.write(chr(bold_script_a + (ch - norm_script_a)))
         elif norm_greek_A <= ch and ch <= norm_greek_O:
-            out.write(chr(bold_greek_A+(ch-norm_greek_A)))
+            out.write(chr(bold_greek_A + (ch - norm_greek_A)))
         elif norm_greek_a <= ch and ch <= norm_greek_o:
-            out.write(chr(bold_greek_a+(ch-norm_greek_a)))
+            out.write(chr(bold_greek_a + (ch - norm_greek_a)))
         elif norm_greek_nabla == ch:
             out.write(chr(bold_greek_nabla))
         elif norm_greek_diffs == ch:
             out.write(chr(bold_greek_diffs))
-        elif ital_greek_A <= ch and ch <= ital_greek_O+1:
-            out.write(chr(bold_ital_greek_A+(ch-ital_greek_A)))
-        elif ital_greek_a <= ch and ch <= ital_greek_o+1:
-            out.write(chr(bold_ital_greek_a+(ch-ital_greek_a)))
+        elif ital_greek_A <= ch and ch <= ital_greek_O + 1:
+            out.write(chr(bold_ital_greek_A + (ch - ital_greek_A)))
+        elif ital_greek_a <= ch and ch <= ital_greek_o + 1:
+            out.write(chr(bold_ital_greek_a + (ch - ital_greek_a)))
         else:
             out.write(c)
     return out.getvalue()
@@ -897,7 +897,7 @@ def helpinfo() -> str:
       italboldsans
       boldfrak
     """
-    
+
 if __name__ == "__main__":
     __opt = scan(sys.argv[1:])
     logging.basicConfig(level=max(0, logging.WARNING - __opt.verbose * 10))
