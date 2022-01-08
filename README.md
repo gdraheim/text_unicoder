@@ -1,3 +1,6 @@
+[![Style Check](https://github.com/gdraheim/unicoder/actions/workflows/stylecheck.yml/badge.svg?event=push)](https://github.com/gdraheim/unicoder/actions/workflows/stylecheck.yml)
+[![Type Check](https://github.com/gdraheim/unicoder/actions/workflows/typecheck.yml/badge.svg?event=push)](https://github.com/gdraheim/unicoder/actions/workflows/typecheck.yml)
+[![PyPI version](https://badge.fury.io/py/unicoder.svg)](https://pypi.org/project/unicoder/)
 
 This script allows to convert ascii to unicode specials 
 including bold italic greek fraktur script.
