@@ -651,13 +651,17 @@ def courier(text: str) -> str:  # gothic, blackletter
             out.write(c)
     return out.getvalue()
 
-def uppercasedouble(text: str) -> str:  # gothic, blackletter
+def initial(text: str) -> str:
     out = StringIO()
+    newline = True
     for c in text:
         ch = ord(c)
-        if norm_base_A <= ch and ch <= norm_base_Z:
-            out.write(chr(norm_double_A + (ch - norm_base_A)))
+        if newline and norm_base_A <= ch and ch <= norm_base_Z:
+            out.write(double(c))
+            newline = False
         else:
+            if c in "\r\n":
+                newline = True
             out.write(c)
     return out.getvalue()
 
@@ -851,7 +855,7 @@ def convert(cmd: str, text: str) -> str:
     if "doub" in cmd or "wide" in cmd:
         text = double(text)
     if "caps" in cmd or "init" in cmd:
-        text = uppercasedouble(text)
+        text = initial(text)
     if "rune" in cmd or "futark" in cmd:
         text = rune(text)
     if "greek" in cmd or "math" in cmd:
@@ -883,7 +887,7 @@ def helpinfo() -> str:
      *frak* *black*   convert to math fraktur 
      *doub* *wide*    convert to math double stroke
      *cour* *type*    convert to math courier monospace
-     *caps* *init*    uppercase chars to double stroke
+     *caps* *init*    initial uppercase char to double stroke
      *nobr* *word*    using base nobr spaces
      *thin* *value*   using thin nobr spaces
      *fract* *vect*   convert fractional values
