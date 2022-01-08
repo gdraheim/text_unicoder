@@ -70,12 +70,18 @@ class UnicoderTest(unittest.TestCase):
     def test_120_ital_base(self) -> None:
         uni = unicoder.convert("fix", ":abcdefg-ijklmnopqrstuvwxyz")
         self.assertEqual(uni, ":abcdefg-ijklmnopqrstuvwxyz")
+        uni = unicoder.convert("fix", base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, ":abcdefghijklmnopqrstuvwxyz")
     def test_121_ital_base(self) -> None:
         uni = unicoder.convert("slant", ":abcdefg-ijklmnopqrstuvwxyz")
         self.assertEqual(uni, ":𝑎𝑏𝑐𝑑𝑒𝑓𝑔-𝑖𝑗𝑘𝑙𝑚𝑛𝑜𝑝𝑞𝑟𝑠𝑡𝑢𝑣𝑤𝑥𝑦𝑧")
+        uni = unicoder.convert("slant", base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, ":𝑎𝑏𝑐𝑑𝑒𝑓𝑔ℎ𝑖𝑗𝑘𝑙𝑚𝑛𝑜𝑝𝑞𝑟𝑠𝑡𝑢𝑣𝑤𝑥𝑦𝑧")
     def test_122_ital_base(self) -> None:
         uni = unicoder.convert("ital", ":abcdefg-ijklmnopqrstuvwxyz")
         self.assertEqual(uni, ":𝑎𝑏𝑐𝑑𝑒𝑓𝑔-𝑖𝑗𝑘𝑙𝑚𝑛𝑜𝑝𝑞𝑟𝑠𝑡𝑢𝑣𝑤𝑥𝑦𝑧")
+        uni = unicoder.convert("ital", base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, ":𝑎𝑏𝑐𝑑𝑒𝑓𝑔ℎ𝑖𝑗𝑘𝑙𝑚𝑛𝑜𝑝𝑞𝑟𝑠𝑡𝑢𝑣𝑤𝑥𝑦𝑧")
     def test_123_ital_base(self) -> None:
         uni = unicoder.convert("slant", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
         self.assertEqual(uni, ":𝐴𝐵𝐶𝐷𝐸𝐹𝐺𝐻𝐼𝐽𝐾𝐿𝑀𝑁𝑂𝑃𝑄𝑅𝑆𝑇𝑈𝑉𝑊𝑋𝑌𝑍")
@@ -85,9 +91,13 @@ class UnicoderTest(unittest.TestCase):
     def test_125_ital_base(self) -> None:
         uni = unicoder.ital(":abcdefg-ijklmnopqrstuvwxyz")
         self.assertEqual(uni, ":𝑎𝑏𝑐𝑑𝑒𝑓𝑔-𝑖𝑗𝑘𝑙𝑚𝑛𝑜𝑝𝑞𝑟𝑠𝑡𝑢𝑣𝑤𝑥𝑦𝑧")
+        uni = unicoder.ital(base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, ":𝑎𝑏𝑐𝑑𝑒𝑓𝑔ℎ𝑖𝑗𝑘𝑙𝑚𝑛𝑜𝑝𝑞𝑟𝑠𝑡𝑢𝑣𝑤𝑥𝑦𝑧")
     def test_126_ital_base(self) -> None:
         uni = unicoder.ital(":abcdefg-ijklmnopqrstuvwxyz")
         self.assertEqual(uni, ":𝑎𝑏𝑐𝑑𝑒𝑓𝑔-𝑖𝑗𝑘𝑙𝑚𝑛𝑜𝑝𝑞𝑟𝑠𝑡𝑢𝑣𝑤𝑥𝑦𝑧")
+        uni = unicoder.ital(base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, ":𝑎𝑏𝑐𝑑𝑒𝑓𝑔ℎ𝑖𝑗𝑘𝑙𝑚𝑛𝑜𝑝𝑞𝑟𝑠𝑡𝑢𝑣𝑤𝑥𝑦𝑧")
     def test_127_ital_base(self) -> None:
         uni = unicoder.ital(base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
         self.assertEqual(uni, ":𝐴𝐵𝐶𝐷𝐸𝐹𝐺𝐻𝐼𝐽𝐾𝐿𝑀𝑁𝑂𝑃𝑄𝑅𝑆𝑇𝑈𝑉𝑊𝑋𝑌𝑍")
