@@ -126,24 +126,43 @@ if True:
     bold_ital_greek_a = 0x1D736
     bold_ital_greek_o = 0x1D74E
     bold_ital_greek_diffs = 0x1D74F
+    #
+    norm_frac_1_4 = 0x00BC
+    norm_frac_1_2 = 0x00BD
+    norm_frac_3_4 = 0x00BE
+    norm_frac_1_7 = 0x2150
+    norm_frac_1_9 = 0x2151
+    norm_frac_1_10 = 0x2152
+    norm_frac_1_3 = 0x2153
+    norm_frac_2_3 = 0x2154
+    norm_frac_1_5 = 0x2155
+    norm_frac_2_5 = 0x2156
+    norm_frac_3_5 = 0x2157
+    norm_frac_4_5 = 0x2158
+    norm_frac_1_6 = 0x2159
+    norm_frac_5_6 = 0x215A
+    norm_frac_1_8 = 0x215B
+    norm_frac_3_8 = 0x215C
+    norm_frac_5_8 = 0x215D
+    norm_frac_7_8 = 0x215E
+    norm_frac_1_x = 0x215F
+    norm_frac_0_3 = 0x2189
+    norm_base_space = 0x20
+    norm_nobr_space = 0x00A0
+    norm_thin_space = 0x202F
+    norm_numm_space = 0x2007
 
 def nobrspace(text: str) -> str:
     """replace base space by thin nobreak space """
-    base_space = ord(' ')
-    norm_base_0 = ord('0')
-    norm_base_9 = ord('9')
-    nobr_space = 0x00A0
-    thin_space = 0x202F
-    numm_space = 0x2007
     out = StringIO()
     last_ch = 0
     for c in text:
         ch = ord(c)
-        if base_space == ch:
+        if norm_base_space == ch:
             if norm_base_0 <= last_ch and last_ch <= norm_base_9:
-                out.write(chr(numm_space))
+                out.write(chr(norm_numm_space))
             else:
-                out.write(chr(nobr_space))
+                out.write(chr(norm_nobr_space))
         else:
             out.write(c)
         last_ch = ch
@@ -151,45 +170,17 @@ def nobrspace(text: str) -> str:
 
 def thinspace(text: str) -> str:
     """replace base space by thin nobreak space """
-    base_space = ord(' ')
-    nobr_space = 0x00A0
-    thin_space = 0x202F
-    numm_space = 0x8199
     out = StringIO()
     for c in text:
         ch = ord(c)
-        if base_space == ch or numm_space == ch:
-            out.write(chr(thin_space))
+        if norm_base_space == ch or norm_numm_space == ch:
+            out.write(chr(norm_thin_space))
         else:
             out.write(c)
     return out.getvalue()
 
 def fractions(text: str) -> str:
     """replace base space by thin nobreak space """
-    frac_1_4 = 0x00BC
-    frac_1_2 = 0x00BD
-    frac_3_4 = 0x00BE
-    frac_1_7 = 0x2150
-    frac_1_9 = 0x2151
-    frac_1_10 = 0x2152
-    frac_1_3 = 0x2153
-    frac_2_3 = 0x2154
-    frac_1_5 = 0x2155
-    frac_2_5 = 0x2156
-    frac_3_5 = 0x2157
-    frac_4_5 = 0x2158
-    frac_1_6 = 0x2159
-    frac_5_6 = 0x215A
-    frac_1_8 = 0x215B
-    frac_3_8 = 0x215C
-    frac_5_8 = 0x215D
-    frac_7_8 = 0x215E
-    frac_1_x = 0x215F
-    frac_0_3 = 0x2189
-    base_space = 0x20
-    nobr_space = 0x00A0
-    thin_space = 0x202F
-    numm_space = 0x8199
     def splitfrac(text: str) -> Generator[str,str, None]:
         frac = "0123456789/"
         if text[0] in frac:
@@ -221,57 +212,57 @@ def fractions(text: str) -> str:
     for item in splitfrac(text):
         if item == "1/8":
             space = ""
-            out.write(chr(frac_1_8))
+            out.write(chr(norm_frac_1_8))
         elif item == "2/8" or item == "1/4":
             space = ""
-            out.write(chr(frac_1_4))
+            out.write(chr(norm_frac_1_4))
         elif item == "3/8":
             space = ""
-            out.write(chr(frac_3_8))
+            out.write(chr(norm_frac_3_8))
         elif item == "4/8" or item == "2/4" or item == "1/2":
             space = ""
-            out.write(chr(frac_1_2))
+            out.write(chr(norm_frac_1_2))
         elif item == "5/8":
             space = ""
-            out.write(chr(frac_5_8))
+            out.write(chr(norm_frac_5_8))
         elif item == "6/8" or item == "3/4":
             space = ""
-            out.write(chr(frac_3_4))
+            out.write(chr(norm_frac_3_4))
         elif item == "7/8":
             space = ""
-            out.write(chr(frac_7_8))
+            out.write(chr(norm_frac_7_8))
         elif item == "1/5":
             space = ""
-            out.write(chr(frac_1_5))
+            out.write(chr(norm_frac_1_5))
         elif item == "2/5":
             space = ""
-            out.write(chr(frac_2_5))
+            out.write(chr(norm_frac_2_5))
         elif item == "3/5":
             space = ""
-            out.write(chr(frac_3_5))
+            out.write(chr(norm_frac_3_5))
         elif item == "4/5":
             space = ""
-            out.write(chr(frac_4_5))
+            out.write(chr(norm_frac_4_5))
         elif item == "0/6" or item == "0/3":
             space = ""
-            out.write(chr(frac_0_3))
+            out.write(chr(norm_frac_0_3))
         elif item == "1/6":
             space = ""
-            out.write(chr(frac_1_6))
+            out.write(chr(norm_frac_1_6))
         elif item == "2/6" or item == "1/3":
             space = ""
-            out.write(chr(frac_1_3))
+            out.write(chr(norm_frac_1_3))
         elif item == "3/6":
             space = ""
-            out.write(chr(frac_1_2))
+            out.write(chr(norm_frac_1_2))
         elif item == "4/6" or item == "2/3":
             space = ""
-            out.write(chr(frac_2_3))
+            out.write(chr(norm_frac_2_3))
         elif item == "5/6":
             space = ""
-            out.write(chr(frac_5_6))
+            out.write(chr(norm_frac_5_6))
         else:
-            if ord(item[-1]) in [base_space, thin_space, nobr_space, numm_space]:
+            if ord(item[-1]) in [norm_base_space, norm_thin_space, norm_nobr_space, norm_numm_space]:
                 out.write(space + item[:-1])
                 space = item[-1]
             else:
