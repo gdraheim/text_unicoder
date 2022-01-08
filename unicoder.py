@@ -95,12 +95,12 @@ if True:
     norm_double_z = 0x1D56B
     norm_double_0 = 0x1D7D8
     norm_double_9 = 0x1D7E1
-    cour_A = 0x1D670
-    cour_Z = 0x1D689
-    cour_a = 0x1D68A
-    cour_z = 0x1D6A3
-    cour_0 = 0x1D7F6
-    cour_9 = 0x1D7FF
+    norm_mono_A = 0x1D670
+    norm_mono_Z = 0x1D689
+    norm_mono_a = 0x1D68A
+    norm_mono_z = 0x1D6A3
+    norm_mono_0 = 0x1D7F6
+    norm_mono_9 = 0x1D7FF
     #
     greek_A = 0x391
     greek_O = 0x3A9
@@ -595,11 +595,11 @@ def courier(text: str) -> str: # gothic, blackletter
     for c in text:
         ch = ord(c)
         if norm_base_A <= ch and ch <= norm_base_Z:
-            out.write(chr(cour_A+(ch-norm_base_A)))
+            out.write(chr(norm_mono_A+(ch-norm_base_A)))
         elif norm_base_a <= ch and ch <= norm_base_z:
-            out.write(chr(cour_a+(ch-norm_base_a)))
+            out.write(chr(norm_mono_a+(ch-norm_base_a)))
         elif norm_base_0 <= ch and ch <= norm_base_9:
-            out.write(chr(cour_0+(ch-norm_base_0)))
+            out.write(chr(norm_mono_0+(ch-norm_base_0)))
         else:
             out.write(c)
     return out.getvalue()
