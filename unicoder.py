@@ -102,12 +102,12 @@ if True:
     norm_mono_0 = 0x1D7F6
     norm_mono_9 = 0x1D7FF
     #
-    greek_A = 0x391
-    greek_O = 0x3A9
-    greek_a = 0x3B1
-    greek_o = 0x3C9
-    greek_nabla = 0x8711
-    greek_diffs = 0x2202
+    norm_greek_A = 0x391
+    norm_greek_O = 0x3A9
+    norm_greek_a = 0x3B1
+    norm_greek_o = 0x3C9
+    norm_greek_nabla = 0x8711
+    norm_greek_diffs = 0x2202
     bold_greek_A = 0x1D6A8
     bold_greek_O = 0x1D6C0
     bold_greek_nabla = 0x1D6C1
@@ -681,13 +681,13 @@ def bold(text: str) -> str:
             out.write(chr(bold_script_A+(ch-norm_script_A)))
         elif norm_script_a <= ch and ch <= norm_script_z:
             out.write(chr(bold_script_a+(ch-norm_script_a)))
-        elif greek_A <= ch and ch <= greek_O:
-            out.write(chr(bold_greek_A+(ch-greek_A)))
-        elif greek_a <= ch and ch <= greek_o:
-            out.write(chr(bold_greek_a+(ch-greek_a)))
-        elif greek_nabla == ch:
+        elif norm_greek_A <= ch and ch <= norm_greek_O:
+            out.write(chr(bold_greek_A+(ch-norm_greek_A)))
+        elif norm_greek_a <= ch and ch <= norm_greek_o:
+            out.write(chr(bold_greek_a+(ch-norm_greek_a)))
+        elif norm_greek_nabla == ch:
             out.write(chr(bold_greek_nabla))
-        elif greek_diffs == ch:
+        elif norm_greek_diffs == ch:
             out.write(chr(bold_greek_diffs))
         elif ital_greek_A <= ch and ch <= ital_greek_O+1:
             out.write(chr(bold_ital_greek_A+(ch-ital_greek_A)))
@@ -724,13 +724,13 @@ def ital(text: str) -> str:
             out.write(chr(ital_fraktur_A+(ch-norm_fraktur_A)))
         elif norm_fraktur_a <= ch and ch <= norm_fraktur_z:
             out.write(chr(ital_fraktur_a+(ch-norm_fraktur_a)))
-        elif greek_A <= ch and ch <= greek_O:
-            out.write(chr(ital_greek_A+(ch-greek_A)))
-        elif greek_a <= ch and ch <= greek_o:
-            out.write(chr(ital_greek_a+(ch-greek_a)))
-        elif greek_nabla == ch:
+        elif norm_greek_A <= ch and ch <= norm_greek_O:
+            out.write(chr(ital_greek_A+(ch-norm_greek_A)))
+        elif norm_greek_a <= ch and ch <= norm_greek_o:
+            out.write(chr(ital_greek_a+(ch-norm_greek_a)))
+        elif norm_greek_nabla == ch:
             out.write(chr(ital_greek_nabla))
-        elif greek_diffs == ch:
+        elif norm_greek_diffs == ch:
             out.write(chr(ital_greek_diffs))
         elif bold_greek_A <= ch and ch <= bold_greek_O+1:
             out.write(chr(bold_ital_greek_A+(ch-bold_greek_A)))
