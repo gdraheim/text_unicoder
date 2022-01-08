@@ -94,6 +94,10 @@ class UnicoderTest(unittest.TestCase):
         self.assertEqual(opt.helpinfo, 3)
         self.assertEqual(opt.cmd, "arg2")
         self.assertEqual(opt.text, "arg3")
+    def test_051_helpinfo(self) -> None:
+        text = unicoder.helpinfo()
+        self.assertIn("futark", text)
+        self.assertIn("italboldgreek", text)
     #
     def test_110_bold_base(self) -> None:
         uni = unicoder.convert("fix", base_abcdefghijklmnopqrstuvwxyz)
@@ -838,6 +842,12 @@ class UnicoderTest(unittest.TestCase):
         self.assertEqual(thin, "15 km/h more")
         self.assertEqual(nobr, "15 km/h more")
         self.assertNotEqual(thin, nobr)
+    def test_809_thin_value_command(self) -> None:
+        txt = "15 km/h more"
+        uni = unicoder.convert("1+", txt)
+        self.assertEqual(uni, "1+ 15 km/h more")
+        self.assertNotEqual(uni, txt)
+
     def test_900_norm_1_8(self) -> None:
         txt = "15 1/8 km/h more"
         uni = unicoder.convert("fix", txt)
