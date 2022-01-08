@@ -270,7 +270,7 @@ def fractions(text: str) -> str:
                 space = ""
     return out.getvalue()
 
-greek_upper = {
+norm_greek_upper = {
    "A": (0x391,), # Alpha
    "B": (0x392,), # Beta
    "G": (0x393,), # Gamma
@@ -307,7 +307,7 @@ greek_upper = {
    "V": (0x2207,), # Nabla Operatur
 }
 
-greek_lower = {
+norm_greek_lower = {
    "a": (0x3B1,), # Alpha
    "b": (0x3B2,), # Beta
    "g": (0x3B3,), # Gamma
@@ -356,12 +356,12 @@ def greek(text: str) -> str:
                c2 = text[i+1]
             else:
                c2 = " "
-            if c+c2 in greek_upper:
-               for n in greek_upper[c+c2]:
+            if c+c2 in norm_greek_upper:
+               for n in norm_greek_upper[c+c2]:
                    out.write(chr(n))
                skip = True
-            elif c in greek_upper:
-               for n in greek_upper[c]:
+            elif c in norm_greek_upper:
+               for n in norm_greek_upper[c]:
                    out.write(chr(n))
             else:
                logg.error("did not find greek for '%s'", c)
@@ -370,12 +370,12 @@ def greek(text: str) -> str:
                c2 = text[i+1]
             else:
                c2 = " "
-            if c+c2 in greek_lower:
-               for n in greek_lower[c+c2]:
+            if c+c2 in norm_greek_lower:
+               for n in norm_greek_lower[c+c2]:
                    out.write(chr(n))
                skip = True
-            elif c in greek_lower:
-               for n in greek_lower[c]:
+            elif c in norm_greek_lower:
+               for n in norm_greek_lower[c]:
                    out.write(chr(n))
             else:
                logg.error("did not find greek for '%s'", c)
