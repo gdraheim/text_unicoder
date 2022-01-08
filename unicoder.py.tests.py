@@ -733,6 +733,31 @@ class UnicoderTest(unittest.TestCase):
             unicoder.bold(unicoder.ital(base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)))
         self.assertEqual(uni, ":𝜜𝜝𝜲𝜟𝜠𝜱𝜞𝜢𝜤𝜤𝜥𝜦𝜧𝜨𝜪𝜫𝜥𝜬𝜮𝜯𝜴∇𝜳𝜩𝜰𝜡")
     #
+    def test_700_norm_rune(self) -> None:
+        uni = unicoder.convert("fix", base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, base_abcdefghijklmnopqrstuvwxyz)
+    def test_701_norm_rune(self) -> None:
+        uni = unicoder.convert("rune", base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, ":ᚨᛒᚳᛞᛖᚠᚷᚺᛁᛡᚳᛚᛗᚾᛟᛈᚳᚱᛋᛏᚹᚹᛕᚳᛋᛇᛉ")
+    def test_702_norm_rune(self) -> None:
+        uni = unicoder.convert("futark", base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, ":ᚨᛒᚳᛞᛖᚠᚷᚺᛁᛡᚳᛚᛗᚾᛟᛈᚳᚱᛋᛏᚹᚹᛕᚳᛋᛇᛉ")
+    def test_703_norm_rune(self) -> None:
+        uni = unicoder.convert("rune", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        self.assertEqual(uni, ":ᚨᛒᚳᛞᛖᚠᚷᚺᛁᛡᚳᛚᛗᚾᛟᛈᚳᚱᛋᛏᚹᚹᛕᚳᛋᛇᛉ")
+    def test_704_norm_rune(self) -> None:
+        uni = unicoder.convert("futark", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        self.assertEqual(uni, ":ᚨᛒᚳᛞᛖᚠᚷᚺᛁᛡᚳᛚᛗᚾᛟᛈᚳᚱᛋᛏᚹᚹᛕᚳᛋᛇᛉ")
+    def test_705_norm_rune(self) -> None:
+        uni = unicoder.rune(base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, ":ᚨᛒᚳᛞᛖᚠᚷᚺᛁᛡᚳᛚᛗᚾᛟᛈᚳᚱᛋᛏᚹᚹᛕᚳᛋᛇᛉ")
+    def test_706_norm_rune(self) -> None:
+        uni = unicoder.rune(base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, ":ᚨᛒᚳᛞᛖᚠᚷᚺᛁᛡᚳᛚᛗᚾᛟᛈᚳᚱᛋᛏᚹᚹᛕᚳᛋᛇᛉ")
+    def test_707_norm_rune(self) -> None:
+        uni = unicoder.rune(base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        self.assertEqual(uni, ":ᚨᛒᚳᛞᛖᚠᚷᚺᛁᛡᚳᛚᛗᚾᛟᛈᚳᚱᛋᛏᚹᚹᛕᚳᛋᛇᛉ")
+    #
     def test_800_norm_value(self) -> None:
         txt = "15 km/h more"
         uni = unicoder.convert("fix", txt)
