@@ -903,7 +903,7 @@ def helpinfo() -> str:
       boldfrak
     """
 
-if __name__ == "__main__":
+if __name__ == "__main__": # pragma: no cover
     __opt = scan(sys.argv[1:])
     logging.basicConfig(level=max(0, logging.WARNING - __opt.verbose * 10))
     if __opt.helpinfo:
