@@ -565,7 +565,6 @@ class UnicoderTest(unittest.TestCase):
         self.assertEqual(uni, bold_ital_sans_0123456789)
     def test_479_numm_bold_ital_sans(self) -> None:
         self.assertEqual(bold_ital_sans_0123456789, bold_sans_0123456789)
-
     #
     def test_500_norm_frak(self) -> None:
         uni = unicoder.convert("fix", base_abcdefghijklmnopqrstuvwxyz)
@@ -625,7 +624,115 @@ class UnicoderTest(unittest.TestCase):
     def test_518_bold_frak(self) -> None:
         uni = unicoder.bold(unicoder.fraktur(base_ABCDEFGHIJKLMNOPQRSTUVWXYZ))
         self.assertEqual(uni, ":𝕬𝕭𝕮𝕯𝕰𝕱𝕲𝕳𝕴𝕵𝕶𝕷𝕸𝕹𝕺𝕻𝕼𝕽𝕾𝕿𝖀𝖁𝖂𝖃𝖄𝖅")
-
+    #
+    def test_600_norm_greek(self) -> None:
+        uni = unicoder.convert("fix", base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, base_abcdefghijklmnopqrstuvwxyz)
+    def test_601_norm_greek(self) -> None:
+        uni = unicoder.convert("greek", base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, ":αβχδεφγηιικλμνοπκρστω∂ψξυζ")
+    def test_602_norm_greek(self) -> None:
+        uni = unicoder.convert("math", base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, ":αβχδεφγηιικλμνοπκρστω∂ψξυζ")
+    def test_603_norm_greek(self) -> None:
+        uni = unicoder.convert("greek", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        self.assertEqual(uni, ":ΑΒΧΔΕΦΓΗΙΙΚΛΜΝΟΠΚΡΣΤΩ∇ΨΞΥΖ")
+    def test_604_norm_greek(self) -> None:
+        uni = unicoder.convert("math", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        self.assertEqual(uni, ":ΑΒΧΔΕΦΓΗΙΙΚΛΜΝΟΠΚΡΣΤΩ∇ΨΞΥΖ")
+    def test_605_norm_greek(self) -> None:
+        uni = unicoder.greek(base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, ":αβχδεφγηιικλμνοπκρστω∂ψξυζ")
+    def test_606_norm_greek(self) -> None:
+        uni = unicoder.greek(base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, ":αβχδεφγηιικλμνοπκρστω∂ψξυζ")
+    def test_607_norm_greek(self) -> None:
+        uni = unicoder.greek(base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        self.assertEqual(uni, ":ΑΒΧΔΕΦΓΗΙΙΚΛΜΝΟΠΚΡΣΤΩ∇ΨΞΥΖ")
+    def test_608_norm_greek(self) -> None:
+        uni = unicoder.greek(base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        self.assertEqual(uni, ":ΑΒΧΔΕΦΓΗΙΙΚΛΜΝΟΠΚΡΣΤΩ∇ΨΞΥΖ")
+    def test_621_bold_greek(self) -> None:
+        uni = unicoder.convert("boldgreek", base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, ":𝛂𝛃𝛘𝛅𝛆𝛗𝛄𝛈𝛊𝛊𝛋𝛌𝛍𝛎𝛐𝛑𝛋𝛒𝛔𝛕𝛚𝛛𝛙𝛏𝛖𝛇")
+    def test_622_bold_greek(self) -> None:
+        uni = unicoder.convert("fatmath", base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, ":𝛂𝛃𝛘𝛅𝛆𝛗𝛄𝛈𝛊𝛊𝛋𝛌𝛍𝛎𝛐𝛑𝛋𝛒𝛔𝛕𝛚𝛛𝛙𝛏𝛖𝛇")
+    def test_623_bold_greek(self) -> None:
+        uni = unicoder.convert("boldgreek", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        self.assertEqual(uni, ":𝚨𝚩𝚾𝚫𝚬𝚽𝚪𝚮𝚰𝚰𝚱𝚲𝚳𝚴𝚶𝚷𝚱𝚸𝚺𝚻𝛀∇𝚿𝚵𝚼𝚭")
+    def test_624_bold_greek(self) -> None:
+        uni = unicoder.convert("fatmath", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        self.assertEqual(uni, ":𝚨𝚩𝚾𝚫𝚬𝚽𝚪𝚮𝚰𝚰𝚱𝚲𝚳𝚴𝚶𝚷𝚱𝚸𝚺𝚻𝛀∇𝚿𝚵𝚼𝚭")
+    def test_625_bold_greek(self) -> None:
+        uni = unicoder.bold(unicoder.greek(base_abcdefghijklmnopqrstuvwxyz))
+        self.assertEqual(uni, ":𝛂𝛃𝛘𝛅𝛆𝛗𝛄𝛈𝛊𝛊𝛋𝛌𝛍𝛎𝛐𝛑𝛋𝛒𝛔𝛕𝛚𝛛𝛙𝛏𝛖𝛇")
+    def test_626_bold_greek(self) -> None:
+        uni = unicoder.greek(unicoder.bold(base_abcdefghijklmnopqrstuvwxyz))
+        self.assertEqual(uni, ":𝛂𝛃𝛘𝛅𝛆𝛗𝛄𝛈𝛊𝛊𝛋𝛌𝛍𝛎𝛐𝛑𝛋𝛒𝛔𝛕𝛚𝛛𝛙𝛏𝛖𝛇")
+    def test_627_bold_greek(self) -> None:
+        uni = unicoder.bold(unicoder.greek(base_ABCDEFGHIJKLMNOPQRSTUVWXYZ))
+        self.assertEqual(uni, ":𝚨𝚩𝚾𝚫𝚬𝚽𝚪𝚮𝚰𝚰𝚱𝚲𝚳𝚴𝚶𝚷𝚱𝚸𝚺𝚻𝛀∇𝚿𝚵𝚼𝚭")
+    def test_628_bold_greek(self) -> None:
+        uni = unicoder.greek(unicoder.bold(base_ABCDEFGHIJKLMNOPQRSTUVWXYZ))
+        self.assertEqual(uni, ":𝚨𝚩𝚾𝚫𝚬𝚽𝚪𝚮𝚰𝚰𝚱𝚲𝚳𝚴𝚶𝚷𝚱𝚸𝚺𝚻𝛀∇𝚿𝚵𝚼𝚭")
+    def test_641_ital_greek(self) -> None:
+        uni = unicoder.convert("italgreek", base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, ":𝛼𝛽𝜒𝛿𝜀𝜑𝛾𝜂𝜄𝜄𝜅𝜆𝜇𝜈𝜊𝜋𝜅𝜌𝜎𝜏𝜔𝜕𝜓𝜉𝜐𝜁")
+    def test_642_ital_greek(self) -> None:
+        uni = unicoder.convert("slantmath", base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, ":𝛼𝛽𝜒𝛿𝜀𝜑𝛾𝜂𝜄𝜄𝜅𝜆𝜇𝜈𝜊𝜋𝜅𝜌𝜎𝜏𝜔𝜕𝜓𝜉𝜐𝜁")
+    def test_643_ital_greek(self) -> None:
+        uni = unicoder.convert("italgreek", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        self.assertEqual(uni, ":𝛢𝛣𝛸𝛥𝛦𝛷𝛤𝛨𝛪𝛪𝛫𝛬𝛭𝛮𝛰𝛱𝛫𝛲𝛴𝛵𝛺∇𝛹𝛯𝛶𝛧")
+    def test_644_ital_greek(self) -> None:
+        uni = unicoder.convert("slantmath", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        self.assertEqual(uni, ":𝛢𝛣𝛸𝛥𝛦𝛷𝛤𝛨𝛪𝛪𝛫𝛬𝛭𝛮𝛰𝛱𝛫𝛲𝛴𝛵𝛺∇𝛹𝛯𝛶𝛧")
+    def test_645_ital_greek(self) -> None:
+        uni = unicoder.ital(unicoder.greek(base_abcdefghijklmnopqrstuvwxyz))
+        self.assertEqual(uni, ":𝛼𝛽𝜒𝛿𝜀𝜑𝛾𝜂𝜄𝜄𝜅𝜆𝜇𝜈𝜊𝜋𝜅𝜌𝜎𝜏𝜔𝜕𝜓𝜉𝜐𝜁")
+    def test_646_ital_greek(self) -> None:
+        uni = unicoder.greek(unicoder.ital(base_abcdefghijklmnopqrstuvwxyz))
+        self.assertEqual(uni, ":𝛼𝛽𝜒𝛿𝜀𝜑𝛾𝜂𝜄𝜄𝜅𝜆𝜇𝜈𝜊𝜋𝜅𝜌𝜎𝜏𝜔𝜕𝜓𝜉𝜐𝜁")
+    def test_647_ital_greek(self) -> None:
+        uni = unicoder.ital(unicoder.greek(base_ABCDEFGHIJKLMNOPQRSTUVWXYZ))
+        self.assertEqual(uni, ":𝛢𝛣𝛸𝛥𝛦𝛷𝛤𝛨𝛪𝛪𝛫𝛬𝛭𝛮𝛰𝛱𝛫𝛲𝛴𝛵𝛺∇𝛹𝛯𝛶𝛧")
+    def test_648_ital_greek(self) -> None:
+        uni = unicoder.greek(unicoder.ital(base_ABCDEFGHIJKLMNOPQRSTUVWXYZ))
+        self.assertEqual(uni, ":𝛢𝛣𝛸𝛥𝛦𝛷𝛤𝛨𝛪𝛪𝛫𝛬𝛭𝛮𝛰𝛱𝛫𝛲𝛴𝛵𝛺∇𝛹𝛯𝛶𝛧")
+    def test_661_bold_ital_greek(self) -> None:
+        uni = unicoder.convert("bolditalgreek", base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, ":𝜶𝜷𝝌𝜹𝜺𝝋𝜸𝜼𝜾𝜾𝜿𝝀𝝁𝝂𝝄𝝅𝜿𝝆𝝈𝝉𝝎𝝏𝝍𝝃𝝊𝜻")
+    def test_662_bold_ital_greek(self) -> None:
+        uni = unicoder.convert("fatslantmath", base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, ":𝜶𝜷𝝌𝜹𝜺𝝋𝜸𝜼𝜾𝜾𝜿𝝀𝝁𝝂𝝄𝝅𝜿𝝆𝝈𝝉𝝎𝝏𝝍𝝃𝝊𝜻")
+    def test_663_bold_ital_greek(self) -> None:
+        uni = unicoder.convert("bolditalgreek", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        self.assertEqual(uni, ":𝜜𝜝𝜲𝜟𝜠𝜱𝜞𝜢𝜤𝜤𝜥𝜦𝜧𝜨𝜪𝜫𝜥𝜬𝜮𝜯𝜴∇𝜳𝜩𝜰𝜡")
+    def test_664_bold_ital_greek(self) -> None:
+        uni = unicoder.convert("fatslantmath", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        self.assertEqual(uni, ":𝜜𝜝𝜲𝜟𝜠𝜱𝜞𝜢𝜤𝜤𝜥𝜦𝜧𝜨𝜪𝜫𝜥𝜬𝜮𝜯𝜴∇𝜳𝜩𝜰𝜡")
+    def test_665_bold_ital_greek(self) -> None:
+        uni = unicoder.bold(unicoder.ital(
+            unicoder.greek(base_abcdefghijklmnopqrstuvwxyz)))
+        self.assertEqual(uni, ":𝜶𝜷𝝌𝜹𝜺𝝋𝜸𝜼𝜾𝜾𝜿𝝀𝝁𝝂𝝄𝝅𝜿𝝆𝝈𝝉𝝎𝝏𝝍𝝃𝝊𝜻")
+    def test_666_bold_ital_greek(self) -> None:
+        uni = unicoder.greek(
+            unicoder.bold(unicoder.ital(base_abcdefghijklmnopqrstuvwxyz)))
+        self.assertEqual(uni, ":𝜶𝜷𝝌𝜹𝜺𝝋𝜸𝜼𝜾𝜾𝜿𝝀𝝁𝝂𝝄𝝅𝜿𝝆𝝈𝝉𝝎𝝏𝝍𝝃𝝊𝜻")
+    def test_667_bold_ital_greek(self) -> None:
+        uni = unicoder.bold(unicoder.ital(
+            unicoder.greek(base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)))
+        self.assertEqual(uni, ":𝜜𝜝𝜲𝜟𝜠𝜱𝜞𝜢𝜤𝜤𝜥𝜦𝜧𝜨𝜪𝜫𝜥𝜬𝜮𝜯𝜴∇𝜳𝜩𝜰𝜡")
+    def test_668_bold_ital_greek(self) -> None:
+        uni = unicoder.ital(unicoder.bold(
+            unicoder.greek(base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)))
+        self.assertEqual(uni, ":𝜜𝜝𝜲𝜟𝜠𝜱𝜞𝜢𝜤𝜤𝜥𝜦𝜧𝜨𝜪𝜫𝜥𝜬𝜮𝜯𝜴∇𝜳𝜩𝜰𝜡")
+    def test_669_bold_ital_greek(self) -> None:
+        uni = unicoder.greek(
+            unicoder.bold(unicoder.ital(base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)))
+        self.assertEqual(uni, ":𝜜𝜝𝜲𝜟𝜠𝜱𝜞𝜢𝜤𝜤𝜥𝜦𝜧𝜨𝜪𝜫𝜥𝜬𝜮𝜯𝜴∇𝜳𝜩𝜰𝜡")
+    #
     def test_800_norm_value(self) -> None:
         txt = "15 km/h more"
         uni = unicoder.convert("fix", txt)

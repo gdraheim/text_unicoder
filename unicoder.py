@@ -285,7 +285,7 @@ norm_greek_upper = {
    "M": (0x39C,), # My
    "N": (0x39D,), # Ny
    "X": (0x39E,), # Xi
-   "o": (0x39F,), # Omikron
+   "O": (0x39F,), # Omikron
    "P": (0x3A0,), # Pi
    "R": (0x3A1,), # Rho
                     # Schluss-Sigma
@@ -344,41 +344,96 @@ norm_greek_lower = {
 }
 
 def greek(text: str) -> str:
+    def as_norm(text: str) -> str:
+        return text
+    def as_ital(text: str) -> str:
+        return ital(text)
+    def as_bold(text: str) -> str:
+        return bold(text)
+    def as_bold_ital(text: str) -> str:
+        return bold(ital(text))
     out = StringIO()
     skip = False
     for i, c in enumerate(text):
         if skip:
             skip = False
             continue
+        # orig_c = c
         ch = ord(c)
+        as_style = as_norm
+        if ital_base_A <= ch and ch <= ital_base_Z:
+            ch = norm_base_A+(ch-ital_base_A)
+            c = chr(ch)
+            as_style = as_ital
+        if ch in ital_base_lower:
+            ch = ital_base_lower[ch]
+            c = chr(ch)
+            as_style = as_ital
+        if ital_base_a <= ch and ch <= ital_base_z:
+            ch = norm_base_a+(ch-ital_base_a)
+            c = chr(ch)
+            as_style = as_ital
+        if bold_base_A <= ch and ch <= bold_base_Z:
+            ch = norm_base_A+(ch-bold_base_A)
+            c = chr(ch)
+            as_style = as_bold
+        if bold_base_a <= ch and ch <= bold_base_z:
+            ch = norm_base_a+(ch-bold_base_a)
+            c = chr(ch)
+            as_style = as_bold
+        if bold_ital_base_A <= ch and ch <= bold_ital_base_Z:
+            ch = norm_base_A+(ch-bold_ital_base_A)
+            c = chr(ch)
+            as_style = as_bold_ital
+        if bold_ital_base_a <= ch and ch <= bold_ital_base_z:
+            ch = norm_base_a+(ch-bold_ital_base_a)
+            c = chr(ch)
+            as_style = as_bold_ital
+        if i+1 < len(text):
+           d = text[i+1]
+        else:
+           d = " "
+        # orig_d = d
+        dh = ord(d)
+        if ital_base_A <= dh and dh <= ital_base_Z:
+            d = chr(norm_base_A+(dh-ital_base_A))
+        if ch in ital_base_lower:
+            d = chr(ital_base_lower[dh])
+        if ital_base_a <= dh and dh <= ital_base_z:
+            d = chr(norm_base_a+(dh-ital_base_a))
+        if bold_base_A <= dh and dh <= bold_base_Z:
+            d = chr(norm_base_A+(dh-bold_base_A))
+        if bold_base_a <= dh and dh <= bold_base_z:
+            d = chr(norm_base_a+(dh-bold_base_a))
+        if bold_ital_base_A <= dh and dh <= bold_ital_base_Z:
+            d = chr(norm_base_A+(dh-bold_ital_base_A))
+        if bold_ital_base_a <= dh and dh <= bold_ital_base_z:
+            d = chr(norm_base_a+(dh-bold_ital_base_a))
+        #
+        # logg.info("'%s' => '%s' (%x) & '%s' => '%s'", orig_c, c, ch, orig_d, d)
+        #
         if norm_base_A <= ch and ch <= norm_base_Z:
-            if i+1 < len(text):
-               c2 = text[i+1]
-            else:
-               c2 = " "
-            if c+c2 in norm_greek_upper:
-               for n in norm_greek_upper[c+c2]:
-                   out.write(chr(n))
+            if c+d in norm_greek_upper:
+               for n in norm_greek_upper[c+d]:
+                   out.write(as_style(chr(n)))
                skip = True
             elif c in norm_greek_upper:
                for n in norm_greek_upper[c]:
-                   out.write(chr(n))
+                   out.write(as_style(chr(n)))
             else:
                logg.error("did not find greek for '%s'", c)
+               out.write(c)
         elif norm_base_a <= ch and ch <= norm_base_z:
-            if i+1 < len(text):
-               c2 = text[i+1]
-            else:
-               c2 = " "
-            if c+c2 in norm_greek_lower:
-               for n in norm_greek_lower[c+c2]:
-                   out.write(chr(n))
+            if c+d in norm_greek_lower:
+               for n in norm_greek_lower[c+d]:
+                   out.write(as_style(chr(n)))
                skip = True
             elif c in norm_greek_lower:
                for n in norm_greek_lower[c]:
-                   out.write(chr(n))
+                   out.write(as_style(chr(n)))
             else:
                logg.error("did not find greek for '%s'", c)
+               out.write(c)
         else:
             out.write(c)
     return out.getvalue()
