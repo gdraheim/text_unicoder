@@ -38,12 +38,12 @@ if True:
     bold_ital_base_a = 0x1D482
     bold_ital_base_z = 0x1D49B
     #
-    sans_A = 0x1D5A0
-    sans_Z = 0x1D5B9
-    sans_a = 0x1D5BA
-    sans_z = 0x1D5D3
-    sans_0 = 0x1D7E2
-    sans_9 = 0x1D7EB
+    norm_sans_A = 0x1D5A0
+    norm_sans_Z = 0x1D5B9
+    norm_sans_a = 0x1D5BA
+    norm_sans_z = 0x1D5D3
+    norm_sans_0 = 0x1D7E2
+    norm_sans_9 = 0x1D7EB
     bold_sans_A = 0x1D5D4
     bold_sans_Z = 0x1D5ED
     bold_sans_a = 0x1D5EE
@@ -617,11 +617,11 @@ def sans(text: str) -> str:
     for c in text:
         ch = ord(c)
         if norm_base_A <= ch and ch <= norm_base_Z:
-            out.write(chr(sans_A+(ch-norm_base_A)))
+            out.write(chr(norm_sans_A+(ch-norm_base_A)))
         elif norm_base_a <= ch and ch <= norm_base_z:
-            out.write(chr(sans_a+(ch-norm_base_a)))
+            out.write(chr(norm_sans_a+(ch-norm_base_a)))
         elif norm_base_0 <= ch and ch <= norm_base_9:
-            out.write(chr(sans_0+(ch-norm_base_0)))
+            out.write(chr(norm_sans_0+(ch-norm_base_0)))
         elif bold_base_A <= ch and ch <= bold_base_Z:
             out.write(chr(bold_sans_A+(ch-bold_base_A)))
         elif bold_base_a <= ch and ch <= bold_base_z:
@@ -659,12 +659,12 @@ def bold(text: str) -> str:
             out.write(chr(bold_ital_base_A+(ch-ital_base_A)))
         elif ital_base_a <= ch and ch <= ital_base_z:
             out.write(chr(bold_ital_base_a+(ch-ital_base_a)))
-        elif sans_A <= ch and ch <= sans_Z:
-            out.write(chr(bold_sans_A+(ch-sans_A)))
-        elif sans_a <= ch and ch <= sans_z:
-            out.write(chr(bold_sans_a+(ch-sans_a)))
-        elif sans_0 <= ch and ch <= sans_9:
-            out.write(chr(bold_sans_0+(ch-sans_0)))
+        elif norm_sans_A <= ch and ch <= norm_sans_Z:
+            out.write(chr(bold_sans_A+(ch-norm_sans_A)))
+        elif norm_sans_a <= ch and ch <= norm_sans_z:
+            out.write(chr(bold_sans_a+(ch-norm_sans_a)))
+        elif norm_sans_0 <= ch and ch <= norm_sans_9:
+            out.write(chr(bold_sans_0+(ch-norm_sans_0)))
         elif ital_sans_A <= ch and ch <= ital_sans_Z:
             out.write(chr(bold_ital_sans_A+(ch-ital_sans_A)))
         elif ital_sans_a <= ch and ch <= ital_sans_z:
@@ -710,10 +710,10 @@ def ital(text: str) -> str:
             out.write(chr(bold_ital_base_A+(ch-bold_base_A)))
         elif bold_base_a <= ch and ch <= bold_base_z:
             out.write(chr(bold_ital_base_a+(ch-bold_base_a)))
-        elif sans_A <= ch and ch <= sans_Z:
-            out.write(chr(ital_sans_A+(ch-sans_A)))
-        elif sans_a <= ch and ch <= sans_z:
-            out.write(chr(ital_sans_a+(ch-sans_a)))
+        elif norm_sans_A <= ch and ch <= norm_sans_Z:
+            out.write(chr(ital_sans_A+(ch-norm_sans_A)))
+        elif norm_sans_a <= ch and ch <= norm_sans_z:
+            out.write(chr(ital_sans_a+(ch-norm_sans_a)))
         elif bold_sans_A <= ch and ch <= bold_sans_Z:
             out.write(chr(bold_ital_sans_A+(ch-bold_sans_A)))
         elif bold_sans_a <= ch and ch <= bold_sans_z:
