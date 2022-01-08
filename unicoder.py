@@ -885,6 +885,17 @@ def helpinfo() -> str:
      *caps* *init*    uppercase chars to double stroke
      *nobr* *word*    using base nobr spaces
      *thin* *value*   using thin nobr spaces
+     *fract* *vect*   convert fractional values
+     *rune* *futark*  transliterate to runic script
+    some combinations provide different codepoints:
+      italboldbase
+      italgreek
+      boldgreek
+      italboldgreek
+      italsans
+      boldsans
+      italboldsans
+      boldfrak
     """
     
 if __name__ == "__main__":
