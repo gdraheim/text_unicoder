@@ -40,6 +40,61 @@ class UnicoderTest(unittest.TestCase):
     def test_003_opt_scan(self) -> None:
         opt = unicoder.scan(["-v", "-vv"])
         self.assertEqual(opt.verbose, 3)
+    def test_005_opt_scan(self) -> None:
+        opt = unicoder.scan(["--verbose"])
+        self.assertEqual(opt.verbose, 1)
+    def test_006_opt_scan(self) -> None:
+        opt = unicoder.scan(["--verbose", "--verbose"])
+        self.assertEqual(opt.verbose, 2)
+    def test_007_opt_scan(self) -> None:
+        opt = unicoder.scan(["--verbose", "--verbose", "-vv"])
+        self.assertEqual(opt.verbose, 4)
+    def test_008_opt_scan(self) -> None:
+        opt = unicoder.scan(["--verbose", "-vv", "--verbose"])
+        self.assertEqual(opt.verbose, 4)
+    def test_009_opt_scan(self) -> None:
+        opt = unicoder.scan(["-vv", "--verbose", "--verbose"])
+        self.assertEqual(opt.verbose, 4)
+    def test_011_opt_scan(self) -> None:
+        opt = unicoder.scan(["-h"])
+        self.assertEqual(opt.helpinfo, 1)
+    def test_012_opt_scan(self) -> None:
+        opt = unicoder.scan(["-hh"])
+        self.assertEqual(opt.helpinfo, 2)
+    def test_013_opt_scan(self) -> None:
+        opt = unicoder.scan(["-hh", "--help"])
+        self.assertEqual(opt.helpinfo, 3)
+    def test_014_opt_scan(self) -> None:
+        opt = unicoder.scan(["-hh", "--help", "arg1"])
+        self.assertEqual(opt.helpinfo, 3)
+        self.assertEqual(opt.cmd, "arg1")
+        self.assertEqual(opt.text, "")
+    def test_015_opt_scan(self) -> None:
+        opt = unicoder.scan(["-hh", "--help", "arg1", "arg2"])
+        self.assertEqual(opt.helpinfo, 3)
+        self.assertEqual(opt.cmd, "arg1")
+        self.assertEqual(opt.text, "arg2")
+    def test_016_opt_scan(self) -> None:
+        opt = unicoder.scan(["-hh", "--help", "arg1", "arg2", "--arg3"])
+        self.assertEqual(opt.helpinfo, 3)
+        self.assertEqual(opt.cmd, "arg1")
+        self.assertEqual(opt.text, "arg2 --arg3")
+    def test_017_opt_scan(self) -> None:
+        opt = unicoder.scan(["-hh", "--help", "arg1", "--arg2", "arg3"])
+        self.assertEqual(opt.helpinfo, 3)
+        self.assertEqual(opt.cmd, "arg1")
+        self.assertEqual(opt.text, "--arg2 arg3")
+    def test_018_opt_scan(self) -> None:
+        opt = unicoder.scan(["-hh", "--help", "--arg1", "arg2", "arg3"])
+        self.assertEqual(opt.helpinfo, 3)
+        self.assertEqual(opt.cmd, "arg2")
+        self.assertEqual(opt.text, "arg3")
+    def test_019_opt_scan(self) -> None:
+        opt = unicoder.scan(["-hh", "--help", "-&", "arg2", "arg3"])
+        self.assertEqual(opt.helpinfo, 3)
+        self.assertEqual(opt.cmd, "arg2")
+        self.assertEqual(opt.text, "arg3")
+    #
     def test_110_bold_base(self) -> None:
         uni = unicoder.convert("fix", base_abcdefghijklmnopqrstuvwxyz)
         self.assertEqual(uni, base_abcdefghijklmnopqrstuvwxyz)
