@@ -730,14 +730,14 @@ def ital(text: str) -> str:
             out.write(chr(ital_fraktur_A + (ch - norm_fraktur_A)))
         elif norm_fraktur_a <= ch and ch <= norm_fraktur_z:
             out.write(chr(ital_fraktur_a + (ch - norm_fraktur_a)))
-        elif norm_greek_A <= ch and ch <= norm_greek_O:
-            out.write(chr(ital_greek_A + (ch - norm_greek_A)))
-        elif norm_greek_a <= ch and ch <= norm_greek_o:
-            out.write(chr(ital_greek_a + (ch - norm_greek_a)))
         elif norm_greek_nabla == ch:
             out.write(chr(ital_greek_nabla))
         elif norm_greek_diffs == ch:
             out.write(chr(ital_greek_diffs))
+        elif norm_greek_A <= ch and ch <= norm_greek_O:
+            out.write(chr(ital_greek_A + (ch - norm_greek_A)))
+        elif norm_greek_a <= ch and ch <= norm_greek_o:
+            out.write(chr(ital_greek_a + (ch - norm_greek_a)))
         elif bold_greek_A <= ch and ch <= bold_greek_O + 1:
             out.write(chr(bold_ital_greek_A + (ch - bold_greek_A)))
         elif bold_greek_a <= ch and ch <= bold_greek_o + 1:
@@ -789,14 +789,14 @@ def bold(text: str) -> str:
             out.write(chr(bold_script_A + (ch - norm_script_A)))
         elif norm_script_a <= ch and ch <= norm_script_z:
             out.write(chr(bold_script_a + (ch - norm_script_a)))
-        elif norm_greek_A <= ch and ch <= norm_greek_O:
-            out.write(chr(bold_greek_A + (ch - norm_greek_A)))
-        elif norm_greek_a <= ch and ch <= norm_greek_o:
-            out.write(chr(bold_greek_a + (ch - norm_greek_a)))
         elif norm_greek_nabla == ch:
             out.write(chr(bold_greek_nabla))
         elif norm_greek_diffs == ch:
             out.write(chr(bold_greek_diffs))
+        elif norm_greek_A <= ch and ch <= norm_greek_O:
+            out.write(chr(bold_greek_A + (ch - norm_greek_A)))
+        elif norm_greek_a <= ch and ch <= norm_greek_o:
+            out.write(chr(bold_greek_a + (ch - norm_greek_a)))
         elif ital_greek_A <= ch and ch <= ital_greek_O + 1:
             out.write(chr(bold_ital_greek_A + (ch - ital_greek_A)))
         elif ital_greek_a <= ch and ch <= ital_greek_o + 1:
