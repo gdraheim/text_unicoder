@@ -503,6 +503,7 @@ def rune(text: str) -> str:  # gothic, blackletter
                     out.write(chr(n))
             else:
                 logg.error("did not find rune for '%s'", c)
+                out.write(c)
         else:
             out.write(c)
     return out.getvalue()
