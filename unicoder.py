@@ -89,10 +89,12 @@ if True:
     bold_script_a = 0x1D4EA
     bold_script_z = 0x1D503
     #
-    double_A = 0x1D538
-    double_a = 0x1D552
-    double_0 = 0x1D7D8
-    double_9 = 0x1D7E1
+    norm_double_A = 0x1D538
+    norm_double_Y = 0x1D550
+    norm_double_a = 0x1D552
+    norm_double_z = 0x1D56B
+    norm_double_0 = 0x1D7D8
+    norm_double_9 = 0x1D7E1
     cour_A = 0x1D670
     cour_Z = 0x1D689
     cour_a = 0x1D68A
@@ -579,11 +581,11 @@ def double(text: str) -> str: # gothic, blackletter
         if c in double_map:
             out.write(chr(double_map[c]))
         elif norm_base_A <= ch and ch <= norm_base_Z:
-            out.write(chr(double_A+(ch-norm_base_A)))
+            out.write(chr(norm_double_A+(ch-norm_base_A)))
         elif norm_base_a <= ch and ch <= norm_base_z:
-            out.write(chr(double_a+(ch-norm_base_a)))
+            out.write(chr(norm_double_a+(ch-norm_base_a)))
         elif norm_base_0 <= ch and ch <= norm_base_9:
-            out.write(chr(double_0+(ch-norm_base_0)))
+            out.write(chr(norm_double_0+(ch-norm_base_0)))
         else:
             out.write(c)
     return out.getvalue()
@@ -607,7 +609,7 @@ def uppercasedouble(text: str) -> str: # gothic, blackletter
     for c in text:
         ch = ord(c)
         if norm_base_A <= ch and ch <= norm_base_Z:
-            out.write(chr(double_A+(ch-norm_base_A)))
+            out.write(chr(norm_double_A+(ch-norm_base_A)))
         else:
             out.write(c)
     return out.getvalue()
