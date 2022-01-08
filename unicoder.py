@@ -304,7 +304,7 @@ norm_greek_upper: Dict[str, Tuple[int, ...]] = {
     "J": (0x399,),  # Iota
     "Q": (0x39A,),  # Kappa
     "QU": (0x39A,),  # Kappa
-    "V": (0x2207,),  # Nabla Operatur
+    "V": (norm_greek_nabla,),  # Nabla Operator
 }
 
 norm_greek_lower: Dict[str, Tuple[int, ...]] = {
@@ -340,7 +340,7 @@ norm_greek_lower: Dict[str, Tuple[int, ...]] = {
     "j": (0x3B9,),  # Iota
     "q": (0x3BA,),  # Kappa
     "qu": (0x3BA,),  # Kappa
-    "v": (0x2202,),  # Differential
+    "v": (norm_greek_diffs,),  # Differential
 }
 
 def greek(text: str) -> str:
