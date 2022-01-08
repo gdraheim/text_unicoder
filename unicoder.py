@@ -106,7 +106,7 @@ if True:
     norm_greek_O = 0x3A9
     norm_greek_a = 0x3B1
     norm_greek_o = 0x3C9
-    norm_greek_nabla = 0x8711
+    norm_greek_nabla = 0x2207
     norm_greek_diffs = 0x2202
     bold_greek_A = 0x1D6A8
     bold_greek_O = 0x1D6C0
