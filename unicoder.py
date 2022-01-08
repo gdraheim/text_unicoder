@@ -80,10 +80,10 @@ if True:
     # bold_ital_fraktur_a = n/a
     # bold_ital_fraktur_z = n/a
     #
-    script_A = 0x1D49C
-    script_Z = 0x1D4B5
-    script_a = 0x1D4B6
-    script_z = 0x1D4CF
+    norm_script_A = 0x1D49C
+    norm_script_Z = 0x1D4B5
+    norm_script_a = 0x1D4B6
+    norm_script_z = 0x1D4CF
     bold_script_A = 0x1D4D0
     bold_script_Z = 0x1D4E9
     bold_script_a = 0x1D4EA
@@ -547,9 +547,9 @@ def script(text: str) -> str: # real cursive
     for c in text:
         ch = ord(c)
         if norm_base_A <= ch and ch <= norm_base_Z:
-            out.write(chr(script_A+(ch-norm_base_A)))
+            out.write(chr(norm_script_A+(ch-norm_base_A)))
         elif norm_base_a <= ch and ch <= norm_base_z:
-            out.write(chr(script_a+(ch-norm_base_a)))
+            out.write(chr(norm_script_a+(ch-norm_base_a)))
         elif bold_base_A <= ch and ch <= bold_base_Z:
             out.write(chr(bold_script_A+(ch-bold_base_A)))
         elif bold_base_a <= ch and ch <= bold_base_z:
@@ -675,10 +675,10 @@ def bold(text: str) -> str:
             out.write(chr(bold_fraktur_A+(ch-norm_fraktur_A)))
         elif norm_fraktur_a <= ch and ch <= norm_fraktur_z:
             out.write(chr(bold_fraktur_a+(ch-norm_fraktur_a)))
-        elif script_A <= ch and ch <= script_Z:
-            out.write(chr(bold_script_A+(ch-script_A)))
-        elif script_a <= ch and ch <= script_z:
-            out.write(chr(bold_script_a+(ch-script_a)))
+        elif norm_script_A <= ch and ch <= norm_script_Z:
+            out.write(chr(bold_script_A+(ch-norm_script_A)))
+        elif norm_script_a <= ch and ch <= norm_script_z:
+            out.write(chr(bold_script_a+(ch-norm_script_a)))
         elif greek_A <= ch and ch <= greek_O:
             out.write(chr(bold_greek_A+(ch-greek_A)))
         elif greek_a <= ch and ch <= greek_o:
