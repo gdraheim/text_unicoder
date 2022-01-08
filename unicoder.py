@@ -11,6 +11,120 @@ import logging
 
 logg = logging.getLogger("UNICODER")
 
+if True:
+    base_A = ord('A')
+    base_Z = ord('Z')
+    base_a = ord('a')
+    base_z = ord('z')
+    base_0 = ord('0')
+    base_9 = ord('9')
+    base_sz = 0xDF
+    ital_base_A = 0x1D434
+    ital_base_Z = 0x1D44D
+    ital_base_a = 0x1D44E
+    ital_base_z = 0x1D467
+    ital_sans_A = 0x1D608
+    ital_sans_Z = 0x1D621
+    ital_sans_a = 0x1D622
+    ital_sans_z = 0x1D63B
+    bold_base_A = 0x1D400
+    bold_base_Z = 0x1D419
+    bold_base_a = 0x1D41A
+    bold_base_z = 0x1D433
+    bold_base_0 = 0x1D7CE
+    bold_base_9 = 0x1D7D7
+    bold_ital_base_A = 0x1D468
+    bold_ital_base_Z = 0x1D481
+    bold_ital_base_a = 0x1D482
+    bold_ital_base_z = 0x1D49B
+    #
+    sans_A = 0x1D5A0
+    sans_Z = 0x1D5B9
+    sans_a = 0x1D5BA
+    sans_z = 0x1D5D3
+    sans_0 = 0x1D7E2
+    sans_9 = 0x1D7EB
+    bold_sans_A = 0x1D5D4
+    bold_sans_Z = 0x1D5ED
+    bold_sans_a = 0x1D5EE
+    bold_sans_z = 0x1D607
+    bold_sans_0 = 0x1D7EC
+    bold_sans_9 = 0x1D8F5
+    ital_sans_A = 0x1D608
+    ital_sans_Z = 0x1D621
+    ital_sans_a = 0x1D622
+    ital_sans_z = 0x1D63B
+    bold_ital_sans_A = 0x1D63C
+    bold_ital_sans_Z = 0x1D655
+    bold_ital_sans_a = 0x1D656
+    bold_ital_sans_z = 0x1D66F
+    bold_sans_A = 0x1D5D4
+    bold_sans_Z = 0x1D5ED
+    bold_sans_a = 0x1D5EE
+    bold_sans_z = 0x1D607
+    #
+    fraktur_A = 0x1D504
+    fraktur_Z = 0x1D51D
+    fraktur_a = 0x1D51E
+    fraktur_z = 0x1D537
+    bold_fraktur_A = 0x1D56C
+    bold_fraktur_Z = 0x1D585
+    bold_fraktur_a = 0x1D586
+    bold_fraktur_z = 0x1D59F
+    ital_fraktur_A = 0x1D56C
+    ital_fraktur_Z = 0x1D585
+    ital_fraktur_a = 0x1D586
+    ital_fraktur_z = 0x1D59F
+    # bold_ital_fraktur_A = n/a
+    # bold_ital_fraktur_Z = n/a
+    # bold_ital_fraktur_a = n/a
+    # bold_ital_fraktur_z = n/a
+    #
+    script_A = 0x1D49C
+    script_Z = 0x1D4B5
+    script_a = 0x1D4B6
+    script_z = 0x1D4CF
+    bold_script_A = 0x1D4D0
+    bold_script_Z = 0x1D4E9
+    bold_script_a = 0x1D4EA
+    bold_script_z = 0x1D503
+    #
+    double_A = 0x1D538
+    double_a = 0x1D552
+    double_0 = 0x1D7D8
+    double_9 = 0x1D7E1
+    cour_A = 0x1D670
+    cour_Z = 0x1D689
+    cour_a = 0x1D68A
+    cour_z = 0x1D6A3
+    cour_0 = 0x1D7F6
+    cour_9 = 0x1D7FF
+    #
+    greek_A = 0x391
+    greek_O = 0x3A9
+    greek_a = 0x3B1
+    greek_o = 0x3C9
+    greek_nabla = 0x8711
+    greek_diffs = 0x2202
+    bold_greek_A = 0x1D6A8
+    bold_greek_O = 0x1D6C0
+    bold_greek_nabla = 0x1D6C1
+    bold_greek_a = 0x1D6C2
+    bold_greek_o = 0x1D6DA
+    bold_greek_diffs = 0x1D6DB
+    ital_greek_A = 0x1D6E2
+    ital_greek_O = 0x1D6FA
+    ital_greek_nabla = 0x1D6FB
+    ital_greek_a = 0x1D6FC
+    ital_greek_o = 0x1D714
+    ital_greek_diffs = 0x1D715
+    bold_ital_greek_A = 0x1D71C
+    bold_ital_greek_O = 0x1D734
+    bold_ital_greek_nabla = 0x1D735
+    bold_ital_greek_a = 0x1D736
+    bold_ital_greek_o = 0x1D74E
+    bold_ital_greek_diffs = 0x1D74F
+
 def nobrspace(text: str) -> str:
     """replace base space by thin nobreak space """
     base_space = ord(' ')
@@ -237,16 +351,6 @@ greek_lower = {
 }
 
 def greek(text: str) -> str:
-    base_A = ord('A')
-    base_Z = ord('Z')
-    base_a = ord('a')
-    base_z = ord('z')
-    greek_A = 0x391
-    greek_O = 0x3A9
-    greek_a = 0x3B1
-    greek_o = 0x3C9
-    greek_nabla = 0x8711
-    greek_diffs = 0x2202
     out = StringIO()
     skip = False
     for i, c in enumerate(text):
@@ -360,10 +464,6 @@ rune_lower = {
 }
 
 def rune(text: str) -> str: # gothic, blackletter
-    base_A = ord('A')
-    base_Z = ord('Z')
-    base_a = ord('a')
-    base_z = ord('z')
     rune_A = 0x391
     rune_O = 0x3A9
     rune_a = 0x3B1
@@ -426,16 +526,6 @@ def de_fraktur_map_special() -> Dict[int, int]:
     return map
 
 def fraktur(text: str) -> str: # gothic, blackletter
-    base_A = ord('A')
-    base_Z = ord('Z')
-    base_a = ord('a')
-    base_z = ord('z')
-    base_0 = ord('0')
-    base_9 = ord('9')
-    fraktur_A = 0x1D504
-    fraktur_a = 0x1D51E
-    bold_base_0 = 0x1D7CE
-    bold_base_9 = 0x1D7D7
     fraktur_map = fraktur_map_special()
     out = StringIO()
     for c in text:
@@ -453,24 +543,6 @@ def fraktur(text: str) -> str: # gothic, blackletter
     return out.getvalue()
 
 def script(text: str) -> str: # real cursive
-    base_A = ord('A')
-    base_Z = ord('Z')
-    base_a = ord('a')
-    base_z = ord('z')
-    script_A = 0x1D49C
-    script_Z = 0x1D4B5
-    script_a = 0x1D4B6
-    script_z = 0x1D4CF
-    bold_script_A = 0x1D4D0
-    bold_script_Z = 0x1D4E9
-    bold_script_a = 0x1D4EA
-    bold_script_z = 0x1D503
-    bold_base_A = 0x1D400
-    bold_base_Z = 0x1D419
-    bold_base_a = 0x1D41A
-    bold_base_z = 0x1D433
-    bold_base_0 = 0x1D7CE
-    bold_base_9 = 0x1D7D7
     out = StringIO()
     for c in text:
         ch = ord(c)
@@ -500,16 +572,6 @@ def double_map_special() -> Dict[str, int]:
         'Z': double_Z }
 
 def double(text: str) -> str: # gothic, blackletter
-    base_A = ord('A')
-    base_Z = ord('Z')
-    base_a = ord('a')
-    base_z = ord('z')
-    base_0 = ord('0')
-    base_9 = ord('9')
-    double_A = 0x1D538
-    double_a = 0x1D552
-    double_0 = 0x1D7D8
-    double_9 = 0x1D7E1
     double_map = double_map_special()
     out = StringIO()
     for c in text:
@@ -527,18 +589,6 @@ def double(text: str) -> str: # gothic, blackletter
     return out.getvalue()
 
 def courier(text: str) -> str: # gothic, blackletter
-    base_A = ord('A')
-    base_Z = ord('Z')
-    base_a = ord('a')
-    base_z = ord('z')
-    base_0 = ord('0')
-    base_9 = ord('9')
-    cour_A = 0x1D670
-    cour_Z = 0x1D689
-    cour_a = 0x1D68A
-    cour_z = 0x1D6A3
-    cour_0 = 0x1D7F6
-    cour_9 = 0x1D7FF
     out = StringIO()
     for c in text:
         ch = ord(c)
@@ -553,12 +603,6 @@ def courier(text: str) -> str: # gothic, blackletter
     return out.getvalue()
 
 def uppercasedouble(text: str) -> str: # gothic, blackletter
-    base_A = ord('A')
-    base_Z = ord('Z')
-    base_a = ord('a')
-    base_z = ord('z')
-    double_A = 0x1D538
-    double_a = 0x1D552
     out = StringIO()
     for c in text:
         ch = ord(c)
@@ -569,46 +613,6 @@ def uppercasedouble(text: str) -> str: # gothic, blackletter
     return out.getvalue()
 
 def sans(text: str) -> str:
-    base_A = ord('A')
-    base_Z = ord('Z')
-    base_a = ord('a')
-    base_z = ord('z')
-    base_0 = ord('0')
-    base_9 = ord('9')
-    sans_A = 0x1D5A0
-    sans_Z = 0x1D5B9
-    sans_a = 0x1D5BA
-    sans_z = 0x1D5D3
-    sans_0 = 0x1D7E2
-    sans_9 = 0x1D7EB
-    bold_base_A = 0x1D400
-    bold_base_Z = 0x1D419
-    bold_base_a = 0x1D41A
-    bold_base_z = 0x1D433
-    bold_base_0 = 0x1D7CE
-    bold_base_9 = 0x1D7D7
-    bold_sans_A = 0x1D5D4
-    bold_sans_Z = 0x1D5ED
-    bold_sans_a = 0x1D5EE
-    bold_sans_z = 0x1D607
-    bold_sans_0 = 0x1D7EC
-    bold_sans_9 = 0x1D8F5
-    ital_base_A = 0x1D434
-    ital_base_Z = 0x1D44D
-    ital_base_a = 0x1D44E
-    ital_base_z = 0x1D467
-    ital_sans_A = 0x1D608
-    ital_sans_Z = 0x1D621
-    ital_sans_a = 0x1D622
-    ital_sans_z = 0x1D63B
-    bold_ital_base_A = 0x1D468
-    bold_ital_base_Z = 0x1D481
-    bold_ital_base_a = 0x1D482
-    bold_ital_base_z = 0x1D49B
-    bold_ital_sans_A = 0x1D63C
-    bold_ital_sans_Z = 0x1D655
-    bold_ital_sans_a = 0x1D656
-    bold_ital_sans_z = 0x1D66F
     out = StringIO()
     for c in text:
         ch = ord(c)
@@ -639,88 +643,6 @@ def sans(text: str) -> str:
 
 def bold(text: str) -> str:
     logg.debug("apply fat to ascii/black letters")
-    base_A = ord('A')
-    base_Z = ord('Z')
-    base_a = ord('a')
-    base_z = ord('z')
-    base_0 = ord('0')
-    base_9 = ord('9')
-    base_sz = 0xDF
-    bold_base_A = 0x1D400
-    bold_base_Z = 0x1D419
-    bold_base_a = 0x1D41A
-    bold_base_z = 0x1D433
-    bold_base_0 = 0x1D7CE
-    bold_base_9 = 0x1D7D7
-    ital_base_A = 0x1D434
-    ital_base_Z = 0x1D44D
-    ital_base_a = 0x1D44E
-    ital_base_z = 0x1D467
-    bold_ital_base_A = 0x1D468
-    bold_ital_base_Z = 0x1D481
-    bold_ital_base_a = 0x1D482
-    bold_ital_base_z = 0x1D49B
-    sans_A = 0x1D5A0
-    sans_Z = 0x1D5B9
-    sans_a = 0x1D5BA
-    sans_z = 0x1D5D3
-    sans_0 = 0x1D7E2
-    sans_9 = 0x1D7EB
-    bold_sans_A = 0x1D5D4
-    bold_sans_Z = 0x1D5ED
-    bold_sans_a = 0x1D5EE
-    bold_sans_z = 0x1D607
-    bold_sans_0 = 0x1D7EC
-    bold_sans_9 = 0x1D8F5
-    ital_sans_A = 0x1D608
-    ital_sans_Z = 0x1D621
-    ital_sans_a = 0x1D622
-    ital_sans_z = 0x1D63B
-    bold_ital_sans_A = 0x1D63C
-    bold_ital_sans_Z = 0x1D655
-    bold_ital_sans_a = 0x1D656
-    bold_ital_sans_z = 0x1D66F
-    #
-    fraktur_A = 0x1D504
-    fraktur_Z = 0x1D51D
-    fraktur_a = 0x1D51E
-    fraktur_z = 0x1D537
-    bold_fraktur_A = 0x1D56C
-    bold_fraktur_Z = 0x1D585
-    bold_fraktur_a = 0x1D586
-    bold_fraktur_z = 0x1D59F
-    script_A = 0x1D49C
-    script_Z = 0x1D4B5
-    script_a = 0x1D4B6
-    script_z = 0x1D4CF
-    bold_script_A = 0x1D4D0
-    bold_script_Z = 0x1D4E9
-    bold_script_a = 0x1D4EA
-    bold_script_z = 0x1D503
-    greek_A = 0x391
-    greek_O = 0x3A9
-    greek_a = 0x3B1
-    greek_o = 0x3C9
-    greek_nabla = 0x8711
-    greek_diffs = 0x2202
-    bold_greek_A = 0x1D6A8
-    bold_greek_O = 0x1D6C0
-    bold_greek_nabla = 0x1D6C1
-    bold_greek_a = 0x1D6C2
-    bold_greek_o = 0x1D6DA
-    bold_greek_diffs = 0x1D6DB
-    ital_greek_A = 0x1D6E2
-    ital_greek_O = 0x1D6FA
-    ital_greek_nabla = 0x1D6FB
-    ital_greek_a = 0x1D6FC
-    ital_greek_o = 0x1D714
-    ital_greek_diffs = 0x1D715
-    bold_ital_greek_A = 0x1D71C
-    bold_ital_greek_O = 0x1D734
-    bold_ital_greek_nabla = 0x1D735
-    bold_ital_greek_a = 0x1D736
-    bold_ital_greek_o = 0x1D74E
-    bold_ital_greek_diffs = 0x1D74F
     de_fraktur = de_fraktur_map_special()
     out = StringIO()
     for c in text:
@@ -775,82 +697,6 @@ def bold(text: str) -> str:
 
 def ital(text: str) -> str:
     logg.debug("apply slant to ascii/black letters")
-    base_A = ord('A')
-    base_Z = ord('Z')
-    base_a = ord('a')
-    base_z = ord('z')
-    base_0 = ord('0')
-    base_9 = ord('9')
-    base_sz = 0xDF
-    ital_base_A = 0x1D434
-    ital_base_Z = 0x1D44D
-    ital_base_a = 0x1D44E
-    ital_base_z = 0x1D467
-    sans_A = 0x1D5A0
-    sans_Z = 0x1D5B9
-    sans_a = 0x1D5BA
-    sans_z = 0x1D5D3
-    ital_sans_A = 0x1D608
-    ital_sans_Z = 0x1D621
-    ital_sans_a = 0x1D622
-    ital_sans_z = 0x1D63B
-    bold_base_A = 0x1D400
-    bold_base_Z = 0x1D419
-    bold_base_a = 0x1D41A
-    bold_base_z = 0x1D433
-    bold_ital_base_A = 0x1D468
-    bold_ital_base_Z = 0x1D481
-    bold_ital_base_a = 0x1D482
-    bold_ital_base_z = 0x1D49B
-    bold_sans_A = 0x1D5D4
-    bold_sans_Z = 0x1D5ED
-    bold_sans_a = 0x1D5EE
-    bold_sans_z = 0x1D607
-    bold_ital_sans_A = 0x1D63C
-    bold_ital_sans_Z = 0x1D655
-    bold_ital_sans_a = 0x1D656
-    bold_ital_sans_z = 0x1D66F
-    #
-    fraktur_A = 0x1D504
-    fraktur_Z = 0x1D51D
-    fraktur_a = 0x1D51E
-    fraktur_z = 0x1D537
-    ital_fraktur_A = 0x1D56C
-    ital_fraktur_Z = 0x1D585
-    ital_fraktur_a = 0x1D586
-    ital_fraktur_z = 0x1D59F
-    bold_fraktur_A = 0x1D56C
-    bold_fraktur_Z = 0x1D585
-    bold_fraktur_a = 0x1D586
-    bold_fraktur_z = 0x1D59F
-    # bold_ital_fraktur_A = n/a
-    # bold_ital_fraktur_Z = n/a
-    # bold_ital_fraktur_a = n/a
-    # bold_ital_fraktur_z = n/a
-    greek_A = 0x391
-    greek_O = 0x3A9
-    greek_a = 0x3B1
-    greek_o = 0x3C9
-    greek_nabla = 0x8711
-    greek_diffs = 0x2202
-    ital_greek_A = 0x1D6E2
-    ital_greek_O = 0x1D6FA
-    ital_greek_nabla = 0x1D6FB
-    ital_greek_a = 0x1D6FC
-    ital_greek_o = 0x1D714
-    ital_greek_diffs = 0x1D715
-    bold_greek_A = 0x1D6A8
-    bold_greek_O = 0x1D6C0
-    bold_greek_nabla = 0x1D6C1
-    bold_greek_a = 0x1D6C2
-    bold_greek_o = 0x1D6DA
-    bold_greek_diffs = 0x1D6DB
-    bold_ital_greek_A = 0x1D71C
-    bold_ital_greek_O = 0x1D734
-    bold_ital_greek_nabla = 0x1D735
-    bold_ital_greek_a = 0x1D736
-    bold_ital_greek_o = 0x1D74E
-    bold_ital_greek_diffs = 0x1D74F
     out = StringIO()
     for c in text:
         ch = ord(c)
