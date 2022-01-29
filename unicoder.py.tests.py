@@ -731,6 +731,70 @@ class UnicoderTest(unittest.TestCase):
         uni = unicoder.bold(unicoder.fraktur(base_ABCDEFGHIJKLMNOPQRSTUVWXYZ))
         self.assertEqual(uni, ":𝕬𝕭𝕮𝕯𝕰𝕱𝕲𝕳𝕴𝕵𝕶𝕷𝕸𝕹𝕺𝕻𝕼𝕽𝕾𝕿𝖀𝖁𝖂𝖃𝖄𝖅")
     #
+    def test_550_norm_button(self) -> None:
+        uni = unicoder.convert("fix", base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, base_abcdefghijklmnopqrstuvwxyz)
+    def test_551_norm_button(self) -> None:
+        uni = unicoder.convert("button", base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, ":🅐🅑🅒🅓🅔🅕🅖🅗🅘🅙🅚🅛🅜🅝🅞🅟🅠🅡🅢🅣🅤🅥🅦🅧🅨🅩")
+    def test_552_norm_button(self) -> None:
+        uni = unicoder.convert("button", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        self.assertEqual(uni, ":🅰🅱🅲🅳🅴🅵🅶🅷🅸🅹🅺🅻🅼🅽🅾🅿🆀🆁🆂🆃🆄🆅🆆🆇🆈🆉")
+    def test_553_numm_button(self) -> None:
+        uni = unicoder.convert("button", base_0123456789)
+        self.assertEqual(uni, ":⓿❶❷❸❹❺❻❼❽❾")
+    def test_555_norm_button(self) -> None:
+        uni = unicoder.button(base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, ":🅐🅑🅒🅓🅔🅕🅖🅗🅘🅙🅚🅛🅜🅝🅞🅟🅠🅡🅢🅣🅤🅥🅦🅧🅨🅩")
+    def test_556_norm_button(self) -> None:
+        uni = unicoder.button(base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        self.assertEqual(uni, ":🅰🅱🅲🅳🅴🅵🅶🅷🅸🅹🅺🅻🅼🅽🅾🅿🆀🆁🆂🆃🆄🆅🆆🆇🆈🆉")
+    def test_557_numm_button(self) -> None:
+        uni = unicoder.button(base_0123456789)
+        self.assertEqual(uni, ":⓿❶❷❸❹❺❻❼❽❾")
+    def test_560_norm_circled(self) -> None:
+        uni = unicoder.convert("fix", base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, base_abcdefghijklmnopqrstuvwxyz)
+    def test_561_norm_circled(self) -> None:
+        uni = unicoder.convert("circ", base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, ":ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ")
+    def test_562_norm_circled(self) -> None:
+        uni = unicoder.convert("circ", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        self.assertEqual(uni, ":ⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏ")
+    def test_563_numm_circled(self) -> None:
+        uni = unicoder.convert("circ", base_0123456789)
+        self.assertEqual(uni, ":⓪①②③④⑤⑥⑦⑧⑨")
+    def test_565_norm_circled(self) -> None:
+        uni = unicoder.circled(base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, ":ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ")
+    def test_566_norm_circled(self) -> None:
+        uni = unicoder.circled(base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        self.assertEqual(uni, ":ⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏ")
+    def test_567_numm_circled(self) -> None:
+        uni = unicoder.circled(base_0123456789)
+        self.assertEqual(uni, ":⓪①②③④⑤⑥⑦⑧⑨")
+    def test_570_norm_parens(self) -> None:
+        uni = unicoder.convert("fix", base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, base_abcdefghijklmnopqrstuvwxyz)
+    def test_571_norm_parens(self) -> None:
+        uni = unicoder.convert("parens", base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, ":⒜⒝⒞⒟⒠⒡⒢⒣⒤⒥⒦⒧⒨⒩⒪⒫⒬⒭⒮⒯⒰⒱⒲⒳⒴⒵")
+    def test_572_norm_parens(self) -> None:
+        uni = unicoder.convert("parens", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        self.assertEqual(uni, ":🄐🄑🄒🄓🄔🄕🄖🄗🄘🄙🄚🄛🄜🄝🄞🄟🄠🄡🄢🄣🄤🄥🄦🄧🄨🄩")
+    def test_573_numm_parens(self) -> None:
+        uni = unicoder.convert("parens", base_0123456789)
+        self.assertEqual(uni, ":⒪⑴⑵⑶⑷⑸⑹⑺⑻⑼")
+    def test_575_norm_parens(self) -> None:
+        uni = unicoder.parens(base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, ":⒜⒝⒞⒟⒠⒡⒢⒣⒤⒥⒦⒧⒨⒩⒪⒫⒬⒭⒮⒯⒰⒱⒲⒳⒴⒵")
+    def test_576_norm_parens(self) -> None:
+        uni = unicoder.parens(base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        self.assertEqual(uni, ":🄐🄑🄒🄓🄔🄕🄖🄗🄘🄙🄚🄛🄜🄝🄞🄟🄠🄡🄢🄣🄤🄥🄦🄧🄨🄩")
+    def test_577_numm_parens(self) -> None:
+        uni = unicoder.parens(base_0123456789)
+        self.assertEqual(uni, ":⒪⑴⑵⑶⑷⑸⑹⑺⑻⑼")
+    #
     def test_600_norm_greek(self) -> None:
         uni = unicoder.convert("fix", base_abcdefghijklmnopqrstuvwxyz)
         self.assertEqual(uni, base_abcdefghijklmnopqrstuvwxyz)
