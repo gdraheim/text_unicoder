@@ -126,7 +126,7 @@ if True:
     norm_button_A = 0x1F150  # NEGATIVE CIRCLED CAPITAL
     norm_button_O = 0x1F15E  # NEGATIVE CIRCLED CAPITAL
     norm_button_Z = 0x1F169  # NEGATIVE CIRCLED CAPITAL
-    norm_button_1 = 0x2776   # NEGATIVE CIRCLED DIGIT (dingbats)
+    norm_button_1 = 0x2774   # NEGATIVE CIRCLED DIGIT (dingbats)
     norm_button_9 = 0x277E   # NEGATIVE CIRCLED DIGIT (dingbats)
     norm_button_10 = 0x277F   # NEGATIVE CIRCLED DIGIT (dingbats)
     norm_button_11 = 0x24EB   # NEGATIVE CIRCLED DIGIT
@@ -685,6 +685,7 @@ def double(text: str) -> str:  # gothic, blackletter
     return out.getvalue()
 
 def button(text: str) -> str:  # squred
+    # only ABO for bloodgroup are common, digit 0 is different than 9
     logg.info("Circ")
     out = StringIO()
     for c in text:
@@ -703,6 +704,7 @@ def button(text: str) -> str:  # squred
     return out.getvalue()
 
 def circled(text: str) -> str:  # squred
+    # most fonts have that inconsistent - found M to be blue
     logg.info("Circ")
     out = StringIO()
     for c in text:
@@ -721,6 +723,7 @@ def circled(text: str) -> str:  # squred
     return out.getvalue()
 
 def parens(text: str) -> str:  # squred
+    # most fonts have that incomplete - only lowercase and digts are common
     logg.info("Circ")
     out = StringIO()
     for c in text:
