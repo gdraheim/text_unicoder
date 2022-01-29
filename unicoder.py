@@ -686,7 +686,6 @@ def double(text: str) -> str:  # gothic, blackletter
 
 def button(text: str) -> str:  # squred
     # only ABO for bloodgroup are common, digit 0 is different than 9
-    logg.info("Circ")
     out = StringIO()
     for c in text:
         ch = ord(c)
@@ -705,7 +704,6 @@ def button(text: str) -> str:  # squred
 
 def circled(text: str) -> str:  # squred
     # most fonts have that inconsistent - found M to be blue
-    logg.info("Circ")
     out = StringIO()
     for c in text:
         ch = ord(c)
