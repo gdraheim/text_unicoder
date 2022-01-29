@@ -105,10 +105,11 @@ if True:
     norm_parens_O = 0x1F11E   # PARENTHESIZED CAPITAL
     norm_parens_Z = 0x1F129   # PARENTHESIZED CAPITAL
     norm_parens_a = 0x249C    # PARENTHESIZED SMALL
+    norm_parens_o = 0x24AA    # PARENTHESIZED SMALL
     norm_parens_z = 0x24B5    # PARENTHESIZED SMALL
-    norm_parens_1 = 0x2474    # PARENTHESIZED DIGIT
-    norm_parens_9 = 0x247C    # PARENTHESIZED DIGIT
-    norm_parens_20 = 0x2487   # PARENTHESIZED DIGIT
+    norm_parens_1 = 0x2472    # PARENTHESIZED DIGIT
+    norm_parens_9 = 0x247A    # PARENTHESIZED DIGIT
+    norm_parens_20 = 0x2485   # PARENTHESIZED DIGIT
     #
     norm_circled_A = 0x24B6  # CIRCLED DIGIT
     norm_circled_O = 0x24C4  # CIRCLED DIGIT
@@ -116,9 +117,9 @@ if True:
     norm_circled_a = 0x24D0  # CIRCLED DIGIT
     norm_circled_z = 0x24E9  # CIRCLED DIGIT
     norm_circled_0 = 0x24EA  # CIRCLED DIGIT
-    norm_circled_1 = 0x2460  # CIRCLED DIGIT
-    norm_circled_9 = 0x2468  # CIRCLED DIGIT
-    norm_circled_20 = 0x2473  # CIRCLED DIGIT
+    norm_circled_1 = 0x245E  # CIRCLED DIGIT
+    norm_circled_9 = 0x2466  # CIRCLED DIGIT
+    norm_circled_20 = 0x2471  # CIRCLED DIGIT
     norm_circled_sans_1 = 0x2780    # NEGATIVE CIRCLED SANS-SERIF DIGIT (dingbats)
     norm_circled_sans_9 = 0x2788    # NEGATIVE CIRCLED SANS-SERIF DIGIT (dingbats)
     norm_circled_sans_10 = 0x2789   # NEGATIVE CIRCLED SANS-SERIF DIGIT (dingbats)
@@ -690,7 +691,6 @@ def button(text: str) -> str:  # squred
     for c in text:
         ch = ord(c)
         if norm_base_A <= ch and ch <= norm_base_Z:
-            logg.info("Circ(A)")
             out.write(chr(norm_signum_A + (ch - norm_base_A)))
         elif norm_base_a <= ch and ch <= norm_base_z:
             out.write(chr(norm_button_A + (ch - norm_base_a)))
@@ -708,7 +708,6 @@ def circled(text: str) -> str:  # squred
     for c in text:
         ch = ord(c)
         if norm_base_A <= ch and ch <= norm_base_Z:
-            logg.info("Circ(A)")
             out.write(chr(norm_circled_A + (ch - norm_base_A)))
         elif norm_base_a <= ch and ch <= norm_base_z:
             out.write(chr(norm_circled_a + (ch - norm_base_a)))
@@ -722,19 +721,17 @@ def circled(text: str) -> str:  # squred
 
 def parens(text: str) -> str:  # squred
     # most fonts have that incomplete - only lowercase and digts are common
-    logg.info("Circ")
     out = StringIO()
     for c in text:
         ch = ord(c)
         if norm_base_A <= ch and ch <= norm_base_Z:
-            logg.info("Circ(A)")
             out.write(chr(norm_parens_A + (ch - norm_base_A)))
         elif norm_base_a <= ch and ch <= norm_base_z:
             out.write(chr(norm_parens_a + (ch - norm_base_a)))
         elif norm_base_0+1 <= ch and ch <= norm_base_9:
             out.write(chr(norm_parens_1 + (ch - norm_base_0+1)))
         elif norm_base_0 == ch and ch:
-            out.write(chr(norm_parens_O))
+            out.write(chr(norm_parens_o))
         else:
             out.write(c)
     return out.getvalue()
