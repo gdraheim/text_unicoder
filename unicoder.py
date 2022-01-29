@@ -101,6 +101,53 @@ if True:
     norm_mono_z = 0x1D6A3
     norm_mono_0 = 0x1D7F6
     norm_mono_9 = 0x1D7FF
+    norm_parens_A = 0x1F110   # PARENTHESIZED CAPITAL
+    norm_parens_O = 0x1F11E   # PARENTHESIZED CAPITAL
+    norm_parens_Z = 0x1F129   # PARENTHESIZED CAPITAL
+    norm_parens_a = 0x249C    # PARENTHESIZED SMALL
+    norm_parens_z = 0x24B5    # PARENTHESIZED SMALL
+    norm_parens_1 = 0x2474    # PARENTHESIZED DIGIT
+    norm_parens_9 = 0x247C    # PARENTHESIZED DIGIT
+    norm_parens_20 = 0x2487   # PARENTHESIZED DIGIT
+    #
+    norm_circled_A = 0x24B6  # CIRCLED DIGIT
+    norm_circled_O = 0x24C4  # CIRCLED DIGIT
+    norm_circled_Z = 0x24CF  # CIRCLED DIGIT
+    norm_circled_a = 0x24D0  # CIRCLED DIGIT
+    norm_circled_z = 0x24E9  # CIRCLED DIGIT
+    norm_circled_0 = 0x24EA  # CIRCLED DIGIT
+    norm_circled_1 = 0x2460  # CIRCLED DIGIT
+    norm_circled_9 = 0x2468  # CIRCLED DIGIT
+    norm_circled_20 = 0x2473  # CIRCLED DIGIT
+    norm_circled_sans_1 = 0x2780    # NEGATIVE CIRCLED SANS-SERIF DIGIT (dingbats)
+    norm_circled_sans_9 = 0x2788    # NEGATIVE CIRCLED SANS-SERIF DIGIT (dingbats)
+    norm_circled_sans_10 = 0x2789   # NEGATIVE CIRCLED SANS-SERIF DIGIT (dingbats)
+    #
+    norm_button_A = 0x1F150  # NEGATIVE CIRCLED CAPITAL
+    norm_button_O = 0x1F15E  # NEGATIVE CIRCLED CAPITAL
+    norm_button_Z = 0x1F169  # NEGATIVE CIRCLED CAPITAL
+    norm_button_1 = 0x2776   # NEGATIVE CIRCLED DIGIT (dingbats)
+    norm_button_9 = 0x277E   # NEGATIVE CIRCLED DIGIT (dingbats)
+    norm_button_10 = 0x277F   # NEGATIVE CIRCLED DIGIT (dingbats)
+    norm_button_11 = 0x24EB   # NEGATIVE CIRCLED DIGIT
+    norm_button_20 = 0x24F4   # NEGATIVE CIRCLED DIGIT
+    norm_button_0 = 0x24FF   # NEGATIVE CIRCLED DIGIT
+    norm_button_sans_1 = 0x278A   # NEGATIVE CIRCLED SANS-SERIF DIGIT (dingbats)
+    norm_button_sans_9 = 0x2792   # NEGATIVE CIRCLED SANS-SERIF DIGIT (dingbats)
+    norm_button_sans_10 = 0x2793   # NEGATIVE CIRCLED SANS-SERIF DIGIT (dingbats)
+    norm_signum_A = 0x1F170  # NEGATIVE SQUARED CAPITAL
+    norm_signum_O = 0x1F17E  # NEGATIVE SQUARED CAPITAL
+    norm_signum_Z = 0x1F189  # NEGATIVE SQUARED CAPITAL
+    #
+    norm_dbutton_1 = 0x24F5   # DOUBLE CIRCLED DIGIT (dingbats)
+    norm_dbutton_9 = 0x24FE   # DOUBLE CIRCLED DIGIT (dingbats)
+    norm_squared_A = 0x1F130  # SQUARED CAPITAL
+    norm_squared_O = 0x1F13E  # SQUARED CAPITAL
+    norm_squared_Z = 0x1F149  # SQUARED CAPITAL
+    norm_dice_1 = 0x2680
+    norm_dice_6 = 0x2685
+    norm_regional_A = 0x1F1E6  # REGIONAL INDICATOR 
+    norm_regional_Z = 0x1F1FF  # REGIONAL INDICATOR 
     #
     norm_greek_A = 0x391
     norm_greek_O = 0x3A9
@@ -637,6 +684,60 @@ def double(text: str) -> str:  # gothic, blackletter
             out.write(c)
     return out.getvalue()
 
+def button(text: str) -> str:  # squred
+    logg.info("Circ")
+    out = StringIO()
+    for c in text:
+        ch = ord(c)
+        if norm_base_A <= ch and ch <= norm_base_Z:
+            logg.info("Circ(A)")
+            out.write(chr(norm_signum_A + (ch - norm_base_A)))
+        elif norm_base_a <= ch and ch <= norm_base_z:
+            out.write(chr(norm_button_A + (ch - norm_base_a)))
+        elif norm_base_0+1 <= ch and ch <= norm_base_9:
+            out.write(chr(norm_button_1 + (ch - norm_base_0+1)))
+        elif norm_base_0 == ch and ch:
+            out.write(chr(norm_button_0))
+        else:
+            out.write(c)
+    return out.getvalue()
+
+def circled(text: str) -> str:  # squred
+    logg.info("Circ")
+    out = StringIO()
+    for c in text:
+        ch = ord(c)
+        if norm_base_A <= ch and ch <= norm_base_Z:
+            logg.info("Circ(A)")
+            out.write(chr(norm_circled_A + (ch - norm_base_A)))
+        elif norm_base_a <= ch and ch <= norm_base_z:
+            out.write(chr(norm_circled_a + (ch - norm_base_a)))
+        elif norm_base_0+1 <= ch and ch <= norm_base_9:
+            out.write(chr(norm_circled_1 + (ch - norm_base_0+1)))
+        elif norm_base_0 == ch and ch:
+            out.write(chr(norm_circled_0))
+        else:
+            out.write(c)
+    return out.getvalue()
+
+def parens(text: str) -> str:  # squred
+    logg.info("Circ")
+    out = StringIO()
+    for c in text:
+        ch = ord(c)
+        if norm_base_A <= ch and ch <= norm_base_Z:
+            logg.info("Circ(A)")
+            out.write(chr(norm_parens_A + (ch - norm_base_A)))
+        elif norm_base_a <= ch and ch <= norm_base_z:
+            out.write(chr(norm_parens_a + (ch - norm_base_a)))
+        elif norm_base_0+1 <= ch and ch <= norm_base_9:
+            out.write(chr(norm_parens_1 + (ch - norm_base_0+1)))
+        elif norm_base_0 == ch and ch:
+            out.write(chr(norm_parens_O))
+        else:
+            out.write(c)
+    return out.getvalue()
+
 def courier(text: str) -> str:  # gothic, blackletter
     out = StringIO()
     for c in text:
@@ -846,6 +947,12 @@ def convert(cmd: str, text: str) -> str:
         text = nobrspace(text)
     if "thin" in cmd or "value" in cmd:
         text = thinspace(text)
+    if "button" in cmd or "button" in cmd:
+        text = button(text)
+    if "circ" in cmd or "circled" in cmd:
+        text = circled(text)
+    if "parens" in cmd or "parent" in cmd:
+        text = parens(text)
     if "frac" in cmd or "value" in cmd:
         text = fractions(text)
     if "doub" in cmd or "wide" in cmd:
