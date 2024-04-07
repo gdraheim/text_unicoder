@@ -25,9 +25,16 @@ Examples:
     unicoder.py value 15 1/4 km/h
     unicoder.py thin 15 1/4 km/h
     unicoder.py nobr 15 1/4 km/h
+    unicoder.py power 15^3
+    unicoder.py index x_1
+    unicoder.py math X_1^3 +1/4
+    unicoder.py back answer
+    unicoder.py down answer
+    unicoder.py flip answer
 
 This script helps to bold or slanted text to various social media platforms.
 The nobr thin fract parts are particularly useful for Wikipedia.
+The flip or turn allows to provide a pun on a text.
 
 ### RESULT
 
@@ -53,6 +60,12 @@ often in the field of mathematics. The sans and mono are rarely used however.
     15¼ km/h
     15 1/4 km/h
     15 1/4 km/h
+    15³
+    x₁
+    Ξ₁³ +¼
+    rewsna
+    ɐusʍǝɹ
+    ɹǝʍsuɐ
 
 ### TESTSUITE
 
