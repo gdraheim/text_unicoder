@@ -721,6 +721,9 @@ def backlines(text: str) -> str:  # lines right-left inversed
     out.write(line.getvalue()[::-1])
     return out.getvalue()
 
+def turnlines(text: str):
+    return turned(backlines(text))
+
 norm_script__B = 0x212C
 norm_script__E = 0x2130
 norm_script__F = 0x2131
@@ -1088,12 +1091,15 @@ def convert(cmd: str, text: str) -> str:
         text = double(text)
     if "caps" in cmd or "init" in cmd:
         text = initial(text)
-    if "turn" in cmd or "ambi" in cmd:
-        text = turned(backlines(text))
-    if "flip" in cmd or "down" in cmd:
+    if "turned" in cmd or "down" in cmd:
         text = turned(text)
+    if "flip" in cmd or "ambi" in cmd or "turnlines" in cmd:
+        text = turnlines(text) # turned(backlines(text))
     if "back" in cmd or "swap" in cmd:
         text = backlines(text)
+    if "turn" in cmd and "turned" not in cmd and "turnlines" not in cmd:
+        logg.warning("use 'flip' to turnlines")
+        text = turned(backlines(text))
     if "rune" in cmd or "futark" in cmd:
         text = rune(text)
     if "greek" in cmd or "math" in cmd:
@@ -1130,6 +1136,7 @@ def helpinfo() -> str:
      *thin* *value*   using thin nobr spaces
      *fract* *vect*   convert fractional values
      *rune* *futark*  transliterate to runic script
+     *turn* *ambi*    turned (upside-down and reversed)
     some combinations provide different codepoints:
       italboldbase
       italgreek
