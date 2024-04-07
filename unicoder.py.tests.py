@@ -1380,6 +1380,11 @@ class UnicoderTest(unittest.TestCase):
         uni = unicoder.convert("fract", txt)
         self.assertEqual(uni, "go 15⅘ km/h more")
         self.assertNotEqual(uni, txt)
+    def test_990_math(self) -> None:
+        txt = "A_1^2 + 1/4"
+        uni = unicoder.convert("math", txt)
+        self.assertEqual(uni, "Α₁² +¼")
+        self.assertNotEqual(uni, txt)
 
 
 if __name__ == "__main__":

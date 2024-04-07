@@ -1263,6 +1263,8 @@ def convert(cmd: str, text: str) -> str:
         text = power(text)
     if "index" in cmd or "idx" in cmd:
         text = indexed(text)
+    if "math" in cmd:
+        text = indexed(power(fractions(nobrspace(text))))
     if "doub" in cmd or "wide" in cmd:
         text = doubled(text)
     if "caps" in cmd or "init" in cmd:
@@ -1316,6 +1318,7 @@ def helpinfo() -> str:
      *super* *above*  convert numbers to superscript (and +/-)
      *power* *dim*    convert numbers after ^ to superscript
      *index* *idx*    convert numbers after _ to subscript
+     *math*           nobr+frac+power+index
      *turned* *down*  turn each character (upside-down)
      *swap* *back*    reverse each line
      *flip* *ambi*    turned (upside-down and reversed)
