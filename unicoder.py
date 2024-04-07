@@ -199,6 +199,55 @@ if True:
     norm_nobr_space = 0x00A0
     norm_thin_space = 0x202F
     norm_numm_space = 0x2007
+    norm_turned_a = 0x0250
+    norm_turned_b = ord('q')
+    norm_turned_c = 0x0254
+    norm_turned_d = ord('p')
+    norm_turned_e = 0x01DD
+    norm_turned_f = 0x025F
+    norm_turned_g = 0x1D77 # 0x0183
+    norm_turned_h = 0x0265
+    norm_turned_i = 0x1D09 # 0x0131
+    norm_turned_j = 0x027E
+    norm_turned_k = 0x029E
+    norm_turned_l = ord('l')
+    norm_turned_m = 0x026F
+    norm_turned_n = ord('u')
+    norm_turned_o = ord('o')
+    norm_turned_p = ord('d')
+    norm_turned_q = ord('b')
+    norm_turned_r = 0x0279
+    norm_turned_s = ord('s')
+    norm_turned_t = 0x0287
+    norm_turned_u = ord('n')
+    norm_turned_v = 0x028C
+    norm_turned_w = 0x028D
+    norm_turned_x = ord('x')
+    norm_turned_y = 0x028E
+    norm_turned_z = ord('z')
+    norm_turned_amp = 0x214B
+    norm_turned_dot = 0x02D9
+    norm_turned_comma = 0x02BB
+    norm_turned_bang = 0x00A1
+    norm_turned_question = 0x00BF
+    norm_turned_A = 0x2200
+    norm_turned_C = 0x0186
+    norm_turned_E = 0x018E
+    norm_turned_F = 0x2132
+    norm_turned_G = 0x2141 # 0x05E4
+    norm_turned_J = 0x017F
+    norm_turned_M = 0x019C
+    norm_turned_L = 0x2142
+    norm_turned_R = 0x1D1A
+    norm_turned_T = 0xA7B1 # 0x2534
+    norm_turned_U = 0x2229
+    norm_turned_V = 0x039B
+    norm_turned_W = ord('M')
+    norm_turned_Y = 0x2144
+    norm_turned_1 = 0x21C2
+    norm_turned_3 = 0x0190
+    norm_turned_6 = ord('9')
+    norm_turned_9 = ord('6')
 
 def nobrspace(text: str) -> str:
     """replace base space by thin nobreak space """
@@ -590,6 +639,74 @@ def fraktur(text: str) -> str:  # gothic, blackletter
             out.write(c)
     return out.getvalue()
 
+norm_turned_encode: Dict[str, int] = {
+    'a': norm_turned_a,
+    'b': norm_turned_b,
+    'c': norm_turned_c,
+    'd': norm_turned_d,
+    'e': norm_turned_e,
+    'f': norm_turned_f,
+    'g': norm_turned_g,
+    'h': norm_turned_h,
+    'i': norm_turned_i,
+    'j': norm_turned_j,
+    'k': norm_turned_k,
+    'l': norm_turned_l,
+    'm': norm_turned_m,
+    'n': norm_turned_n,
+    'p': norm_turned_p,
+    'q': norm_turned_q,
+    'r': norm_turned_r,
+    't': norm_turned_t,
+    'u': norm_turned_u,
+    'v': norm_turned_v,
+    'w': norm_turned_w,
+    'y': norm_turned_y,
+    '&': norm_turned_amp,
+    ',': norm_turned_comma,
+    '.': norm_turned_dot,
+    '!': norm_turned_bang,
+    '?': norm_turned_question,
+    'A': norm_turned_A,
+    'C': norm_turned_C,
+    'E': norm_turned_E,
+    'F': norm_turned_F,
+    'G': norm_turned_G,
+    'J': norm_turned_J,
+    'L': norm_turned_L,
+    'M': norm_turned_M,
+    'P': ord('d'),
+    'R': norm_turned_R,
+    'T': norm_turned_T,
+    'U': norm_turned_U,
+    'V': norm_turned_V,
+    'W': norm_turned_W,
+    'Y': norm_turned_Y,
+    }
+
+def turned(text: str) -> str:  # characters flipped upside down
+    out = StringIO()
+    for c in text:
+        ch = ord(c)
+        if c in norm_turned_encode:
+            out.write(chr(norm_turned_encode[c]))
+        else:
+            out.write(c)
+    return out.getvalue()
+
+def backlines(text: str) -> str:  # lines right-left inversed
+    out = StringIO()
+    line = StringIO()
+    for c in text:
+        if c in '\r\n\f':
+            out.write(line.getvalue()[::-1])
+            out.write(c)
+            line = StringIO()
+        else:
+            line.write(c)
+    out.write(line.getvalue()[::-1])
+    return out.getvalue()
+
 norm_script__B = 0x212C
 norm_script__E = 0x2130
 norm_script__F = 0x2131
@@ -957,6 +1074,12 @@ def convert(cmd: str, text: str) -> str:
         text = double(text)
     if "caps" in cmd or "init" in cmd:
         text = initial(text)
+    if "turn" in cmd or "ambi" in cmd:
+        text = turned(backlines(text))
+    if "flip" in cmd or "down" in cmd:
+        text = turned(text)
+    if "back" in cmd or "swap" in cmd:
+        text = backlines(text)
     if "rune" in cmd or "futark" in cmd:
         text = rune(text)
     if "greek" in cmd or "math" in cmd:
