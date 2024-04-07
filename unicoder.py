@@ -230,7 +230,7 @@ if True:
     norm_turned_comma = 0x02BB
     norm_turned_bang = 0x00A1
     norm_turned_question = 0x00BF
-    norm_turned_A = 0x2200
+    norm_turned_A = 0x2200 # 0x2C6F
     norm_turned_C = 0x0186
     norm_turned_E = 0x018E
     norm_turned_F = 0x2132
@@ -248,6 +248,13 @@ if True:
     norm_turned_3 = 0x0190
     norm_turned_6 = ord('9')
     norm_turned_9 = ord('6')
+    norm_turned_ue = 0x1E49 # n with under line
+    norm_turned_UE = 0x1E4B # n with under hacek
+    norm_turned_AE = 0x1E7E # V with ring under
+    norm_turned_OE = 0x1ECC # O with dot under
+    norm_turned_ae = 0x1D02 # ae turned
+    norm_turned_oe = 0x1ECD # o with dot under # 0x1D14 # oe turned
+    norm_turned_sz = 0x00FE # thorn # 0x025B # open e # 0x0D93 # open e with retroflex
 
 def nobrspace(text: str) -> str:
     """replace base space by thin nobreak space """
@@ -682,6 +689,13 @@ norm_turned_encode: Dict[str, int] = {
     'V': norm_turned_V,
     'W': norm_turned_W,
     'Y': norm_turned_Y,
+    chr(0xE4): norm_turned_ae,
+    chr(0xF6): norm_turned_oe,
+    chr(0xFC): norm_turned_ue,
+    chr(0xC4): norm_turned_AE,
+    chr(0xD6): norm_turned_OE,
+    chr(0xDC): norm_turned_UE,
+    chr(0xDF): norm_turned_sz,
     }
 
 def turned(text: str) -> str:  # characters flipped upside down
