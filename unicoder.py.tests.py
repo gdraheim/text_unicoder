@@ -10,7 +10,7 @@ try:
     from . import unicoder # mypy
 except ImportError:
     sys.path.insert(0, ".")
-    import unicoder # unittest
+    import unicoder # unittest # type: ignore[no-redef]
 
 logg = logging.getLogger("TEST")
 
