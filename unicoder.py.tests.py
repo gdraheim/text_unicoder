@@ -9,6 +9,7 @@ from fnmatch import fnmatchcase as fnmatch
 try:
     from . import unicoder # mypy
 except ImportError:
+    sys.path.insert(0, ".")
     import unicoder # unittest
 
 logg = logging.getLogger("TEST")
@@ -481,6 +482,82 @@ class UnicoderTest(unittest.TestCase):
     def test_363_norm_initial(self) -> None:
         uni = unicoder.initial("Say Hello world.\nYes, I will do.")
         self.assertEqual(uni, "𝕊ay Hello world.\n𝕐es, I will do.")
+
+
+
+    def test_370_norm_back(self) -> None:
+        uni = unicoder.convert("back", ":abcxyzABXY\nmnoPQ")
+        self.assertEqual(uni, "YXBAzyxcba:\nQPonm")
+    def test_371_norm_back(self) -> None:
+        uni = unicoder.convert("swap", ":abcxyzABXY\nmnoPQ")
+        self.assertEqual(uni, "YXBAzyxcba:\nQPonm")
+    def test_372_norm_back(self) -> None:
+        uni = unicoder.convert("back", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        self.assertEqual(uni, "ZYXWVUTSRQPONMLKJIHGFEDCBA:")
+    def test_373_norm_back(self) -> None:
+        uni = unicoder.convert("swap", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        self.assertEqual(uni, "ZYXWVUTSRQPONMLKJIHGFEDCBA:")
+    def test_374_norm_back(self) -> None:
+        uni = unicoder.convert("back", base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, "zyxwvutsrqponmlkjihgfedcba:")
+    def test_375_norm_back(self) -> None:
+        uni = unicoder.convert("swap", base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, "zyxwvutsrqponmlkjihgfedcba:")
+    def test_376_norm_back(self) -> None:
+        uni = unicoder.backlines(base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        self.assertEqual(uni, "ZYXWVUTSRQPONMLKJIHGFEDCBA:")
+    def test_377_norm_back(self) -> None:
+        uni = unicoder.backlines(base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, "zyxwvutsrqponmlkjihgfedcba:")
+    def test_380_norm_turned(self) -> None:
+        uni = unicoder.convert("turned", ":abcxyzABXY\nmnoPQ")
+        self.assertEqual(uni, ":ɐqɔxʎz∀BX⅄\nɯuodQ")
+    def test_381_norm_turned(self) -> None:
+        uni = unicoder.convert("down", ":abcxyzABXY\nmnoPQ")
+        self.assertEqual(uni, ":ɐqɔxʎz∀BX⅄\nɯuodQ")
+    def test_382_norm_turned(self) -> None:
+        uni = unicoder.convert("turned", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        self.assertEqual(uni, ":∀BƆDƎℲ⅁HIſK⅂ƜNOdQᴚSꞱ∩ΛMX⅄Z")
+    def test_383_norm_turned(self) -> None:
+        uni = unicoder.convert("down", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        self.assertEqual(uni, ":∀BƆDƎℲ⅁HIſK⅂ƜNOdQᴚSꞱ∩ΛMX⅄Z")
+    def test_384_norm_turned(self) -> None:
+        uni = unicoder.convert("turned", base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, ":ɐqɔpǝɟᵷɥᴉɾʞlɯuodbɹsʇnʌʍxʎz")
+    def test_385_norm_turned(self) -> None:
+        uni = unicoder.convert("down", base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, ":ɐqɔpǝɟᵷɥᴉɾʞlɯuodbɹsʇnʌʍxʎz")
+    def test_386_norm_turned(self) -> None:
+        uni = unicoder.turned(base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        self.assertEqual(uni, ":∀BƆDƎℲ⅁HIſK⅂ƜNOdQᴚSꞱ∩ΛMX⅄Z")
+    def test_387_norm_turned(self) -> None:
+        uni = unicoder.turned(base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, ":ɐqɔpǝɟᵷɥᴉɾʞlɯuodbɹsʇnʌʍxʎz")
+    def test_390_norm_flip(self) -> None:
+        uni = unicoder.convert("flip", ":abcxyzABXY\nmnoPQ")
+        self.assertEqual(uni, "⅄XB∀zʎxɔqɐ:\nQdouɯ")
+    def test_391_norm_flip(self) -> None:
+        uni = unicoder.convert("ambi", ":abcxyzABXY\nmnoPQ")
+        self.assertEqual(uni, "⅄XB∀zʎxɔqɐ:\nQdouɯ")
+    def test_392_norm_flip(self) -> None:
+        uni = unicoder.convert("flip", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        self.assertEqual(uni, "Z⅄XMΛ∩ꞱSᴚQdONƜ⅂KſIH⅁ℲƎDƆB∀:")
+    def test_393_norm_flip(self) -> None:
+        uni = unicoder.convert("ambi", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        self.assertEqual(uni, "Z⅄XMΛ∩ꞱSᴚQdONƜ⅂KſIH⅁ℲƎDƆB∀:")
+    def test_394_norm_flip(self) -> None:
+        uni = unicoder.convert("flip", base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, "zʎxʍʌnʇsɹbdouɯlʞɾᴉɥᵷɟǝpɔqɐ:")
+    def test_395_norm_flip(self) -> None:
+        uni = unicoder.convert("ambi", base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, "zʎxʍʌnʇsɹbdouɯlʞɾᴉɥᵷɟǝpɔqɐ:")
+    def test_396_norm_flip(self) -> None:
+        uni = unicoder.turnlines(base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        self.assertEqual(uni, "Z⅄XMΛ∩ꞱSᴚQdONƜ⅂KſIH⅁ℲƎDƆB∀:")
+    def test_397_norm_flip(self) -> None:
+        uni = unicoder.turnlines(base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, "zʎxʍʌnʇsɹbdouɯlʞɾᴉɥᵷɟǝpɔqɐ:")
+
     #
     def test_400_norm_sans(self) -> None:
         uni = unicoder.convert("fix", base_abcdefghijklmnopqrstuvwxyz)
