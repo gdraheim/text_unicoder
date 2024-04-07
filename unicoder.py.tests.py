@@ -6,7 +6,10 @@ import unittest
 import logging
 from fnmatch import fnmatchcase as fnmatch
 
-from . import unicoder
+try:
+    from . import unicoder # mypy
+except ImportError:
+    import unicoder # unittest
 
 logg = logging.getLogger("TEST")
 
