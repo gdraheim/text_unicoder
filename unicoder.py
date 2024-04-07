@@ -971,7 +971,7 @@ norm_double_upper: Dict[int, int] = {
     norm_double__R: ord('R'),
     norm_double__Z: ord('Z')}
 
-def double(text: str) -> str:  # gothic, blackletter
+def doubled(text: str) -> str:  # gothic, blackletter
     out = StringIO()
     for c in text:
         ch = ord(c)
@@ -1058,7 +1058,7 @@ def initial(text: str) -> str:
     for c in text:
         ch = ord(c)
         if newline and norm_base_A <= ch and ch <= norm_base_Z:
-            out.write(double(c))
+            out.write(doubled(c))
             newline = False
         else:
             if c in "\r\n":
@@ -1264,7 +1264,7 @@ def convert(cmd: str, text: str) -> str:
     if "index" in cmd or "idx" in cmd:
         text = indexed(text)
     if "doub" in cmd or "wide" in cmd:
-        text = double(text)
+        text = doubled(text)
     if "caps" in cmd or "init" in cmd:
         text = initial(text)
     if "turned" in cmd or "down" in cmd:
