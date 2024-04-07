@@ -85,6 +85,15 @@ build:
 	: $(TWINE) upload dist/*
 
 # ------------------------------------------------------------
+PIP3=pip3
+install:
+	$(MAKE) setup.py
+	trap "rm -v setup.py" SIGINT SIGTERM ERR EXIT ; \
+	$(PIP3) install .
+uninstall:
+	$(PIP3) uninstall -y `sed -e '/name *=/!d' -e 's/name *= *//' setup.cfg`
+
+# ------------------------------------------------------------
 
 mypy:
 	zypper install -y mypy
@@ -100,7 +109,7 @@ type.r:
 	$(MYPY) $(MYPY_STRICT) unicoder.py
 	- rm -rf .mypy_cache
 type.t:
-	$(MYPY) $(MYPY_STRICT) unicoder.py.tests.py
+	$(MYPY) $(MYPY_STRICT) unicoder.py.tests.py --ignore-missing-imports --exclude=build
 	- rm -rf .mypy_cache
 
 AUTOPEP8=autopep8
