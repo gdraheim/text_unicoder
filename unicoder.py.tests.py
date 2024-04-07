@@ -1142,6 +1142,118 @@ class UnicoderTest(unittest.TestCase):
         uni = unicoder.convert("1+", txt)
         self.assertEqual(uni, "1+ 15 km/h more")
         self.assertNotEqual(uni, txt)
+    def test_850_superscript(self) -> None:
+        txt = "+-0123456789"
+        uni = unicoder.convert("super", txt)
+        self.assertEqual(uni, "⁺⁻⁰¹²³⁴⁵⁶⁷⁸⁹")
+        self.assertNotEqual(uni, txt)
+    def test_851_superscript(self) -> None:
+        txt = "+-0123456789"
+        uni = unicoder.superscript(txt)
+        self.assertEqual(uni, "⁺⁻⁰¹²³⁴⁵⁶⁷⁸⁹")
+        self.assertNotEqual(uni, txt)
+    def test_854_superscript(self) -> None:
+        txt = "(-20)(X)"
+        uni = unicoder.convert("super", txt)
+        self.assertEqual(uni, "⁽⁻²⁰⁾(X)")
+        self.assertNotEqual(uni, txt)
+    def test_855_superscript(self) -> None:
+        txt = "(-20)(X)"
+        uni = unicoder.superscript(txt)
+        self.assertEqual(uni, "⁽⁻²⁰⁾(X)")
+        self.assertNotEqual(uni, txt)
+    def test_860_power(self) -> None:
+        txt = "+-0123456789"
+        uni = unicoder.convert("power", txt)
+        self.assertEqual(uni, txt)
+    def test_861_power(self) -> None:
+        txt = "+-0123456789"
+        uni = unicoder.power(txt)
+        self.assertEqual(uni, txt)
+    def test_862_power(self) -> None:
+        txt = "^+-0123456789"
+        uni = unicoder.convert("power", txt)
+        self.assertEqual(uni, "⁺⁻⁰¹²³⁴⁵⁶⁷⁸⁹")
+        self.assertNotEqual(uni, txt)
+    def test_863_power(self) -> None:
+        txt = "^+-0123456789"
+        uni = unicoder.power(txt)
+        self.assertEqual(uni, "⁺⁻⁰¹²³⁴⁵⁶⁷⁸⁹")
+        self.assertNotEqual(uni, txt)
+    def test_864_power(self) -> None:
+        txt = "(-20)(X)"
+        uni = unicoder.convert("power", txt)
+        self.assertEqual(uni, txt)
+    def test_865_power(self) -> None:
+        txt = "(-20)(X)"
+        uni = unicoder.power(txt)
+        self.assertEqual(uni, txt)
+    def test_866_power(self) -> None:
+        txt = "^(-20) (X)"
+        uni = unicoder.convert("power", txt)
+        self.assertEqual(uni, "⁽⁻²⁰⁾ (X)")
+        self.assertNotEqual(uni, txt)
+    def test_867_power(self) -> None:
+        txt = "^(-20) (X)"
+        uni = unicoder.power(txt)
+        self.assertEqual(uni, "⁽⁻²⁰⁾ (X)")
+        self.assertNotEqual(uni, txt)
+    def test_870_subscript(self) -> None:
+        txt = "+-0123456789"
+        uni = unicoder.convert("subi", txt)
+        self.assertEqual(uni, "₊₋₀₁₂₃₄₅₆₇₈₉")
+        self.assertNotEqual(uni, txt)
+    def test_871_subscript(self) -> None:
+        txt = "+-0123456789"
+        uni = unicoder.subscript(txt)
+        self.assertEqual(uni, "₊₋₀₁₂₃₄₅₆₇₈₉")
+        self.assertNotEqual(uni, txt)
+    def test_874_subscript(self) -> None:
+        txt = "(-20)(X)"
+        uni = unicoder.convert("subi", txt)
+        self.assertEqual(uni, "₍₋₂₀₎(X)")
+        self.assertNotEqual(uni, txt)
+    def test_875_subscript(self) -> None:
+        txt = "(-20)(X)"
+        uni = unicoder.subscript(txt)
+        self.assertEqual(uni, "₍₋₂₀₎(X)")
+        self.assertNotEqual(uni, txt)
+    def test_880_index(self) -> None:
+        txt = "+-0123456789"
+        uni = unicoder.convert("index", txt)
+        self.assertEqual(uni, txt)
+    def test_881_index(self) -> None:
+        txt = "+-0123456789"
+        uni = unicoder.indexed(txt)
+        self.assertEqual(uni, txt)
+    def test_882_index(self) -> None:
+        txt = "_+-0123456789"
+        uni = unicoder.convert("index", txt)
+        self.assertEqual(uni, "₊₋₀₁₂₃₄₅₆₇₈₉")
+        self.assertNotEqual(uni, txt)
+    def test_883_index(self) -> None:
+        txt = "_+-0123456789"
+        uni = unicoder.indexed(txt)
+        self.assertEqual(uni, "₊₋₀₁₂₃₄₅₆₇₈₉")
+        self.assertNotEqual(uni, txt)
+    def test_884_index(self) -> None:
+        txt = "(-20)(X)"
+        uni = unicoder.convert("index", txt)
+        self.assertEqual(uni, txt)
+    def test_885_index(self) -> None:
+        txt = "(-20)(X)"
+        uni = unicoder.indexed(txt)
+        self.assertEqual(uni, txt)
+    def test_886_index(self) -> None:
+        txt = "_(-20) (X)"
+        uni = unicoder.convert("index", txt)
+        self.assertEqual(uni, "₍₋₂₀₎ (X)")
+        self.assertNotEqual(uni, txt)
+    def test_887_index(self) -> None:
+        txt = "_(-20) (X)"
+        uni = unicoder.indexed(txt)
+        self.assertEqual(uni, "₍₋₂₀₎ (X)")
+        self.assertNotEqual(uni, txt)
 
     def test_900_norm_1_8(self) -> None:
         txt = "15 1/8 km/h more"

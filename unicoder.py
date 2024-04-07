@@ -199,6 +199,47 @@ if True:
     norm_nobr_space = 0x00A0
     norm_thin_space = 0x202F
     norm_numm_space = 0x2007
+    #
+    norm_super_0 = 0x2070
+    norm_super_1 = 0x00B9
+    norm_super_2 = 0x00B2
+    norm_super_3 = 0x00B3
+    norm_super_4 = 0x2074
+    norm_super_5 = 0x2075
+    norm_super_6 = 0x2076
+    norm_super_7 = 0x2077
+    norm_super_8 = 0x2078
+    norm_super_9 = 0x2079
+    norm_super_plus = 0x207A
+    norm_super_minus = 0x207B
+    norm_super_leftparen = 0x207D
+    norm_super_rightparen = 0x0207E
+    norm_super_equals = 0x207C
+    norm_super_n = 0x207F
+    norm_sub_0 = 0x2080
+    norm_sub_1 = 0x2081
+    norm_sub_2 = 0x2082
+    norm_sub_3 = 0x2083
+    norm_sub_4 = 0x2084
+    norm_sub_5 = 0x2085
+    norm_sub_6 = 0x2086
+    norm_sub_7 = 0x2087
+    norm_sub_8 = 0x2088
+    norm_sub_9 = 0x2089
+    norm_sub_plus = 0x208A
+    norm_sub_minus = 0x208B
+    norm_sub_equals = 0x208C
+    norm_sub_leftparen = 0x208D
+    norm_sub_rightparen = 0x0208E
+    norm_sub_a =  0x2090
+    norm_sub_e =  0x2091
+    norm_sub_o =  0x2092
+    norm_sub_x =  0x2093
+    norm_sub_i =  0x1D62
+    norm_sub_r =  0x1D63
+    norm_sub_u =  0x1D64
+    norm_sub_v =  0x1D65
+    #
     norm_turned_a = 0x0250
     norm_turned_b = ord('q')
     norm_turned_c = 0x0254
@@ -373,6 +414,133 @@ def fractions(text: str) -> str:
                 out.write(space + item)
                 space = ""
     return out.getvalue()
+
+norm_super_numbers: Dict[str, int] = {
+    "0": norm_super_0,
+    "1": norm_super_1,
+    "2": norm_super_2,
+    "3": norm_super_3,
+    "4": norm_super_4,
+    "5": norm_super_5,
+    "6": norm_super_6,
+    "7": norm_super_7,
+    "8": norm_super_8,
+    "9": norm_super_9,
+    "+": norm_super_plus,
+    "-": norm_super_minus,
+}
+
+norm_super_before: Dict[str, int] = {
+    "=": norm_super_equals,
+    "(": norm_super_leftparen,
+}
+norm_super_after: Dict[str, int] = {
+    ")": norm_super_rightparen,
+    "n": norm_super_n,
+}
+
+def superscript(text: str) -> str:
+    out = StringIO()
+    for x, c in enumerate(text):
+        if c in norm_super_numbers:
+            out.write(chr(norm_super_numbers[c]))
+        elif c in norm_super_after and x > 0 and text[x-1] in norm_super_numbers:
+            out.write(chr(norm_super_after[c]))
+        elif c in norm_super_before and x+1 < len(text) and text[x+1] in norm_super_numbers:
+            out.write(chr(norm_super_before[c]))
+        else:
+            out.write(c)
+    return out.getvalue()
+
+norm_power_signs = "^"
+def power(text: str) -> str:
+    out = StringIO()
+    power = False
+    for x, c in enumerate(text):
+        if c in norm_power_signs and x+1 < len(text) and (text[x+1] in norm_super_numbers or text[x+1] in norm_super_before):
+            power = True
+            continue # drop the power sign
+        if power:
+            if c in norm_super_numbers:
+                out.write(chr(norm_super_numbers[c]))
+            elif c in norm_super_before:
+                out.write(chr(norm_super_before[c]))
+            elif c in norm_super_after:
+                out.write(chr(norm_super_after[c]))
+            else:
+                power = False
+                out.write(c)
+        else:
+            out.write(c)
+    return out.getvalue()
+
+norm_sub_numbers: Dict[str, int] = {
+    "0": norm_sub_0,
+    "1": norm_sub_1,
+    "2": norm_sub_2,
+    "3": norm_sub_3,
+    "4": norm_sub_4,
+    "5": norm_sub_5,
+    "6": norm_sub_6,
+    "7": norm_sub_7,
+    "8": norm_sub_8,
+    "9": norm_sub_9,
+    "+": norm_sub_plus,
+    "-": norm_sub_minus,
+}
+
+norm_sub_before: Dict[str, int] = {
+    "=": norm_sub_equals,
+    "(": norm_sub_leftparen,
+}
+norm_sub_after: Dict[str, int] = {
+    ")": norm_sub_rightparen,
+    "a": norm_sub_a,
+    "e": norm_sub_e,
+    "i": norm_sub_i,
+    "o": norm_sub_o,
+    "u": norm_sub_u,
+    "v": norm_sub_v,
+    "x": norm_sub_x,
+    "r": norm_sub_r,
+}
+
+def subscript(text: str) -> str:
+    out = StringIO()
+    for x, c in enumerate(text):
+        if c in norm_sub_numbers:
+            out.write(chr(norm_sub_numbers[c]))
+        elif c in norm_sub_after and x > 0 and text[x-1] in norm_sub_numbers:
+            out.write(chr(norm_sub_after[c]))
+        elif c in norm_sub_before and x+1 < len(text) and text[x+1] in norm_sub_numbers:
+            out.write(chr(norm_sub_before[c]))
+        else:
+            out.write(c)
+    return out.getvalue()
+
+norm_indexed_signs = "_"
+def indexed(text: str) -> str:
+    out = StringIO()
+    indexed = False
+    for x, c in enumerate(text):
+        if c in norm_indexed_signs and x+1 < len(text) and (text[x+1] in norm_sub_numbers or text[x+1] in norm_sub_before):
+            indexed = True
+            continue # drop the indexed sign
+        if indexed:
+            if c in norm_sub_numbers:
+                out.write(chr(norm_sub_numbers[c]))
+            elif c in norm_sub_before:
+                out.write(chr(norm_sub_before[c]))
+            elif c in norm_sub_after:
+                out.write(chr(norm_sub_after[c]))
+            else:
+                indexed = False
+                out.write(c)
+        else:
+            out.write(c)
+    return out.getvalue()
+
+
 
 norm_greek_upper: Dict[str, Tuple[int, ...]] = {
     "A": (0x391,),  # Alpha
@@ -721,7 +889,7 @@ def backlines(text: str) -> str:  # lines right-left inversed
     out.write(line.getvalue()[::-1])
     return out.getvalue()
 
-def turnlines(text: str):
+def turnlines(text: str) -> str:
     return turned(backlines(text))
 
 norm_script__B = 0x212C
@@ -1087,6 +1255,14 @@ def convert(cmd: str, text: str) -> str:
         text = parens(text)
     if "frac" in cmd or "value" in cmd:
         text = fractions(text)
+    if "subi" in cmd or "below" in cmd:
+        text = subscript(text)
+    if "super" in cmd or "above" in cmd:
+        text = superscript(text)
+    if "power" in cmd or "dim" in cmd:
+        text = power(text)
+    if "index" in cmd or "idx" in cmd:
+        text = indexed(text)
     if "doub" in cmd or "wide" in cmd:
         text = double(text)
     if "caps" in cmd or "init" in cmd:
@@ -1131,12 +1307,18 @@ def helpinfo() -> str:
      *frak* *black*   convert to math fraktur 
      *doub* *wide*    convert to math double stroke
      *cour* *type*    convert to math courier monospace
+     *rune* *futark*  transliterate to runic script
      *caps* *init*    initial uppercase char to double stroke
      *nobr* *word*    using base nobr spaces
      *thin* *value*   using thin nobr spaces
      *fract* *vect*   convert fractional values
-     *rune* *futark*  transliterate to runic script
-     *turn* *ambi*    turned (upside-down and reversed)
+     *subi* *below*   convert numbers to subscript (and +/-)
+     *super* *above*  convert numbers to superscript (and +/-)
+     *power* *dim*    convert numbers after ^ to superscript
+     *index* *idx*    convert numbers after _ to subscript
+     *turned* *down*  turn each character (upside-down)
+     *swap* *back*    reverse each line
+     *flip* *ambi*    turned (upside-down and reversed)
     some combinations provide different codepoints:
       italboldbase
       italgreek
