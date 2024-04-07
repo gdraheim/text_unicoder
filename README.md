@@ -1,8 +1,8 @@
-[![Style Check](https://github.com/gdraheim/unicoder/actions/workflows/stylecheck.yml/badge.svg?event=push)](https://github.com/gdraheim/unicoder/actions/workflows/stylecheck.yml)
-[![Type Check](https://github.com/gdraheim/unicoder/actions/workflows/typecheck.yml/badge.svg?event=push)](https://github.com/gdraheim/unicoder/actions/workflows/typecheck.yml)
-[![Unit Tests](https://github.com/gdraheim/unicoder/actions/workflows/unittests.yml/badge.svg?event=push)](https://github.com/gdraheim/unicoder/actions/workflows/unittests.yml)
-[![Code Coverage](https://img.shields.io/badge/311%20test-100%25%20coverage-brightgreen)](https://github.com/gdraheim/unicoder/blob/master/unicoder.py.tests.py)
-[![PyPI version](https://badge.fury.io/py/unicoder.svg)](https://pypi.org/project/unicoder/)
+[![Style Check](https://github.com/gdraheim/text-unicoder/actions/workflows/stylecheck.yml/badge.svg?event=push)](https://github.com/gdraheim/text-unicoder/actions/workflows/stylecheck.yml)
+[![Type Check](https://github.com/gdraheim/text-unicoder/actions/workflows/typecheck.yml/badge.svg?event=push)](https://github.com/gdraheim/text-unicoder/actions/workflows/typecheck.yml)
+[![Unit Tests](https://github.com/gdraheim/text-unicoder/actions/workflows/unittests.yml/badge.svg?event=push)](https://github.com/gdraheim/text-unicoder/actions/workflows/unittests.yml)
+[![Code Coverage](https://img.shields.io/badge/311%20test-100%25%20coverage-brightgreen)](https://github.com/gdraheim/text-unicoder/blob/master/unicoder.py.tests.py)
+[![PyPI version](https://badge.fury.io/py/text-unicoder.svg)](https://pypi.org/project/text-unicoder/)
 
 This script allows to convert ascii to unicode specials 
 including bold italic greek fraktur script.
@@ -34,7 +34,7 @@ Examples:
 
 This script helps to bold or slanted text to various social media platforms.
 The nobr thin fract parts are particularly useful for Wikipedia.
-The flip or turn allows to provide a pun on a text.
+The flip text (or turn text) allows to provide a pun on a question.
 
 ### RESULT
 
