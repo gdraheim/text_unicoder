@@ -1,7 +1,7 @@
 [![Style Check](https://github.com/gdraheim/text-unicoder/actions/workflows/stylecheck.yml/badge.svg?event=push)](https://github.com/gdraheim/text-unicoder/actions/workflows/stylecheck.yml)
 [![Type Check](https://github.com/gdraheim/text-unicoder/actions/workflows/typecheck.yml/badge.svg?event=push)](https://github.com/gdraheim/text-unicoder/actions/workflows/typecheck.yml)
 [![Unit Tests](https://github.com/gdraheim/text-unicoder/actions/workflows/unittests.yml/badge.svg?event=push)](https://github.com/gdraheim/text-unicoder/actions/workflows/unittests.yml)
-[![Code Coverage](https://img.shields.io/badge/311%20test-100%25%20coverage-brightgreen)](https://github.com/gdraheim/text-unicoder/blob/master/unicoder.py.tests.py)
+[![Code Coverage](https://img.shields.io/badge/400%20test-100%25%20coverage-brightgreen)](https://github.com/gdraheim/text-unicoder/blob/master/unicoder.py.tests.py)
 [![PyPI version](https://badge.fury.io/py/text-unicoder.svg)](https://pypi.org/project/text-unicoder/)
 
 This script allows to convert ascii to unicode specials 
