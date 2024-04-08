@@ -1207,6 +1207,11 @@ class UnicoderTest(unittest.TestCase):
         uni = unicoder.superscript(txt)
         self.assertEqual(uni, "⁽⁻²⁰⁾(X)")
         self.assertNotEqual(uni, txt)
+    def test_856_superscript(self) -> None:
+        txt = "-20n(X)"
+        uni = unicoder.superscript(txt)
+        self.assertEqual(uni, "⁻²⁰ⁿ(X)")
+        self.assertNotEqual(uni, txt)
     def test_860_power(self) -> None:
         txt = "+-0123456789"
         uni = unicoder.convert("power", txt)
