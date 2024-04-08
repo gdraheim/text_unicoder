@@ -79,6 +79,7 @@ For ubuntu you can check the latest Github workflows under
 * `make style`
 * `make check`
 * `make coverage` # it should be 100% now
+* update number of tests and coverage in README.md shields-badge
 * `make version` # or `make version FOR=tomorrow`
 * update long description in README.md
 * update short description in setup.cfg
