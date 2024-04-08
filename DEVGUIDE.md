@@ -78,7 +78,7 @@ For ubuntu you can check the latest Github workflows under
 * `make type`
 * `make style`
 * `make check`
-* `make version`
+* `make version` # or `make version FOR=tomorrow`
 * update long description in README.md
 * update short description in setup.cfg
 * `make install` 
