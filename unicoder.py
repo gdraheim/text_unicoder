@@ -4,7 +4,7 @@ from __future__ import print_function
 __copyright__ = "(C) 2021-2024 Guido U. Draheim, licensed under the APLv2"
 __version__ = "1.2.3152"
 
-from typing import List, Dict, Generator, Tuple
+from typing import List, Dict, Generator, Tuple, Optional
 from io import StringIO
 import sys
 import logging
@@ -456,10 +456,28 @@ norm_power_signs = "^"
 def power(text: str) -> str:
     out = StringIO()
     power = False
+    graec: Optional[str] = None
     for x, c in enumerate(text):
+        ch = ord(c)
+        if graec is not None:
+            if norm_base_a <= ch and ch <= norm_base_z:
+                graec += c
+                continue
+            if norm_base_A <= ch and ch <= norm_base_Z:
+                graec += c
+                continue
+        if graec:
+            out.write(greek(graec))
+            graec = ""
         if c in norm_power_signs and x + 1 < len(text) and (text[x + 1] in norm_super_numbers or text[x + 1] in norm_super_before):
             power = True
             continue  # drop the power sign
+        if c in norm_power_signs and x + 1 < len(text) and (norm_base_a <= ord(text[x + 1]) and ord(text[x + 1]) <= norm_base_z):
+            graec = ""  # graec += text[x+1] # in next loop
+            continue
+        if c in norm_power_signs and x + 1 < len(text) and (norm_base_A <= ord(text[x + 1]) and ord(text[x + 1]) <= norm_base_Z):
+            graec = ""  # graec += text[x+1] # in next loop
+            continue
         if power:
             if c in norm_super_numbers:
                 out.write(chr(norm_super_numbers[c]))
@@ -469,9 +487,18 @@ def power(text: str) -> str:
                 out.write(chr(norm_super_after[c]))
             else:
                 power = False
+                if norm_base_a <= ch and ch <= norm_base_z:
+                    graec = c
+                    continue
+                if norm_base_A <= ch and ch <= norm_base_Z:
+                    graec = c
+                    continue
                 out.write(c)
         else:
             out.write(c)
+    if graec:
+        out.write(greek(graec))
+        graec = ""
     return out.getvalue()
 
 norm_sub_numbers: Dict[str, int] = {
@@ -1358,7 +1385,7 @@ def convert(cmd: str, text: str) -> str:
         text = rune(text)
     if "viking" in cmd or "futo" in cmd or "futho" in cmd:
         text = viking(text)
-    if "greek" in cmd or "math" in cmd:
+    if "greek" in cmd or "graec" in cmd:
         text = greek(text)
     if "black" in cmd or "frak" in cmd:
         text = fraktur(text)
@@ -1383,7 +1410,7 @@ def helpinfo() -> str:
      *fat*  *bold*    convert to math fat symbols
      *ital* *name*    convert to math slanted symbols
      *round* *script* convert to math writing symbols
-     *greek* *math*   convert to math greek
+     *greek* *graec*  convert to math greek
      *frak* *black*   convert to math fraktur 
      *doub* *wide*    convert to math double stroke
      *cour* *type*    convert to math courier monospace
@@ -1395,7 +1422,7 @@ def helpinfo() -> str:
      *fract* *vect*   convert fractional values
      *subi* *below*   convert numbers to subscript (and +/-)
      *super* *above*  convert numbers to superscript (and +/-)
-     *power* *dim*    convert numbers after ^ to superscript
+     *power* *dim*    convert numbers after ^ to superscript (alpha to greek)
      *index* *idx*    convert numbers after _ to subscript
      *math*           nobr+frac+power+index
      *turned* *down*  turn each character (upside-down)

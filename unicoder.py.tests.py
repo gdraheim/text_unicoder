@@ -100,7 +100,7 @@ class UnicoderTest(unittest.TestCase):
         self.assertEqual(opt.text, "arg3")
     def test_051_helpinfo(self) -> None:
         text = unicoder.helpinfo()
-        self.assertIn("futark", text)
+        self.assertIn("futa", text)
         self.assertIn("italboldgreek", text)
     #
     def test_110_bold_base(self) -> None:
@@ -1093,19 +1093,43 @@ class UnicoderTest(unittest.TestCase):
     def test_707_norm_rune(self) -> None:
         uni = unicoder.rune(base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
         self.assertEqual(uni, ":ᚨᛒᚳᛞᛖᚠᚷᚺᛁᛡᚳᛚᛗᚾᛟᛈᚳᚱᛋᛏᚹᚹᛕᚳᛋᛇᛉ")
+    def test_710_norm_rune(self) -> None:
+        uni = unicoder.convert("fix", base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, base_abcdefghijklmnopqrstuvwxyz)
+    def test_711_norm_rune(self) -> None:
+        uni = unicoder.convert("viking", base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, ":ᚨᛒᚳᛏᛁᚠᚳᚺᛁᛇᚳᛚᛗᚾᚨᛒᚳᛉᛋᛏᚢᚢᚢᚳᛋᛇᛉ")
+    def test_712_norm_rune(self) -> None:
+        uni = unicoder.convert("futork", base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, ":ᚨᛒᚳᛏᛁᚠᚳᚺᛁᛇᚳᛚᛗᚾᚨᛒᚳᛉᛋᛏᚢᚢᚢᚳᛋᛇᛉ")
+    def test_713_norm_rune(self) -> None:
+        uni = unicoder.convert("viking", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        self.assertEqual(uni, ":ᚨᛒᚳᛏᛁᚠᚳᚺᛁᛇᚳᛚᛗᚾᚨᛒᚳᛉᛋᛏᚢᚢᚢᚳᛋᛇᛉ")
+    def test_714_norm_rune(self) -> None:
+        uni = unicoder.convert("futork", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        self.assertEqual(uni, ":ᚨᛒᚳᛏᛁᚠᚳᚺᛁᛇᚳᛚᛗᚾᚨᛒᚳᛉᛋᛏᚢᚢᚢᚳᛋᛇᛉ")
+    def test_715_norm_rune(self) -> None:
+        uni = unicoder.viking(base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, ":ᚨᛒᚳᛏᛁᚠᚳᚺᛁᛇᚳᛚᛗᚾᚨᛒᚳᛉᛋᛏᚢᚢᚢᚳᛋᛇᛉ")
+    def test_716_norm_rune(self) -> None:
+        uni = unicoder.viking(base_abcdefghijklmnopqrstuvwxyz)
+        self.assertEqual(uni, ":ᚨᛒᚳᛏᛁᚠᚳᚺᛁᛇᚳᛚᛗᚾᚨᛒᚳᛉᛋᛏᚢᚢᚢᚳᛋᛇᛉ")
+    def test_717_norm_rune(self) -> None:
+        uni = unicoder.viking(base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        self.assertEqual(uni, ":ᚨᛒᚳᛏᛁᚠᚳᚺᛁᛇᚳᛚᛗᚾᚨᛒᚳᛉᛋᛏᚢᚢᚢᚳᛋᛇᛉ")
     def test_741_norm_rune_quaengeln(self) -> None:
         uni = unicoder.rune(":quaengeln")
         self.assertEqual(uni, ":ᚳᚨᛖᛜᛖᛚᚾ")
     def test_742_norm_rune_quaengeln(self) -> None:
         uni = unicoder.rune(":QUAENGELN")
         self.assertEqual(uni, ":ᚳᚨᛖᛜᛖᛚᚾ")
-    def test_748_norm_rune_notfound(self) -> None:
+    def test_788_norm_rune_notfound(self) -> None:
         old = unicoder.norm_rune_lower
         unicoder.norm_rune_lower = unicoder.norm_greek_upper
         uni = unicoder.rune(":FOOBAR")
         unicoder.norm_rune_lower = old
         self.assertEqual(uni, ":foobar")
-    def test_749_norm_rune_notfound(self) -> None:
+    def test_789_norm_rune_notfound(self) -> None:
         old = unicoder.norm_rune_lower
         unicoder.norm_rune_lower = unicoder.norm_greek_upper
         uni = unicoder.rune(":foobar")
@@ -1198,58 +1222,68 @@ class UnicoderTest(unittest.TestCase):
         uni = unicoder.power(txt)
         self.assertEqual(uni, "⁽⁻²⁰⁾ (X)")
         self.assertNotEqual(uni, txt)
-    def test_870_subscript(self) -> None:
+    def test_877_power(self) -> None:
+        txt = "^(-20) (^X)"
+        uni = unicoder.power(txt)
+        self.assertEqual(uni, "⁽⁻²⁰⁾ (Ξ)")
+        self.assertNotEqual(uni, txt)
+    def test_878_power(self) -> None:
+        txt = "^(-20a) (^X)"
+        uni = unicoder.power(txt)
+        self.assertEqual(uni, "⁽⁻²⁰α) (Ξ)")
+        self.assertNotEqual(uni, txt)
+    def test_880_subscript(self) -> None:
         txt = "+-0123456789"
         uni = unicoder.convert("subi", txt)
         self.assertEqual(uni, "₊₋₀₁₂₃₄₅₆₇₈₉")
         self.assertNotEqual(uni, txt)
-    def test_871_subscript(self) -> None:
+    def test_881_subscript(self) -> None:
         txt = "+-0123456789"
         uni = unicoder.subscript(txt)
         self.assertEqual(uni, "₊₋₀₁₂₃₄₅₆₇₈₉")
         self.assertNotEqual(uni, txt)
-    def test_874_subscript(self) -> None:
+    def test_884_subscript(self) -> None:
         txt = "(-20)(X)"
         uni = unicoder.convert("subi", txt)
         self.assertEqual(uni, "₍₋₂₀₎(X)")
         self.assertNotEqual(uni, txt)
-    def test_875_subscript(self) -> None:
+    def test_885_subscript(self) -> None:
         txt = "(-20)(X)"
         uni = unicoder.subscript(txt)
         self.assertEqual(uni, "₍₋₂₀₎(X)")
         self.assertNotEqual(uni, txt)
-    def test_880_index(self) -> None:
+    def test_890_index(self) -> None:
         txt = "+-0123456789"
         uni = unicoder.convert("index", txt)
         self.assertEqual(uni, txt)
-    def test_881_index(self) -> None:
+    def test_891_index(self) -> None:
         txt = "+-0123456789"
         uni = unicoder.indexed(txt)
         self.assertEqual(uni, txt)
-    def test_882_index(self) -> None:
+    def test_892_index(self) -> None:
         txt = "_+-0123456789"
         uni = unicoder.convert("index", txt)
         self.assertEqual(uni, "₊₋₀₁₂₃₄₅₆₇₈₉")
         self.assertNotEqual(uni, txt)
-    def test_883_index(self) -> None:
+    def test_893_index(self) -> None:
         txt = "_+-0123456789"
         uni = unicoder.indexed(txt)
         self.assertEqual(uni, "₊₋₀₁₂₃₄₅₆₇₈₉")
         self.assertNotEqual(uni, txt)
-    def test_884_index(self) -> None:
+    def test_894_index(self) -> None:
         txt = "(-20)(X)"
         uni = unicoder.convert("index", txt)
         self.assertEqual(uni, txt)
-    def test_885_index(self) -> None:
+    def test_895_index(self) -> None:
         txt = "(-20)(X)"
         uni = unicoder.indexed(txt)
         self.assertEqual(uni, txt)
-    def test_886_index(self) -> None:
+    def test_896_index(self) -> None:
         txt = "_(-20) (X)"
         uni = unicoder.convert("index", txt)
         self.assertEqual(uni, "₍₋₂₀₎ (X)")
         self.assertNotEqual(uni, txt)
-    def test_887_index(self) -> None:
+    def test_897_index(self) -> None:
         txt = "_(-20) (X)"
         uni = unicoder.indexed(txt)
         self.assertEqual(uni, "₍₋₂₀₎ (X)")

@@ -62,7 +62,7 @@ often in the field of mathematics. The sans and mono are rarely used however.
     15 1/4 km/h
     15³
     x₁
-    Ξ₁³ +¼
+    X₁³ +¼
     rewsna
     ɐusʍǝɹ
     ɹǝʍsuɐ
