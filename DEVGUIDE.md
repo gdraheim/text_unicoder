@@ -78,13 +78,15 @@ For ubuntu you can check the latest Github workflows under
 * `make type`
 * `make style`
 * `make check`
+* `make coverage` # it should be 100% now
 * `make version` # or `make version FOR=tomorrow`
 * update long description in README.md
 * update short description in setup.cfg
 * `make install` 
 * `make uninstall`
 * `make build`
-* check github workflows to be okay
+* `git push` # if necessary
+* wait for github workflows to be okay
 * prepare a tmp.changes.txt 
 * `git tag -F tmp.changes.txt v1.x` to the version in setup.cfg
 * `git push --tags`
