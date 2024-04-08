@@ -882,13 +882,13 @@ class UnicoderTest(unittest.TestCase):
         uni = unicoder.convert("greek", base_abcdefghijklmnopqrstuvwxyz)
         self.assertEqual(uni, ":αβχδεφγηιικλμνοπκρστω∂ψξυζ")
     def test_602_norm_greek(self) -> None:
-        uni = unicoder.convert("math", base_abcdefghijklmnopqrstuvwxyz)
+        uni = unicoder.convert("graec", base_abcdefghijklmnopqrstuvwxyz)
         self.assertEqual(uni, ":αβχδεφγηιικλμνοπκρστω∂ψξυζ")
     def test_603_norm_greek(self) -> None:
         uni = unicoder.convert("greek", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
         self.assertEqual(uni, ":ΑΒΧΔΕΦΓΗΙΙΚΛΜΝΟΠΚΡΣΤΩ∇ΨΞΥΖ")
     def test_604_norm_greek(self) -> None:
-        uni = unicoder.convert("math", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        uni = unicoder.convert("graec", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
         self.assertEqual(uni, ":ΑΒΧΔΕΦΓΗΙΙΚΛΜΝΟΠΚΡΣΤΩ∇ΨΞΥΖ")
     def test_605_norm_greek(self) -> None:
         uni = unicoder.greek(base_abcdefghijklmnopqrstuvwxyz)
@@ -906,13 +906,13 @@ class UnicoderTest(unittest.TestCase):
         uni = unicoder.convert("boldgreek", base_abcdefghijklmnopqrstuvwxyz)
         self.assertEqual(uni, ":𝛂𝛃𝛘𝛅𝛆𝛗𝛄𝛈𝛊𝛊𝛋𝛌𝛍𝛎𝛐𝛑𝛋𝛒𝛔𝛕𝛚𝛛𝛙𝛏𝛖𝛇")
     def test_622_bold_greek(self) -> None:
-        uni = unicoder.convert("fatmath", base_abcdefghijklmnopqrstuvwxyz)
+        uni = unicoder.convert("fatgraec", base_abcdefghijklmnopqrstuvwxyz)
         self.assertEqual(uni, ":𝛂𝛃𝛘𝛅𝛆𝛗𝛄𝛈𝛊𝛊𝛋𝛌𝛍𝛎𝛐𝛑𝛋𝛒𝛔𝛕𝛚𝛛𝛙𝛏𝛖𝛇")
     def test_623_bold_greek(self) -> None:
         uni = unicoder.convert("boldgreek", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
         self.assertEqual(uni, ":𝚨𝚩𝚾𝚫𝚬𝚽𝚪𝚮𝚰𝚰𝚱𝚲𝚳𝚴𝚶𝚷𝚱𝚸𝚺𝚻𝛀𝛁𝚿𝚵𝚼𝚭")
     def test_624_bold_greek(self) -> None:
-        uni = unicoder.convert("fatmath", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        uni = unicoder.convert("fatgraec", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
         self.assertEqual(uni, ":𝚨𝚩𝚾𝚫𝚬𝚽𝚪𝚮𝚰𝚰𝚱𝚲𝚳𝚴𝚶𝚷𝚱𝚸𝚺𝚻𝛀𝛁𝚿𝚵𝚼𝚭")
     def test_625_bold_greek(self) -> None:
         uni = unicoder.bold(unicoder.greek(base_abcdefghijklmnopqrstuvwxyz))
@@ -930,13 +930,13 @@ class UnicoderTest(unittest.TestCase):
         uni = unicoder.convert("italgreek", base_abcdefghijklmnopqrstuvwxyz)
         self.assertEqual(uni, ":𝛼𝛽𝜒𝛿𝜀𝜑𝛾𝜂𝜄𝜄𝜅𝜆𝜇𝜈𝜊𝜋𝜅𝜌𝜎𝜏𝜔𝜕𝜓𝜉𝜐𝜁")
     def test_642_ital_greek(self) -> None:
-        uni = unicoder.convert("slantmath", base_abcdefghijklmnopqrstuvwxyz)
+        uni = unicoder.convert("slantgraec", base_abcdefghijklmnopqrstuvwxyz)
         self.assertEqual(uni, ":𝛼𝛽𝜒𝛿𝜀𝜑𝛾𝜂𝜄𝜄𝜅𝜆𝜇𝜈𝜊𝜋𝜅𝜌𝜎𝜏𝜔𝜕𝜓𝜉𝜐𝜁")
     def test_643_ital_greek(self) -> None:
         uni = unicoder.convert("italgreek", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
         self.assertEqual(uni, ":𝛢𝛣𝛸𝛥𝛦𝛷𝛤𝛨𝛪𝛪𝛫𝛬𝛭𝛮𝛰𝛱𝛫𝛲𝛴𝛵𝛺𝛻𝛹𝛯𝛶𝛧")
     def test_644_ital_greek(self) -> None:
-        uni = unicoder.convert("slantmath", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        uni = unicoder.convert("slantgraec", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
         self.assertEqual(uni, ":𝛢𝛣𝛸𝛥𝛦𝛷𝛤𝛨𝛪𝛪𝛫𝛬𝛭𝛮𝛰𝛱𝛫𝛲𝛴𝛵𝛺𝛻𝛹𝛯𝛶𝛧")
     def test_645_ital_greek(self) -> None:
         uni = unicoder.ital(unicoder.greek(base_abcdefghijklmnopqrstuvwxyz))
@@ -954,13 +954,13 @@ class UnicoderTest(unittest.TestCase):
         uni = unicoder.convert("bolditalgreek", base_abcdefghijklmnopqrstuvwxyz)
         self.assertEqual(uni, ":𝜶𝜷𝝌𝜹𝜺𝝋𝜸𝜼𝜾𝜾𝜿𝝀𝝁𝝂𝝄𝝅𝜿𝝆𝝈𝝉𝝎𝝏𝝍𝝃𝝊𝜻")
     def test_662_bold_ital_greek(self) -> None:
-        uni = unicoder.convert("fatslantmath", base_abcdefghijklmnopqrstuvwxyz)
+        uni = unicoder.convert("fatslantgraec", base_abcdefghijklmnopqrstuvwxyz)
         self.assertEqual(uni, ":𝜶𝜷𝝌𝜹𝜺𝝋𝜸𝜼𝜾𝜾𝜿𝝀𝝁𝝂𝝄𝝅𝜿𝝆𝝈𝝉𝝎𝝏𝝍𝝃𝝊𝜻")
     def test_663_bold_ital_greek(self) -> None:
         uni = unicoder.convert("bolditalgreek", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
         self.assertEqual(uni, ":𝜜𝜝𝜲𝜟𝜠𝜱𝜞𝜢𝜤𝜤𝜥𝜦𝜧𝜨𝜪𝜫𝜥𝜬𝜮𝜯𝜴𝜵𝜳𝜩𝜰𝜡")
     def test_664_bold_ital_greek(self) -> None:
-        uni = unicoder.convert("fatslantmath", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+        uni = unicoder.convert("fatslantgraec", base_ABCDEFGHIJKLMNOPQRSTUVWXYZ)
         self.assertEqual(uni, ":𝜜𝜝𝜲𝜟𝜠𝜱𝜞𝜢𝜤𝜤𝜥𝜦𝜧𝜨𝜪𝜫𝜥𝜬𝜮𝜯𝜴𝜵𝜳𝜩𝜰𝜡")
     def test_665_bold_ital_greek(self) -> None:
         uni = unicoder.bold(unicoder.ital(
@@ -1230,7 +1230,12 @@ class UnicoderTest(unittest.TestCase):
     def test_878_power(self) -> None:
         txt = "^(-20a) (^X)"
         uni = unicoder.power(txt)
-        self.assertEqual(uni, "⁽⁻²⁰α) (Ξ)")
+        self.assertEqual(uni, "⁽⁻²⁰a) (Ξ)")
+        self.assertNotEqual(uni, txt)
+    def test_879_power(self) -> None:
+        txt = "^(-20^a) (^X)"
+        uni = unicoder.power(txt)
+        self.assertEqual(uni, "⁽⁻²⁰α⁾ (Ξ)")
         self.assertNotEqual(uni, txt)
     def test_880_subscript(self) -> None:
         txt = "+-0123456789"
@@ -1415,9 +1420,9 @@ class UnicoderTest(unittest.TestCase):
         self.assertEqual(uni, "go 15⅘ km/h more")
         self.assertNotEqual(uni, txt)
     def test_990_math(self) -> None:
-        txt = "A_1^2 + 1/4"
+        txt = "^D_1^2 + 1/4"
         uni = unicoder.convert("math", txt)
-        self.assertEqual(uni, "Α₁² +¼")
+        self.assertEqual(uni, "Δ₁² +¼")
         self.assertNotEqual(uni, txt)
 
 

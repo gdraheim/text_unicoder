@@ -469,15 +469,16 @@ def power(text: str) -> str:
         if graec:
             out.write(greek(graec))
             graec = ""
-        if c in norm_power_signs and x + 1 < len(text) and (text[x + 1] in norm_super_numbers or text[x + 1] in norm_super_before):
-            power = True
-            continue  # drop the power sign
-        if c in norm_power_signs and x + 1 < len(text) and (norm_base_a <= ord(text[x + 1]) and ord(text[x + 1]) <= norm_base_z):
-            graec = ""  # graec += text[x+1] # in next loop
-            continue
-        if c in norm_power_signs and x + 1 < len(text) and (norm_base_A <= ord(text[x + 1]) and ord(text[x + 1]) <= norm_base_Z):
-            graec = ""  # graec += text[x+1] # in next loop
-            continue
+        if c in norm_power_signs:
+            if x + 1 < len(text) and (text[x + 1] in norm_super_numbers or text[x + 1] in norm_super_before):
+                power = True
+                continue  # drop the power sign
+            if x + 1 < len(text) and (norm_base_a <= ord(text[x + 1]) and ord(text[x + 1]) <= norm_base_z):
+                graec = ""  # graec += text[x+1] # in next loop
+                continue
+            if x + 1 < len(text) and (norm_base_A <= ord(text[x + 1]) and ord(text[x + 1]) <= norm_base_Z):
+                graec = ""  # graec += text[x+1] # in next loop
+                continue
         if power:
             if c in norm_super_numbers:
                 out.write(chr(norm_super_numbers[c]))
@@ -487,12 +488,16 @@ def power(text: str) -> str:
                 out.write(chr(norm_super_after[c]))
             else:
                 power = False
-                if norm_base_a <= ch and ch <= norm_base_z:
-                    graec = c
-                    continue
-                if norm_base_A <= ch and ch <= norm_base_Z:
-                    graec = c
-                    continue
+                if c in norm_power_signs:
+                    if x + 1 < len(text) and (text[x + 1] in norm_super_numbers or text[x + 1] in norm_super_before):
+                        power = True
+                        continue  # drop the power sign
+                    if x + 1 < len(text) and (norm_base_a <= ord(text[x + 1]) and ord(text[x + 1]) <= norm_base_z):
+                        graec = ""  # graec += text[x+1] # in next loop
+                        continue
+                    if x + 1 < len(text) and (norm_base_A <= ord(text[x + 1]) and ord(text[x + 1]) <= norm_base_Z):
+                        graec = ""  # graec += text[x+1] # in next loop
+                        continue
                 out.write(c)
         else:
             out.write(c)
