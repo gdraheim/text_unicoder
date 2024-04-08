@@ -147,8 +147,8 @@ if True:
     norm_squared_Z = 0x1F149  # SQUARED CAPITAL
     norm_dice_1 = 0x2680
     norm_dice_6 = 0x2685
-    norm_regional_A = 0x1F1E6  # REGIONAL INDICATOR 
-    norm_regional_Z = 0x1F1FF  # REGIONAL INDICATOR 
+    norm_regional_A = 0x1F1E6  # REGIONAL INDICATOR
+    norm_regional_Z = 0x1F1FF  # REGIONAL INDICATOR
     #
     norm_greek_A = 0x391
     norm_greek_O = 0x3A9
@@ -231,14 +231,14 @@ if True:
     norm_sub_equals = 0x208C
     norm_sub_leftparen = 0x208D
     norm_sub_rightparen = 0x0208E
-    norm_sub_a =  0x2090
-    norm_sub_e =  0x2091
-    norm_sub_o =  0x2092
-    norm_sub_x =  0x2093
-    norm_sub_i =  0x1D62
-    norm_sub_r =  0x1D63
-    norm_sub_u =  0x1D64
-    norm_sub_v =  0x1D65
+    norm_sub_a = 0x2090
+    norm_sub_e = 0x2091
+    norm_sub_o = 0x2092
+    norm_sub_x = 0x2093
+    norm_sub_i = 0x1D62
+    norm_sub_r = 0x1D63
+    norm_sub_u = 0x1D64
+    norm_sub_v = 0x1D65
     #
     norm_turned_a = 0x0250
     norm_turned_b = ord('q')
@@ -246,9 +246,9 @@ if True:
     norm_turned_d = ord('p')
     norm_turned_e = 0x01DD
     norm_turned_f = 0x025F
-    norm_turned_g = 0x1D77 # 0x0183
+    norm_turned_g = 0x1D77  # 0x0183
     norm_turned_h = 0x0265
-    norm_turned_i = 0x1D09 # 0x0131
+    norm_turned_i = 0x1D09  # 0x0131
     norm_turned_j = 0x027E
     norm_turned_k = 0x029E
     norm_turned_l = ord('l')
@@ -271,16 +271,16 @@ if True:
     norm_turned_comma = 0x02BB
     norm_turned_bang = 0x00A1
     norm_turned_question = 0x00BF
-    norm_turned_A = 0x2200 # 0x2C6F
+    norm_turned_A = 0x2200  # 0x2C6F
     norm_turned_C = 0x0186
     norm_turned_E = 0x018E
     norm_turned_F = 0x2132
-    norm_turned_G = 0x2141 # 0x05E4
+    norm_turned_G = 0x2141  # 0x05E4
     norm_turned_J = 0x017F
     norm_turned_M = 0x019C
     norm_turned_L = 0x2142
     norm_turned_R = 0x1D1A
-    norm_turned_T = 0xA7B1 # 0x2534
+    norm_turned_T = 0xA7B1  # 0x2534
     norm_turned_U = 0x2229
     norm_turned_V = 0x039B
     norm_turned_W = ord('M')
@@ -289,13 +289,13 @@ if True:
     norm_turned_3 = 0x0190
     norm_turned_6 = ord('9')
     norm_turned_9 = ord('6')
-    norm_turned_ue = 0x1E49 # n with under line
-    norm_turned_UE = 0x1E4B # n with under hacek
-    norm_turned_AE = 0x1E7E # V with ring under
-    norm_turned_OE = 0x1ECC # O with dot under
-    norm_turned_ae = 0x1D02 # ae turned
-    norm_turned_oe = 0x1ECD # o with dot under # 0x1D14 # oe turned
-    norm_turned_sz = 0x00FE # thorn # 0x025B # open e # 0x0D93 # open e with retroflex
+    norm_turned_ue = 0x1E49  # n with under line
+    norm_turned_UE = 0x1E4B  # n with under hacek
+    norm_turned_AE = 0x1E7E  # V with ring under
+    norm_turned_OE = 0x1ECC  # O with dot under
+    norm_turned_ae = 0x1D02  # ae turned
+    norm_turned_oe = 0x1ECD  # o with dot under # 0x1D14 # oe turned
+    norm_turned_sz = 0x00FE  # thorn # 0x025B # open e # 0x0D93 # open e with retroflex
 
 def nobrspace(text: str) -> str:
     """replace base space by thin nobreak space """
@@ -444,9 +444,9 @@ def superscript(text: str) -> str:
     for x, c in enumerate(text):
         if c in norm_super_numbers:
             out.write(chr(norm_super_numbers[c]))
-        elif c in norm_super_after and x > 0 and text[x-1] in norm_super_numbers:
+        elif c in norm_super_after and x > 0 and text[x - 1] in norm_super_numbers:
             out.write(chr(norm_super_after[c]))
-        elif c in norm_super_before and x+1 < len(text) and text[x+1] in norm_super_numbers:
+        elif c in norm_super_before and x + 1 < len(text) and text[x + 1] in norm_super_numbers:
             out.write(chr(norm_super_before[c]))
         else:
             out.write(c)
@@ -457,9 +457,9 @@ def power(text: str) -> str:
     out = StringIO()
     power = False
     for x, c in enumerate(text):
-        if c in norm_power_signs and x+1 < len(text) and (text[x+1] in norm_super_numbers or text[x+1] in norm_super_before):
+        if c in norm_power_signs and x + 1 < len(text) and (text[x + 1] in norm_super_numbers or text[x + 1] in norm_super_before):
             power = True
-            continue # drop the power sign
+            continue  # drop the power sign
         if power:
             if c in norm_super_numbers:
                 out.write(chr(norm_super_numbers[c]))
@@ -510,9 +510,9 @@ def subscript(text: str) -> str:
     for x, c in enumerate(text):
         if c in norm_sub_numbers:
             out.write(chr(norm_sub_numbers[c]))
-        elif c in norm_sub_after and x > 0 and text[x-1] in norm_sub_numbers:
+        elif c in norm_sub_after and x > 0 and text[x - 1] in norm_sub_numbers:
             out.write(chr(norm_sub_after[c]))
-        elif c in norm_sub_before and x+1 < len(text) and text[x+1] in norm_sub_numbers:
+        elif c in norm_sub_before and x + 1 < len(text) and text[x + 1] in norm_sub_numbers:
             out.write(chr(norm_sub_before[c]))
         else:
             out.write(c)
@@ -523,9 +523,9 @@ def indexed(text: str) -> str:
     out = StringIO()
     indexed = False
     for x, c in enumerate(text):
-        if c in norm_indexed_signs and x+1 < len(text) and (text[x+1] in norm_sub_numbers or text[x+1] in norm_sub_before):
+        if c in norm_indexed_signs and x + 1 < len(text) and (text[x + 1] in norm_sub_numbers or text[x + 1] in norm_sub_before):
             indexed = True
-            continue # drop the indexed sign
+            continue  # drop the indexed sign
         if indexed:
             if c in norm_sub_numbers:
                 out.write(chr(norm_sub_numbers[c]))
@@ -539,7 +539,6 @@ def indexed(text: str) -> str:
         else:
             out.write(c)
     return out.getvalue()
-
 
 
 norm_greek_upper: Dict[str, Tuple[int, ...]] = {
@@ -864,7 +863,7 @@ norm_turned_encode: Dict[str, int] = {
     chr(0xD6): norm_turned_OE,
     chr(0xDC): norm_turned_UE,
     chr(0xDF): norm_turned_sz,
-    }
+}
 
 def turned(text: str) -> str:  # characters flipped upside down
     out = StringIO()
@@ -996,8 +995,8 @@ def button(text: str) -> str:  # squred
             out.write(chr(norm_signum_A + (ch - norm_base_A)))
         elif norm_base_a <= ch and ch <= norm_base_z:
             out.write(chr(norm_button_A + (ch - norm_base_a)))
-        elif norm_base_0+1 <= ch and ch <= norm_base_9:
-            out.write(chr(norm_button_1 + (ch - norm_base_0+1)))
+        elif norm_base_0 + 1 <= ch and ch <= norm_base_9:
+            out.write(chr(norm_button_1 + (ch - norm_base_0 + 1)))
         elif norm_base_0 == ch and ch:
             out.write(chr(norm_button_0))
         else:
@@ -1013,8 +1012,8 @@ def circled(text: str) -> str:  # squred
             out.write(chr(norm_circled_A + (ch - norm_base_A)))
         elif norm_base_a <= ch and ch <= norm_base_z:
             out.write(chr(norm_circled_a + (ch - norm_base_a)))
-        elif norm_base_0+1 <= ch and ch <= norm_base_9:
-            out.write(chr(norm_circled_1 + (ch - norm_base_0+1)))
+        elif norm_base_0 + 1 <= ch and ch <= norm_base_9:
+            out.write(chr(norm_circled_1 + (ch - norm_base_0 + 1)))
         elif norm_base_0 == ch and ch:
             out.write(chr(norm_circled_0))
         else:
@@ -1030,8 +1029,8 @@ def parens(text: str) -> str:  # squred
             out.write(chr(norm_parens_A + (ch - norm_base_A)))
         elif norm_base_a <= ch and ch <= norm_base_z:
             out.write(chr(norm_parens_a + (ch - norm_base_a)))
-        elif norm_base_0+1 <= ch and ch <= norm_base_9:
-            out.write(chr(norm_parens_1 + (ch - norm_base_0+1)))
+        elif norm_base_0 + 1 <= ch and ch <= norm_base_9:
+            out.write(chr(norm_parens_1 + (ch - norm_base_0 + 1)))
         elif norm_base_0 == ch and ch:
             out.write(chr(norm_parens_o))
         else:
@@ -1272,7 +1271,7 @@ def convert(cmd: str, text: str) -> str:
     if "turned" in cmd or "down" in cmd:
         text = turned(text)
     if "flip" in cmd or "ambi" in cmd or "turnlines" in cmd:
-        text = turnlines(text) # turned(backlines(text))
+        text = turnlines(text)  # turned(backlines(text))
     if "back" in cmd or "swap" in cmd:
         text = backlines(text)
     if "turn" in cmd and "turned" not in cmd and "turnlines" not in cmd:
