@@ -94,6 +94,39 @@ uninstall:
 	$(PIP3) uninstall -y `sed -e '/name *=/!d' -e 's/name *= *//' setup.cfg`
 
 # ------------------------------------------------------------
+old = tmp.unicoder
+unicoder:
+	- rm -rf $(old)
+	mkdir $(old)
+	echo "[metadata]" > $(old)/setup.cfg
+	echo "name = unicoder" >> $(old)/setup.cfg
+	grep "version *=" setup.cfg >> $(old)/setup.cfg
+	grep "license *=" setup.cfg >> $(old)/setup.cfg
+	grep -A 1 "license_files *=" setup.cfg >> $(old)/setup.cfg
+	cp -v LICENSE $(old)/
+	grep "author *=" setup.cfg >> $(old)/setup.cfg
+	grep "author-email *=" setup.cfg >> $(old)/setup.cfg
+	grep "home-page *=" setup.cfg >> $(old)/setup.cfg
+	echo "description = deprecated unicoder package, use text-unicoder instead" >> $(old)/setup.cfg
+	echo "The 'unicoder' PyPI package is deprecated, use 'text-unicoder' rather than 'unicoder' for pip commands." > $(old)/README
+	echo "" >> $(old)/README
+	echo "long-description = file: README"  >> $(old)/setup.cfg
+	echo "long-description-content-type = text/markdown"  >> $(old)/setup.cfg
+	echo "Please replace 'unicoder' in your pip requirements"  >> $(old)/README
+	echo "(requirements.txt, setup.py, setup.cfg) with 'text-unicoder'."  >> $(old)/README
+	echo "For the next years this wrapper package continues to exist"  >> $(old)/README 
+	echo "which has a dependency on the new package name."  >> $(old)/README
+	echo "requires-dist = setuptools"  >> $(old)/README
+	echo "requires = text_unicoder"  >> $(old)/README
+	{ echo '#!/usr/bin/env python3' \
+	; echo 'import setuptools' \
+	; echo 'setuptools.setup()' ; } > $(old)/setup.py
+	chmod +x $(old)/setup.py
+	cd $(old) && $(PYTHON3) setup.py sdist
+	cd $(old) && $(TWINE) check dist/*
+	@ echo ": cd $(old) && $(TWINE) upload dist/*"
+
+# ------------------------------------------------------------
 
 mypy:
 	zypper install -y mypy

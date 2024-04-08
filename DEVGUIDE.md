@@ -90,4 +90,4 @@ For ubuntu you can check the latest Github workflows under
 * `git push --tags`
 * update the short description on github
 * `make build` and following `twine upload` as shown
-
+* `make unicoder` and following `twine upload` as shown
