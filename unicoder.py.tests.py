@@ -557,6 +557,9 @@ class UnicoderTest(unittest.TestCase):
     def test_397_norm_flip(self) -> None:
         uni = unicoder.turnlines(base_abcdefghijklmnopqrstuvwxyz)
         self.assertEqual(uni, "zʎxʍʌnʇsɹbdouɯlʞɾᴉɥᵷɟǝpɔqɐ:")
+    def test_399_norm_flip(self) -> None:
+        uni = unicoder.convert("turn", ":abcxyzABXY\nmnoPQ")
+        self.assertEqual(uni, "⅄XB∀zʎxɔqɐ:\nQdouɯ")
 
     #
     def test_400_norm_sans(self) -> None:
@@ -1123,17 +1126,35 @@ class UnicoderTest(unittest.TestCase):
     def test_742_norm_rune_quaengeln(self) -> None:
         uni = unicoder.rune(":QUAENGELN")
         self.assertEqual(uni, ":ᚳᚨᛖᛜᛖᛚᚾ")
-    def test_788_norm_rune_notfound(self) -> None:
+    def test_751_norm_rune_quaengeln(self) -> None:
+        uni = unicoder.viking(":quaengelnuebertoene")
+        self.assertEqual(uni, ":ᚳᛇᚾᛁᛚᚾᚢᛒᛁᛉᛏᚢᚾᛁ")
+    def test_752_norm_rune_quaengeln(self) -> None:
+        uni = unicoder.viking(":QUAENGELNUEBERTOENE")
+        self.assertEqual(uni, ":ᚳᛇᚾᛁᛚᚾᚢᛒᛁᛉᛏᚢᚾᛁ")
+    def test_783_norm_rune_notfound(self) -> None:
         old = unicoder.norm_rune_lower
         unicoder.norm_rune_lower = unicoder.norm_greek_upper
         uni = unicoder.rune(":FOOBAR")
         unicoder.norm_rune_lower = old
         self.assertEqual(uni, ":foobar")
-    def test_789_norm_rune_notfound(self) -> None:
+    def test_784_norm_rune_notfound(self) -> None:
         old = unicoder.norm_rune_lower
         unicoder.norm_rune_lower = unicoder.norm_greek_upper
         uni = unicoder.rune(":foobar")
         unicoder.norm_rune_lower = old
+        self.assertEqual(uni, ":foobar")
+    def test_785_norm_rune_notfound(self) -> None:
+        old = unicoder.norm_viking_lower
+        unicoder.norm_viking_lower = unicoder.norm_greek_upper
+        uni = unicoder.viking(":FOOBAR")
+        unicoder.norm_viking_lower = old
+        self.assertEqual(uni, ":foobar")
+    def test_786_norm_rune_notfound(self) -> None:
+        old = unicoder.norm_viking_lower
+        unicoder.norm_viking_lower = unicoder.norm_greek_upper
+        uni = unicoder.viking(":foobar")
+        unicoder.norm_viking_lower = old
         self.assertEqual(uni, ":foobar")
     #
     def test_800_norm_value(self) -> None:
@@ -1423,6 +1444,16 @@ class UnicoderTest(unittest.TestCase):
         txt = "^D_1^2 + 1/4"
         uni = unicoder.convert("math", txt)
         self.assertEqual(uni, "Δ₁² +¼")
+        self.assertNotEqual(uni, txt)
+    def test_991_math(self) -> None:
+        txt = "^D_1^2^a + 1/4^b"
+        uni = unicoder.convert("math", txt)
+        self.assertEqual(uni, "Δ₁²α +¼β")
+        self.assertNotEqual(uni, txt)
+    def test_992_math(self) -> None:
+        txt = "^D_12^23^ab"
+        uni = unicoder.convert("math", txt)
+        self.assertEqual(uni, "Δ₁₂²³αβ")
         self.assertNotEqual(uni, txt)
 
 
