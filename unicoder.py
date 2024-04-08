@@ -709,6 +709,8 @@ def greek(text: str) -> str:
             out.write(c)
     return out.getvalue()
 
+# elder futhark
+
 norm_rune_lower: Dict[str, Tuple[int, ...]] = {
     "f": (0x16A0,),  # Fehu
     "u": (0x16A2,),  # Uruz
@@ -744,8 +746,6 @@ norm_rune_lower: Dict[str, Tuple[int, ...]] = {
 }
 
 def rune(text: str) -> str:  # gothic, blackletter
-    rune_a = 0x16A0
-    rune_o = 0x16F8
     out = StringIO()
     skip = False
     for i, c in enumerate(text):
@@ -773,7 +773,84 @@ def rune(text: str) -> str:  # gothic, blackletter
                 for n in norm_rune_lower[c]:
                     out.write(chr(n))
             else:
-                logg.error("did not find rune for '%s'", c)
+                logg.error("did not find futhark rune for '%s'", c)
+                out.write(c)
+        else:
+            out.write(c)
+    return out.getvalue()
+
+# younger futhark - 3 rows - max 16 letters
+
+norm_viking_lower: Dict[str, Tuple[int, ...]] = {
+    "f": (0x16A0,),  # Fe
+    "u": (0x16A2,),  # Ur
+    "th": (0x16A6,),  # Thurs
+    "a": (0x16A8,),  # As/Oss
+    "r": (0x16B1,),  # reidh
+    "k": (0x16B3,),  # kaun
+
+    "h": (0x16BA,),  # hagall
+    "n": (0x16BE,),  # nauthr
+    "i": (0x16C1,),  # isa/iss
+    "y": (0x16C7,),  # yr
+
+    "r": (0x16C9,),  # awr
+    "s": (0x16CB,),  # sol
+    "t": (0x16CF,),  # tyr
+    "b": (0x16D2,),  # bjork
+
+    "m": (0x16D7,),  # mathr
+    "l": (0x16DA,),  # logr
+
+    # transliterate:
+    "x": (0x16B3, 0x16CB),  # kaun, sol
+    "o": (0x16A8,),  # As/Oss
+    "e": (0x16C1,),  # isa/iss
+    "d": (0x16CF,),  # tyr
+    "ng": (0x16BE,),  # nauthr
+    "p": (0x16D2,),  # bjork
+    "z": (0x16C9,),  # awr
+    "j": (0x16C7,),  # yr
+    "ae": (0x16C7,),  # yr
+    "oe": (0x16A2,),  # Ur
+    "ue": (0x16A2,),  # Ur
+    "w": (0x16A2,),  # Ur
+    "v": (0x16A2,),  # Ur
+    "g": (0x16B3,),  # kaun
+    "c": (0x16B3,),  # kaunan
+    "q": (0x16B3,),  # kaunan
+    "qu": (0x16B3,),  # kaunan
+}
+
+def viking(text: str) -> str:  # gothic, blackletter
+    out = StringIO()
+    skip = False
+    for i, c in enumerate(text):
+        if skip:
+            skip = False
+            continue
+        ch = ord(c)
+        if norm_base_A <= ch and ch <= norm_base_Z:
+            ch = norm_base_a + (ch - norm_base_A)
+            c = chr(ch)
+        if i + 1 < len(text):
+            d = text[i + 1]
+        else:
+            d = " "
+        dh = ord(d)
+        if norm_base_A <= dh and dh <= norm_base_Z:
+            dh = norm_base_a + (dh - norm_base_A)
+            d = chr(dh)
+        if norm_base_a <= ch and ch <= norm_base_z:
+            if c + d in norm_viking_lower:
+                for n in norm_viking_lower[c + d]:
+                    out.write(chr(n))
+                skip = True
+            elif c in norm_viking_lower:
+                for n in norm_viking_lower[c]:
+                    out.write(chr(n))
+            else:
+                logg.error("did not find viking rune for '%s'", c)
                 out.write(c)
         else:
             out.write(c)
@@ -1277,8 +1354,10 @@ def convert(cmd: str, text: str) -> str:
     if "turn" in cmd and "turned" not in cmd and "turnlines" not in cmd:
         logg.warning("use 'flip' to turnlines")
         text = turned(backlines(text))
-    if "rune" in cmd or "futark" in cmd:
+    if "rune" in cmd or "futa" in cmd or "futha" in cmd:
         text = rune(text)
+    if "viking" in cmd or "futo" in cmd or "futho" in cmd:
+        text = viking(text)
     if "greek" in cmd or "math" in cmd:
         text = greek(text)
     if "black" in cmd or "frak" in cmd:
@@ -1308,7 +1387,8 @@ def helpinfo() -> str:
      *frak* *black*   convert to math fraktur 
      *doub* *wide*    convert to math double stroke
      *cour* *type*    convert to math courier monospace
-     *rune* *futark*  transliterate to runic script
+     *rune* *futa*    transliterate to older futhark runes
+     *viking* *futo*  transliterate to younger futhork runes
      *caps* *init*    initial uppercase char to double stroke
      *nobr* *word*    using base nobr spaces
      *thin* *value*   using thin nobr spaces
