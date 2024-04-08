@@ -11,3 +11,4 @@ TEST-*
 coverage.xml
 .coverage*
 .vscode/settings.json
+tmp.*
