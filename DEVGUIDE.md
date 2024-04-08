@@ -13,11 +13,11 @@ Development can be done with a pure text editor and a terminal session.
 Use python and mypy extensions for Visual Studio Code (from Microsoft).
 
 * Control-P: "ext list"
-** look for "Python", "Pylance" (style checker), "Mypy Type Checker" (type checker)
-** optional "Makefile Tools"
+  * look for "Python", "Pylance" (style checker), "Mypy Type Checker" (type checker)
+  * optional "Makefile Tools"
 * Control-P: "ext install ms-python.mypy-type-checker"
-** this one pulls the latest mypy from the visualstudio marketplace
-** https://marketplace.visualstudio.com/items?itemName=ms-python.mypy-type-checker
+  * this one pulls the latest mypy from the visualstudio marketplace
+  * https://marketplace.visualstudio.com/items?itemName=ms-python.mypy-type-checker
 
 The make targets are defaulting to tests with python3.6 but the mypy plugin
 for vscode requires atleast python3.8. All current Linux distros provide an
