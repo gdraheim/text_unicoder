@@ -26,6 +26,10 @@ version:
 	-e "/^ *__copyright__/s/(C) [0123456789]* /(C) $$THISYEAR /" \
 	$$f; done; }
 	@ grep ^__version__ $(FILES)
+tag:
+	@ ver=`grep "version.*=" setup.cfg | sed -e "s/version *= */v/"` \
+	; rev=`git rev-parse --short HEAD` \
+	; echo ": ${GIT} tag $$ver $$rev"
 
 help:
 	$(PYTHON3) unicoder.py --help

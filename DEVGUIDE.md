@@ -89,8 +89,11 @@ For ubuntu you can check the latest Github workflows under
 * `git push` # if necessary
 * wait for github workflows to be okay
 * prepare a tmp.changes.txt 
-* `git tag -F tmp.changes.txt v1.x` to the version in setup.cfg
+* `make tag`
+  * and `git tag -F tmp.changes.txt v1.x` 
 * `git push --tags`
 * update the short description on github
-* `make build` and following `twine upload` as shown
-* `make unicoder` and following `twine upload` as shown
+* `make build` 
+  * and following `twine upload` as shown
+* `make unicoder` 
+  * and following `twine upload` as shown
