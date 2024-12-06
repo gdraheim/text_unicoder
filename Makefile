@@ -78,13 +78,14 @@ sdist bdist bdist_wheel:
 	$(PYTHON3) setup.py $@
 	- rm -v setup.py README
 
+BUILD3 = python3.11 -m build
 .PHONY: build
 build:
 	rm -rf build dist *.egg-info
-	$(MAKE) $(PARALLEL) README setup.py
+	$(MAKE) $(PARALLEL) README
 	# pip install --root=~/local . -v
-	$(PYTHON3) setup.py sdist
-	- rm -v setup.py README
+	$(BUILD3)
+	- rm -v README
 	$(TWINE) check dist/*
 	: $(TWINE) upload dist/*
 

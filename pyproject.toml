@@ -12,8 +12,15 @@ readme = { "file" = "README", content-type = "text/markdown" }
 license = { file = "LICENSE" }
 authors = [ { name = "Guido U. Draheim", "email" = "Guido.Draheim@gmx.de" }]
 classifiers = [
-   "License :: APL"
+   "License :: OSI Approved :: Apache Software License",
+   "Operating System :: OS Independent",
+   "Environment :: Console",
+   "Topic :: Text Processing :: Filters",
+   "Typing :: Typed"
 ]
+
+[project.optional-dependencies]
+dev = [ "build" ]
 
 [project.urls]
 homepage = "https://github.com/gdraheim/text_unicoder"
