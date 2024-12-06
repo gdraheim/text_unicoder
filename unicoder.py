@@ -2,7 +2,7 @@
 from __future__ import print_function
 
 __copyright__ = "(C) 2021-2024 Guido U. Draheim, licensed under the APLv2"
-__version__ = "1.2.3153"
+__version__ = "1.3.3495"
 
 from typing import List, Dict, Generator, Tuple, Optional
 from io import StringIO
@@ -1304,6 +1304,7 @@ def bold(text: str) -> str:
 class Scanned:
     text: str = ""
     cmd: str = ""
+    val: Dict[str, int] = {}
     verbose: int = 0
     helpinfo: int = 0
 
@@ -1320,12 +1321,14 @@ def scan(args: List[str]) -> Scanned:
                 else:
                     print("unknown option {arg} (ignored)".format(**locals()), file=sys.stderr)
             else:
-                accept = "hv"
+                accept = "hvbimfGFMD"
                 opt.verbose += arg.count("v")
                 opt.helpinfo += arg.count("h")
                 for a in arg[1:]:
                     if a not in accept:
                         print("unknown option -{a} (ignored)".format(**locals()), file=sys.stderr)
+                    else:
+                        opt.val[a] = arg.count(a)
         else:
             if not opt.cmd:
                 opt.cmd = arg
@@ -1401,6 +1404,8 @@ def helpinfo() -> str:
     return """unicoder [-options] command [text..]
     -h / --help       this help info
     -v / --verbose    increase logging level
+    -b -i -m -f       add *bold*ital*math*flip*
+    -G -F -M -D       add *greek*futa*cour*doub*
     command contains:
      *fat*  *bold*    convert to math fat symbols
      *ital* *name*    convert to math slanted symbols
@@ -1408,7 +1413,7 @@ def helpinfo() -> str:
      *greek* *graec*  convert to math greek
      *frak* *black*   convert to math fraktur 
      *doub* *wide*    convert to math double stroke
-     *cour* *type*    convert to math courier monospace
+     *cour* *mono*    convert to math courier monospace
      *rune* *futa*    transliterate to older futhark runes
      *viking* *futo*  transliterate to younger futhork runes
      *caps* *init*    initial uppercase char to double stroke
@@ -1434,10 +1439,54 @@ def helpinfo() -> str:
       boldfrak
     """
 
-if __name__ == "__main__":  # pragma: no cover
-    __opt = scan(sys.argv[1:])
-    logging.basicConfig(level=max(0, logging.WARNING - __opt.verbose * 10))
-    if __opt.helpinfo:
+def printflip(args: Optional[List[str]] = None) -> int:
+    opt = scan(sys.argv[1:] if args is None else args)
+    return printscanned(opt, "flip")
+
+def printmath(args: Optional[List[str]] = None) -> int:
+    opt = scan(sys.argv[1:] if args is None else args)
+    return printscanned(opt, "math")
+
+def printital(args: Optional[List[str]] = None) -> int:
+    opt = scan(sys.argv[1:] if args is None else args)
+    return printscanned(opt, "ital")
+
+def printbold(args: Optional[List[str]] = None) -> int:
+    opt = scan(sys.argv[1:] if args is None else args)
+    return printscanned(opt, "bold")
+
+def printconvert(args: Optional[List[str]] = None) -> int:
+    opt = scan(sys.argv[1:] if args is None else args)
+    return printscanned(opt)
+
+def printscanned(opt: Scanned, withcmd: str = "") -> int:
+    logging.basicConfig(level=max(0, logging.WARNING - opt.verbose * 10))
+    if opt.helpinfo:
         print(helpinfo())
+        return 0
+    if withcmd:
+        cmd, text = withcmd, opt.cmd + (" " + opt.text if opt.text else "")
     else:
-        print(convert(__opt.cmd, __opt.text))
+        cmd, text = opt.cmd, opt.text
+    if opt.val.get("b", 0):
+        cmd += "bold"
+    if opt.val.get("i", 0):
+        cmd += "ital"
+    if opt.val.get("m", 0):
+        cmd += "math"
+    if opt.val.get("f", 0):
+        cmd += "frac"
+    if opt.val.get("G", 0):
+        cmd += "greek"
+    if opt.val.get("F", 0):
+        cmd += "futa"
+    if opt.val.get("M", 0):
+        cmd += "cour"
+    if opt.val.get("D", 0):
+        cmd += "doub"
+    logg.info("cmd = %s", cmd)
+    print(convert(cmd, text))
+    return 0
+
+if __name__ == "__main__":  # pragma: no cover
+    printconvert(sys.argv[1:])

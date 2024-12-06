@@ -1,0 +1,28 @@
+# __version__
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "text_unicoder"
+version = "1.3.3495"
+description = "unicode text generator to make flip turned bold italic greek fraktur cursive script from ascii input"
+readme = { "file" = "README", content-type = "text/markdown" }
+license = { file = "LICENSE" }
+authors = [ { name = "Guido U. Draheim", "email" = "Guido.Draheim@gmx.de" }]
+classifiers = [
+   "License :: APL"
+]
+
+[project.urls]
+homepage = "https://github.com/gdraheim/text_unicoder"
+repository = "https://github.com/gdraheim/text_unicoder.git"
+issues = "https://github.com/gdraheim/text_unicoder/issues"
+
+[project.scripts]
+unicoder = "unicoder:printconvert"
+uubold = "unicoder:printbold"
+uuital = "unicoder:printital"
+uumath = "unicoder:printmath"
+uuflip = "unicoder:printflip"

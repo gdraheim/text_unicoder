@@ -10,31 +10,33 @@ including bold italic greek fraktur script.
 
 Examples:
 
-    unicoder.py bold foobar
-    unicoder.py ital foobar
-    unicoder.py boldital foobar
-    unicoder.py double foobar
-    unicoder.py mono foobar
-    unicoder.py sans foobar
-    unicoder.py greek foobar
-    unicoder.py greek FOOBAR
-    unicoder.py fraktur foobar
-    unicoder.py boldfraktur foobar
-    unicoder.py fract 15 1/4
-    unicoder.py 15 1/4 km/h
-    unicoder.py value 15 1/4 km/h
-    unicoder.py thin 15 1/4 km/h
-    unicoder.py nobr 15 1/4 km/h
-    unicoder.py power 15^3
-    unicoder.py index x_1
-    unicoder.py math X_1^3 +1/4
-    unicoder.py back answer
-    unicoder.py down answer
-    unicoder.py flip answer
+    unicoder bold foobar
+    unicoder ital foobar
+    unicoder boldital foobar
+    unicoder double foobar
+    unicoder mono foobar
+    unicoder sans foobar
+    unicoder greek foobar
+    unicoder greek FOOBAR
+    unicoder fraktur foobar
+    unicoder boldfraktur foobar
+    unicoder fract 15 1/4
+    unicoder 15 1/4 km/h
+    unicoder value 15 1/4 km/h
+    unicoder thin 15 1/4 km/h
+    unicoder nobr 15 1/4 km/h
+    unicoder power 15^3
+    unicoder index x_1
+    unicoder math X_1^3 +1/4
+    unicoder back answer
+    unicoder down answer
+    unicoder flip answer
 
 This script helps to bold or slanted text to various social media platforms.
 The nobr thin fract parts are particularly useful for Wikipedia.
 The flip text (or turn text) allows to provide a pun on a question.
+
+There are also shorthand scripts: `uubold` / `uuital` / `uumath` / `uuflip` 
 
 ### RESULT
 

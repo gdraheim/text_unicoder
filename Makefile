@@ -3,7 +3,7 @@
 BASEYEAR= 2021
 FOR=today
 
-FILES = *.py *.cfg
+FILES = *.py *.cfg *.toml
 PYTHON3 = python3
 COVERAGE3 = $(PYTHON3) -m coverage
 TWINE = twine
@@ -90,16 +90,21 @@ build:
 
 # ------------------------------------------------------------
 PIP3=pip3
-install:
-	$(MAKE) setup.py
-	trap "rm -v setup.py" SIGINT SIGTERM ERR EXIT ; \
-	$(PIP3) install .
-	$(MAKE) showfiles | grep /.local/
-uninstall:
-	$(PIP3) uninstall -y `sed -e '/name *=/!d' -e 's/name *= *//' setup.cfg`
-showfiles:
-	@ $(PIP3) show --files `sed -e '/name *=/!d' -e 's/name *= *//' setup.cfg` \
+install: ins
+uninstall: uns
+showfiles: insfiles
+insfiles:
+	@ $(PIP3) show --files `sed -e '/^name *=/!d' -e 's/name *= *"//' -e 's/".*//' pyproject.toml` \
 	| sed -e "s:[^ ]*/[.][.]/\\([a-z][a-z]*\\)/:~/.local/\\1/:"
+
+show: ; $(MAKE) insfiles | grep /.local/
+ins:
+	$(MAKE) $(PARALLEL) README
+	trap "rm -v README" SIGINT SIGTERM ERR EXIT ; \
+	$(PIP3) install .
+	$(MAKE) show | grep /.local/
+uns:
+	set -x; $(PIP3) uninstall -y `sed -e '/^name *=/!d' -e 's/name *= *"//' -e 's/".*//'  pyproject.toml`
 
 # ------------------------------------------------------------
 old = tmp.unicoder
