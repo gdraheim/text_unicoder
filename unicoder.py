@@ -1414,8 +1414,8 @@ def helpinfo() -> str:
      *frak* *black*   convert to math fraktur 
      *doub* *wide*    convert to math double stroke
      *cour* *mono*    convert to math courier monospace
-     *rune* *futa*    transliterate to older futhark runes
-     *viking* *futo*  transliterate to younger futhork runes
+     *futa* *rune*    transliterate to older futhark runes
+     *futo* *viking*  transliterate to younger futhork runes
      *caps* *init*    initial uppercase char to double stroke
      *nobr* *word*    using base nobr spaces
      *thin* *value*   using thin nobr spaces
@@ -1447,9 +1447,21 @@ def printmath(args: Optional[List[str]] = None) -> int:
     opt = scan(sys.argv[1:] if args is None else args)
     return printscanned(opt, "math")
 
+def printfrak(args: Optional[List[str]] = None) -> int:
+    opt = scan(sys.argv[1:] if args is None else args)
+    return printscanned(opt, "frak")
+
+def printfrakbold(args: Optional[List[str]] = None) -> int:
+    opt = scan(sys.argv[1:] if args is None else args)
+    return printscanned(opt, "frakbold")
+
 def printital(args: Optional[List[str]] = None) -> int:
     opt = scan(sys.argv[1:] if args is None else args)
     return printscanned(opt, "ital")
+
+def printitalbold(args: Optional[List[str]] = None) -> int:
+    opt = scan(sys.argv[1:] if args is None else args)
+    return printscanned(opt, "italbold")
 
 def printbold(args: Optional[List[str]] = None) -> int:
     opt = scan(sys.argv[1:] if args is None else args)
