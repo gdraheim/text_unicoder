@@ -906,6 +906,8 @@ def fraktur(text: str) -> str:  # gothic, blackletter
             out.write(chr(norm_fraktur_A + (ch - norm_base_A)))
         elif norm_base_a <= ch and ch <= norm_base_z:
             out.write(chr(norm_fraktur_a + (ch - norm_base_a)))
+        elif norm_base_sz == ch :
+            out.write(chr(norm_greek_a + 1))
         # elif norm_base_0 <= ch and ch <= norm_base_9:
         #     out.write(chr(bold_base_0+(ch-norm_base_0)))
         else:
