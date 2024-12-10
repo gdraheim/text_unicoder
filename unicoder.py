@@ -1645,6 +1645,10 @@ def printmath(args: Optional[List[str]] = None) -> int:
     opt = scan(sys.argv[1:] if args is None else args)
     return printscanned(opt, "math")
 
+def printlatin(args: Optional[List[str]] = None) -> int:
+    opt = scan(sys.argv[1:] if args is None else args)
+    return printscanned(opt, "latin")
+
 def printfrak(args: Optional[List[str]] = None) -> int:
     opt = scan(sys.argv[1:] if args is None else args)
     return printscanned(opt, "frak")
