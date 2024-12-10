@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "text_unicoder"
-version = "1.3.3495"
+version = "1.3.3501"
 description = "unicode text generator to make flip turned bold italic greek fraktur cursive script from ascii input"
 readme = { "file" = "README", content-type = "text/markdown" }
 license = { file = "LICENSE" }
