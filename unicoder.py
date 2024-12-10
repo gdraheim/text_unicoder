@@ -1572,20 +1572,20 @@ def convert(cmd: str, text: str) -> str:
     if "turn" in cmd and "turned" not in cmd and "turnlines" not in cmd:
         logg.warning("use 'flip' to turnlines")
         text = turned(backlines(text))
+    if "ansi" in cmd or "latin" in cmd:
+        text = ansirune(ansigreek(ansifraktur(text)))
+    if "text" in cmd or "simple" in cmd:
+        text = ansirune(ansigreek(ansifraktur(ansinumbers(ansispace(text)))))
+    if "round" in cmd or "script" in cmd or "writ" in cmd:
+        text = script(text)
     if "rune" in cmd or "futa" in cmd or "futha" in cmd:
         text = rune(text)
     if "viking" in cmd or "futo" in cmd or "futho" in cmd:
         text = viking(text)
     if "greek" in cmd or "graec" in cmd:
         text = greek(text)
-    if "ansi" in cmd or "latin" in cmd:
-        text = ansirune(ansigreek(ansifraktur(text)))
-    if "text" in cmd or "simple" in cmd:
-        text = ansirune(ansigreek(ansifraktur(ansinumbers(ansispace(text)))))
     if "black" in cmd or "frak" in cmd:
         text = fraktur(text)
-    if "round" in cmd or "script" in cmd or "writ" in cmd:
-        text = script(text)
     if "cour" in cmd or "type" in cmd or "mono" in cmd:
         text = courier(text)
     if "sans" in cmd or "vect" in cmd:
