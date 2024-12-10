@@ -7,6 +7,7 @@ __version__ = "1.3.3495"
 from typing import List, Dict, Generator, Tuple, Optional
 from io import StringIO
 import sys
+import os
 import logging
 
 logg = logging.getLogger("UNICODER")
@@ -324,6 +325,16 @@ def thinspace(text: str) -> str:
             out.write(c)
     return out.getvalue()
 
+def ansispace(text: str) -> str:
+    out = StringIO()
+    for c in text:
+        ch = ord(c)
+        if ch in (norm_thin_space, norm_numm_space, norm_nobr_space):
+            out.write(" ")
+        else:
+            out.write(c)
+    return out.getvalue()
+
 def fractions(text: str) -> str:
     """replace base space by thin nobreak space """
     def splitfrac(text: str) -> Generator[str, str, None]:
@@ -562,6 +573,58 @@ def indexed(text: str) -> str:
             out.write(c)
     return out.getvalue()
 
+ansi_sub_numbers: Dict[int, str] = {
+    norm_sub_0: "0",
+    norm_sub_1: "1",
+    norm_sub_2: "2",
+    norm_sub_3: "3",
+    norm_sub_4: "4",
+    norm_sub_5: "5",
+    norm_sub_6: "6",
+    norm_sub_7: "7",
+    norm_sub_8: "8",
+    norm_sub_9: "9",
+    norm_sub_plus: "+",
+    norm_sub_minus: "-",
+    norm_sub_equals: "=",
+    norm_sub_leftparen: "(",
+    norm_sub_rightparen: ")",
+    norm_sub_a: "a",
+    norm_sub_e: "e",
+    norm_sub_i: "i",
+    norm_sub_o: "o",
+    norm_sub_u: "u",
+    norm_sub_v: "v",
+    norm_sub_x: "x",
+    norm_sub_r: "r",
+}
+
+ansi_super_numbers: Dict[int, str] = {
+    norm_super_0: "0",
+    norm_super_1: "1",
+    norm_super_2: "2",
+    norm_super_3: "3",
+    norm_super_4: "4",
+    norm_super_5: "5",
+    norm_super_6: "6",
+    norm_super_7: "7",
+    norm_super_8: "8",
+    norm_super_9: "9",
+    norm_super_plus: "+",
+    norm_super_minus: "-",
+}
+
+def ansinumbers(text: str) -> str:
+    out = StringIO()
+    for c in text:
+        ch = ord(c)
+        if ch in ansi_sub_numbers:
+            out.write(ansi_sub_numbers[ch])
+        elif ch in ansi_super_numbers:
+            out.write(ansi_sub_numbers[ch])
+        else:
+            out.write(c)
+    return out.getvalue()
 
 norm_greek_upper: Dict[str, Tuple[int, ...]] = {
     "A": (0x391,),  # Alpha
@@ -731,6 +794,75 @@ def greek(text: str) -> str:
             out.write(c)
     return out.getvalue()
 
+ansi_greek_upper: Dict[int, str] = {
+    0x391: "A",  # Alpha
+    0x392: "B",  # Beta
+    0x393: "G",  # Gamma
+    0x394: "D",  # Delta
+    0x395: "E",  # Epsilon
+    0x396: "Z",  # Zeta
+    0x397: "H",  # Eta
+    0x398: "TH",  # Theta
+    0x399: "I",  # Iota
+    0x39A: "K",  # Kappa
+    0x39B: "L",  # Lambda
+    0x39C: "M",  # My
+    0x39D: "N",  # Ny
+    0x39E: "X",  # Xi
+    0x39F: "O",  # Omikron
+    0x3A0: "P",  # Pi
+    0x3A1: "R",  # Rho
+    # Schluss-Sigma
+    0x3A3: "S",  # Sigma
+    0x3A4: "T",  # Tau
+    0x3A5: "Y",  # Ypsilon
+    0x3A6: "F",  # Phi
+    0x3A7: "CH",  # Chi
+    0x3A8: "W",  # Psi
+    0x3A9: "U",  # Omega
+    norm_greek_nabla: "V",  # Nabla Operator
+}
+
+ansi_greek_lower: Dict[int, str] = {
+    0x3B1: "a",  # Alpha
+    0x3B2: "b",  # Beta
+    0x3B3: "g",  # Gamma
+    0x3B4: "d",  # Delta
+    0x3B5: "e",  # Epsilon
+    0x3B6: "z",  # Zeta
+    0x3B7: "h",  # Eta
+    0x3B8: "th",  # Theta
+    0x3B9: "i",  # Iota
+    0x3BA: "k",  # Kappa
+    0x3BB: "l",  # Lambda
+    0x3BC: "m",  # My
+    0x3BD: "n",  # Ny
+    0x3BE: "x",  # Xi
+    0x3BF: "o",  # Omikron
+    0x3C0: "p",  # Pi
+    0x3C1: "r",  # Rho
+    0x3C3: "s",  # Sigma
+    0x3C4: "t",  # Tau
+    0x3C5: "y",  # Ypsilon
+    0x3C6: "f",  # Phi
+    0x3C7: "ch",  # Chi
+    0x3C8: "w",  # Psi
+    0x3C9: "u",  # Omega
+    norm_greek_diffs: "v",  # Differential
+}
+
+def ansigreek(text: str) -> str:
+    out = StringIO()
+    for c in text:
+        ch = ord(c)
+        if ch in ansi_greek_lower:
+            out.write(ansi_greek_lower[ch])
+        elif ch in ansi_greek_upper:
+            out.write(ansi_greek_upper[ch])
+        else:
+            out.write(c)
+    return out.getvalue()
+
 # elder futhark
 
 norm_rune_lower: Dict[str, Tuple[int, ...]] = {
@@ -878,6 +1010,48 @@ def viking(text: str) -> str:  # gothic, blackletter
             out.write(c)
     return out.getvalue()
 
+ansi_rune_lower: Dict[int, str] = {
+    0x16A0: "f",  # Fehu
+    0x16A2: "u",  # Uruz
+    0x16A6: chr(0xF0),  # "th"  # Thurs
+    0x16A8: "a",  # ansuz
+    0x16B1: "r",  # raido
+    0x16B3: "k",  # kaunan
+    0x16B7: "g",  # gebo
+    0x16D5: "v",  # wunja
+    0x16BA: "h",  # hagalaz
+    0x16BE: "n",  # naudiz
+    0x16BF: "n",  # naudiz
+    0x16C1: "i",  # isaz
+    0x16E1: "j",  # jera
+    0x16C7: "y",  # ihwaz
+    0x16C8: "p",  # perth
+    0x16C9: "z",  # algiz
+    0x16CB: "s",  # sowilo
+    0x16CF: "t",  # tiwaz
+    0x16D2: "b",  # berkan
+    0x16D6: "e",  # ehwaz
+    0x16D7: "m",  # mannaz
+    0x16DA: "l",  # laguz
+    0x16DC: chr(0xF1),  # "ng"  # ingwaz
+    0x16DF: "o",  # othila
+    0x16DE: "d",  # dagaz
+    0x16B3: "k",  # kaunan
+    0x16B9: "w",  # wunja
+}
+
+def ansirune(text: str) -> str:
+    out = StringIO()
+    for c in text:
+        ch = ord(c)
+        if ch in ansi_rune_lower:
+            out.write(ansi_rune_lower[ch])
+        else:
+            out.write(c)
+    return out.getvalue()
+
+# fraktur / blackletter
+
 norm_fraktur__C = 0x212D  # Complex Numbers
 norm_fraktur__H = 0x210C  # Hamilton Numbers
 norm_fraktur__I = 0x2111
@@ -906,10 +1080,24 @@ def fraktur(text: str) -> str:  # gothic, blackletter
             out.write(chr(norm_fraktur_A + (ch - norm_base_A)))
         elif norm_base_a <= ch and ch <= norm_base_z:
             out.write(chr(norm_fraktur_a + (ch - norm_base_a)))
-        elif norm_base_sz == ch :
+        elif norm_base_sz == ch:
             out.write(chr(norm_greek_a + 1))
         # elif norm_base_0 <= ch and ch <= norm_base_9:
         #     out.write(chr(bold_base_0+(ch-norm_base_0)))
+        else:
+            out.write(c)
+    return out.getvalue()
+
+def ansifraktur(text: str) -> str:  # gothic, blackletter
+    out = StringIO()
+    for c in text:
+        ch = ord(c)
+        if norm_fraktur_a <= ch and ch <= norm_fraktur_z:
+            out.write(chr(norm_base_a + (ch - norm_fraktur_a)))
+        elif norm_fraktur_A <= ch and ch <= norm_fraktur_Y:
+            out.write(chr(norm_base_A + (ch - norm_fraktur_A)))
+        elif ch in norm_fraktur_upper:
+            out.write(chr(norm_fraktur_upper[ch]))
         else:
             out.write(c)
     return out.getvalue()
@@ -1309,6 +1497,7 @@ class Scanned:
     val: Dict[str, int] = {}
     verbose: int = 0
     helpinfo: int = 0
+    frompipe: int = 0
 
 def scan(args: List[str]) -> Scanned:
     opt = Scanned()
@@ -1322,6 +1511,8 @@ def scan(args: List[str]) -> Scanned:
                     opt.helpinfo += 1
                 else:
                     print("unknown option {arg} (ignored)".format(**locals()), file=sys.stderr)
+            elif arg == "-":
+                opt.frompipe = 1
             else:
                 accept = "hvbimfGFMD"
                 opt.verbose += arg.count("v")
@@ -1387,6 +1578,10 @@ def convert(cmd: str, text: str) -> str:
         text = viking(text)
     if "greek" in cmd or "graec" in cmd:
         text = greek(text)
+    if "ansi" in cmd or "latin" in cmd:
+        text = ansirune(ansigreek(ansifraktur(text)))
+    if "text" in cmd or "simple" in cmd:
+        text = ansirune(ansigreek(ansifraktur(ansinumbers(ansispace(text)))))
     if "black" in cmd or "frak" in cmd:
         text = fraktur(text)
     if "round" in cmd or "script" in cmd or "writ" in cmd:
@@ -1427,6 +1622,7 @@ def helpinfo() -> str:
      *power* *dim*    convert numbers after ^ to superscript (alpha to greek)
      *index* *idx*    convert numbers after _ to subscript
      *math*           nobr+frac+power+index
+     *ansi* *text*    revert to latin character set
      *turned* *down*  turn each character (upside-down)
      *swap* *back*    reverse each line
      *flip* *ambi*    turned (upside-down and reversed)
@@ -1499,7 +1695,12 @@ def printscanned(opt: Scanned, withcmd: str = "") -> int:
     if opt.val.get("D", 0):
         cmd += "doub"
     logg.info("cmd = %s", cmd)
-    print(convert(cmd, text))
+    if text:
+        print(convert(cmd, text))
+    if opt.frompipe or (not text and not os.isatty(sys.stdin.fileno())):
+        for line in sys.stdin:
+            text = line.rstrip()
+            print(convert(cmd, text))
     return 0
 
 if __name__ == "__main__":  # pragma: no cover
